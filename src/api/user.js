@@ -53,6 +53,51 @@ export function setup(data) {
         data
     })
 }
+export function changeAvatar(data) {
+    return request({
+        url: '/users/avatar',
+        method: 'post',
+        data
+    })
+}
+export function index(params) {
+    return request({
+        url: '/users',
+        method: 'get',
+        params
+    })
+}
+export function create(data) {
+    return request({
+        url: '/users',
+        method: 'post',
+        data
+    })
+}
+export function update(data, id) {
+    return request({
+        url: `/users/${id}`,
+        method: 'put',
+        data
+    })
+}
+export function destroy(id) {
+    return request({
+        url: `/users/${id}`,
+        method: 'delete',
+    })
+}
 
-
-
+export function updateCompany(data) {
+    return request({
+        url: '/users/company',
+        method: 'put',
+        data
+    })
+}
+export function getCompany() {
+    return request({
+        url: '/users/company',
+        method: 'get',
+    })
+}

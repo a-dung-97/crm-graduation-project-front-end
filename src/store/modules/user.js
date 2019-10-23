@@ -6,12 +6,21 @@ const state = {
     token: getToken(),
     name: '',
     avatar: '',
-    roles: []
+    id: '',
+    roles: [],
+    company: '',
+    phone_number: '',
+    department: '',
+    position: '',
+    email: ''
 }
 
 const mutations = {
     SET_TOKEN: (state, token) => {
         state.token = token
+    },
+    SET_ID: (state, id) => {
+        state.id = id
     },
     SET_NAME: (state, name) => {
         state.name = name
@@ -21,7 +30,22 @@ const mutations = {
     },
     SET_ROLES: (state, roles) => {
         state.roles = roles
-    }
+    },
+    SET_COMPANY: (state, company) => {
+        state.company = company
+    },
+    SET_PHONE_NUMBER: (state, phone_number) => {
+        state.phone_number = phone_number
+    },
+    SET_POSITION: (state, position) => {
+        state.position = position
+    },
+    SET_DEPARTMENT: (state, department) => {
+        state.department = department
+    },
+    SET_EMAIL: (state, email) => {
+        state.email = email
+    },
 }
 
 const actions = {
@@ -50,7 +74,7 @@ const actions = {
                     reject('Verification failed, please Login again.')
                 }
 
-                const { roles, name, avatar } = data
+                const { id, roles, name, avatar, company, phone_number, department, position, email } = data
 
                 // roles must be a non-empty array
                 if (!roles || roles.length <= 0) {
@@ -59,7 +83,13 @@ const actions = {
 
                 commit('SET_ROLES', roles)
                 commit('SET_NAME', name)
+                commit('SET_ID', id)
                 commit('SET_AVATAR', avatar)
+                commit('SET_COMPANY', company)
+                commit('SET_PHONE_NUMBER', phone_number)
+                commit('SET_DEPARTMENT', department)
+                commit('SET_POSITION', position)
+                commit('SET_EMAIL', email)
                 resolve(data)
             }).catch(error => {
                 reject(error)

@@ -4,68 +4,49 @@ import Router from "vue-router";
 Vue.use(Router);
 
 import Layout from "@/layout";
-import Customer from "@/layout/customer/Customer";
-
-export const constantRoutes = [{
-    path: "/customer",
-    name: "Customer",
-    redirect: "/customer/login",
-    component: Customer,
-    hidden: true,
-    children: [{
-        path: "login",
-        name: "login",
-        component: () => import("@/views/customer/login/index")
+import companyRouters from './modules/company';
+import customerRouters from './modules/customer';
+export const constantRoutes = [
+    customerRouters,
+    {
+        path: "/",
+        component: Layout,
+        redirect: "/home",
+        children: [{
+            path: "home",
+            name: "Trang chủ",
+            component: () => import("@/views/dashboard/index"),
+            meta: {
+                title: "Trang chủ",
+                icon: "dashboard",
+            }
+        }]
     },
     {
-        path: "register",
-        name: "register",
-        component: () => import("@/views/customer/register/index")
+        path: '/profile',
+        component: Layout,
+        redirect: '/profile/index',
+        hidden: true,
+        children: [
+            {
+                path: 'index',
+                component: () => import('@/views/profile/index'),
+                name: 'Thông tin người dùng',
+                meta: { title: 'Thông tin người dùng', icon: 'user' }
+            }
+        ]
     },
     {
-        path: "email-confirmation",
-        name: "email-confirmation",
-        component: () => import("@/views/customer/email-confirmation/index"),
-        props: true
-    },
-    {
-        path: "organization-information",
-        name: "organization-information",
-        component: () =>
-            import("@/views/customer/organization-information/index")
-    },
-    {
-        path: "services",
-        name: "services",
-        component: () => import("@/views/customer/services/index"),
-        props: true
+        path: "/404",
+        component: () => import("@/views/404"),
+        hidden: true
     }
-    ]
-},
-
-{
-    path: "/",
-    component: Layout,
-    redirect: "/dashboard",
-    children: [{
-        path: "dashboard",
-        name: "Dashboard",
-        component: () => import("@/views/dashboard/index"),
-        meta: {
-            title: "Dashboard",
-            icon: "dashboard",
-        }
-    }]
-},
-
-{
-    path: "/404",
-    component: () => import("@/views/404"),
-    hidden: true
-}
 ];
 
-export const asyncRoutes = [];
+export const asyncRoutes = [
+    companyRouters,
+    { path: '*', redirect: '/404', hidden: true }
+];
 const createRouter = () =>
     new Router({
         scrollBehavior: () => ({

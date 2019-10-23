@@ -2,12 +2,12 @@
     <div class="sidebar-logo-container" :class="{'collapse':collapse}">
         <transition name="sidebarLogoFade">
             <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-                <img v-if="logo" :src="logo" class="sidebar-logo" />
-                <h1 v-else class="sidebar-title">{{ title }}</h1>
+                <img v-if="logo" src="@/assets/images/sidebar-logo.png" class="sidebar-logo" />
+                <h1 v-else class="sidebar-title">{{ company }}</h1>
             </router-link>
             <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-                <img v-if="logo" :src="logo" class="sidebar-logo" />
-                <h1 class="sidebar-title">{{ title }}</h1>
+                <img v-if="logo" src="@/assets/images/sidebar-logo.png" class="sidebar-logo" />
+                <h1 class="sidebar-title">{{ company }}</h1>
             </router-link>
         </transition>
     </div>
@@ -24,10 +24,13 @@ export default {
     },
     data() {
         return {
-            title: "Skymap Global VN",
-            logo:
-                "http://mediaworld.com.vn/upload/baiviet/crmiconmodul-3968.png"
+            logo: true
         };
+    },
+    computed: {
+        company() {
+            return this.$store.state.user.company;
+        }
     }
 };
 </script>
