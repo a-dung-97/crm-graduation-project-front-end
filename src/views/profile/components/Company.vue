@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { getCompany, updateCompany } from "@/api/user";
+import { getCompany, updateCompany } from "@/api/company/user";
 export default {
     data() {
         return {

@@ -11,20 +11,29 @@
                 >Thêm phòng ban</el-button>
             </el-col>
         </el-row>
-        <TableData
-            :form="form"
-            :table-data="tableData"
-            @handle-edit="showDialogForm('edit')"
-            @handle-delete="getData"
-            :loading.sync="loading"
-        ></TableData>
+
+        <el-row>
+            <el-col :span="4">
+                <Tree :data="recursive" />
+            </el-col>
+            <el-col :span="20">
+                <TableData
+                    :form="form"
+                    :table-data="tableData"
+                    @handle-edit="showDialogForm('edit')"
+                    @handle-delete="getData();getRecursive();getOption()"
+                    :loading.sync="loading"
+                ></TableData>
+            </el-col>
+        </el-row>
         <Pagination
             :pagination="pagination"
             @size-change="params.per_page=$event;params.page=1;getData()"
             @current-change="params.page=$event;getData()"
         />
         <DialogForm
-            @reload="getData"
+            @reload="getData();getRecursive();getOption()"
+            :options="options"
             :show-dialog.sync="showDialog"
             :editing="editing"
             :form="form"
@@ -32,29 +41,34 @@
     </div>
 </template>
 <script>
-import { index } from "@/api/department";
+import { index, recursive } from "@/api/company/department";
 import TableData from "./components/TableData";
 import DialogForm from "./components/DialogForm";
-import Pagination from "./components/Pagination";
+import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
+import Tree from "./components/Tree";
 export default {
-    components: { TableData, DialogForm, Pagination, SearchForm },
+    components: { TableData, DialogForm, Pagination, SearchForm, Tree },
     data() {
         return {
             tableData: [],
             loading: false,
             search: "",
+            options: [],
+            recursive: [],
             pagination: {},
             params: {
                 per_page: 5,
                 page: 1,
-                search: ""
+                search: "",
+                parent: ""
             },
             showDialog: false,
             editing: false,
             form: {
                 name: "",
-                description: ""
+                description: "",
+                parent_id: ""
             }
         };
     },
@@ -68,6 +82,22 @@ export default {
                 this.loading = false;
             } catch (error) {}
         },
+        async getOption() {
+            try {
+                let request = await index();
+                this.options = request.data;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async getRecursive() {
+            try {
+                let request = await recursive();
+                this.recursive = request.data;
+            } catch (error) {
+                console.log(error);
+            }
+        },
         showDialogForm(mode) {
             if (mode == "edit") this.editing = true;
             else {
@@ -79,6 +109,8 @@ export default {
     },
     created() {
         this.getData();
+        this.getOption();
+        this.getRecursive();
     }
 };
 </script>

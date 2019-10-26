@@ -4,7 +4,7 @@
             <el-table-column type="index" width="50" label="STT"></el-table-column>
             <el-table-column prop="name" label="Tên"></el-table-column>
             <el-table-column prop="description" label="Mô tả"></el-table-column>
-            <el-table-column prop="parent" label="Phòng ban cha"></el-table-column>
+            <el-table-column prop="parent" label="Cấp trên"></el-table-column>
             <!-- <el-table-column label="Hành động" align="center"></el-table-column> -->
             <el-table-column align="center" width="200" label="Hành động">
                 <template slot-scope="scope">
@@ -16,7 +16,7 @@
     </div>
 </template>
 <script>
-import { destroy } from "@/api/company/department";
+import { destroy } from "@/api/company/position";
 export default {
     props: ["tableData", "loading", "form"],
     methods: {

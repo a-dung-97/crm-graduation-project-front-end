@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import { update } from "@/api/user";
+import { validatePhoneNumber } from "@/utils/validate";
+import { update } from "@/api/company/user";
 export default {
     props: {
         user: {
@@ -37,19 +38,6 @@ export default {
         }
     },
     data() {
-        var validatePhoneNumber = (rule, value, callback) => {
-            if (value === "") {
-                callback(new Error("Hãy nhập số điện thoại của bạn"));
-            } else if (
-                !value.match(
-                    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-                )
-            ) {
-                callback(new Error("Số điện thoại bạn nhập không hợp lệ"));
-            } else {
-                callback();
-            }
-        };
         return {
             loading: false,
             rules: {

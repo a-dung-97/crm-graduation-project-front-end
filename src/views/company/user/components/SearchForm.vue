@@ -3,7 +3,7 @@
         <el-input
             v-model="params.search"
             size="medium"
-            placeholder="Nhập tên hoặc mô tả"
+            placeholder="Nhập họ tên, SĐT hoặc Email"
             class="input-text"
             clearable
             @keyup.enter.native="$emit('handle-search')"

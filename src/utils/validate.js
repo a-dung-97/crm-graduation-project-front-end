@@ -7,7 +7,7 @@
  * @returns {Boolean}
  */
 export function isExternal(path) {
-  return /^(https?:|mailto:|tel:)/.test(path)
+    return /^(https?:|mailto:|tel:)/.test(path)
 }
 
 /**
@@ -15,6 +15,19 @@ export function isExternal(path) {
  * @returns {Boolean}
  */
 export function validUsername(str) {
-  const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
+    const valid_map = ['admin', 'editor']
+    return valid_map.indexOf(str.trim()) >= 0
 }
+export function validatePhoneNumber(rule, value, callback) {
+    if (value === "") {
+        callback(new Error("Hãy nhập số điện thoại của bạn"));
+    } else if (
+        !value.match(
+            /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+        )
+    ) {
+        callback(new Error("Số điện thoại bạn nhập không hợp lệ"));
+    } else {
+        callback();
+    }
+};

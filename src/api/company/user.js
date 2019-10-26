@@ -67,9 +67,9 @@ export function index(params) {
         params
     })
 }
-export function create(data) {
+export function invite(data) {
     return request({
-        url: '/users',
+        url: '/users/invite',
         method: 'post',
         data
     })

@@ -1,6 +1,7 @@
 <template>
-    <div class="block" style="margin-top:20px">
+    <div class="block" style="margin-top:30px;text-align:center">
         <el-pagination
+            style="text-al"
             background
             @size-change="$emit('size-change',$event)"
             @current-change="$emit('current-change',$event)"

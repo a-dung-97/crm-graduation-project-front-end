@@ -2,7 +2,7 @@
     <el-dialog
         width="30%"
         center
-        :title="this.editing ? 'Chỉnh sửa phòng ban': 'Thêm phòng ban'"
+        :title="this.editing ? 'Chỉnh sửa nhóm người dùng': 'Thêm nhóm người dùng'"
         :before-close="closeDialog"
         :visible.sync="showDialog"
     >
@@ -13,21 +13,6 @@
             <el-form-item label="Mô tả" prop="description">
                 <el-input v-model="form.description"></el-input>
             </el-form-item>
-            <el-form-item label="Phòng ban cha">
-                <el-select
-                    clearable
-                    v-model="form.parent_id"
-                    style="width:100%"
-                    placeholder="Phòng ban cha"
-                >
-                    <el-option
-                        v-for="item in options"
-                        :key="item.id"
-                        :label="item.name"
-                        :value="item.id"
-                    ></el-option>
-                </el-select>
-            </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
             <el-button @click="closeDialog">Hủy</el-button>
@@ -37,9 +22,9 @@
     </el-dialog>
 </template>
 <script>
-import { store, update } from "@/api/company/department";
+import { store, update } from "@/api/company/group";
 export default {
-    props: ["form", "editing", "showDialog", "options"],
+    props: ["form", "editing", "showDialog"],
     data() {
         return {
             loading: false,
@@ -47,7 +32,7 @@ export default {
                 name: [
                     {
                         required: true,
-                        message: "Hãy nhập tên của bạn",
+                        message: "Hãy nhập tên nhóm người dùng",
                         trigger: "blur"
                     }
                 ]

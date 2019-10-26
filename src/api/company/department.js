@@ -27,3 +27,10 @@ export function destroy(id) {
         method: 'delete',
     })
 }
+export function recursive() {
+    return request({
+        url: '/departments/recursive',
+        method: 'get',
+
+    })
+}

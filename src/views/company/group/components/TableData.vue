@@ -4,19 +4,36 @@
             <el-table-column type="index" width="50" label="STT"></el-table-column>
             <el-table-column prop="name" label="Tên"></el-table-column>
             <el-table-column prop="description" label="Mô tả"></el-table-column>
-            <el-table-column prop="parent" label="Phòng ban cha"></el-table-column>
             <!-- <el-table-column label="Hành động" align="center"></el-table-column> -->
             <el-table-column align="center" width="200" label="Hành động">
                 <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.row)">Chỉnh sửa</el-button>
-                    <el-button size="mini" @click="handleDelete(scope.row.id)" type="danger">Xóa</el-button>
+                    <el-button
+                        size="medium"
+                        icon="el-icon-edit"
+                        circle
+                        @click="handleEdit(scope.row)"
+                    ></el-button>
+                    <el-button
+                        @click="handleDelete(scope.row.id)"
+                        size="medium"
+                        type="danger"
+                        icon="el-icon-delete"
+                        circle
+                    ></el-button>
+                    <el-button
+                        size="medium"
+                        @click="handleEditUsers(scope.row.users,scope.row.id)"
+                        icon="el-icon-user"
+                        circle
+                        type="primary"
+                    ></el-button>
                 </template>
             </el-table-column>
         </el-table>
     </div>
 </template>
 <script>
-import { destroy } from "@/api/company/department";
+import { destroy } from "@/api/company/group";
 export default {
     props: ["tableData", "loading", "form"],
     methods: {
@@ -24,7 +41,6 @@ export default {
             this.form.id = row.id;
             this.form.name = row.name;
             this.form.description = row.description;
-            this.form.parent_id = row.parent_id;
             this.$emit("handle-edit");
         },
         async handleDelete(id) {
@@ -36,6 +52,9 @@ export default {
             await destroy(id);
             this.$message.success("Xóa dữ liệu thành công");
             this.$emit("handle-delete");
+        },
+        handleEditUsers(users, id) {
+            this.$emit("handle-edit-users", [users, id]);
         }
     }
 };

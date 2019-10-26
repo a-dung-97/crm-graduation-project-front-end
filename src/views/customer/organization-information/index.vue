@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { setup, refreshToken } from "@/api/user";
+import { setup, refreshToken } from "@/api/company/user";
 import { getToken, setToken, removeToken } from "@/utils/auth";
 import { validationMixin } from "vuelidate";
 import { required, minLength, maxLength } from "vuelidate/lib/validators";

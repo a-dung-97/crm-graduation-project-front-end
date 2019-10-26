@@ -3,7 +3,11 @@
         <div slot="header" class="clearfix text-center">
             <span>Thông tin tài khoản</span>
         </div>
-
+        <!-- <iframe
+            width="450px"
+            height="600px"
+            src="https://crmviet.net/webform/generated/241/9e25a7c4-f549-11e9-8cea-02aa8ad70798"
+        ></iframe>-->
         <div class="user-profile">
             <div class="box-center avatar">
                 <el-avatar :src="user.avatar" icon="el-icon-user-solid" :size="150"></el-avatar>
@@ -59,7 +63,7 @@
 </template>
 
 <script>
-import { changeAvatar } from "@/api/user";
+import { changeAvatar } from "@/api/company/user";
 export default {
     filters: {
         uppercaseFirst(string) {
@@ -93,7 +97,15 @@ export default {
         onImageChange(e) {
             this.isSelectedImage = true;
             let files = e.target.files || e.dataTransfer.files;
-            if (!files.length) return;
+            if (!files.length) {
+                this.isSelectedImage = false;
+                return;
+            }
+            if (!/\.(png|jpg)$/.test(files[0].name)) {
+                this.$message.error("Hãy upload file jpg hoặc png");
+                this.isSelectedImage = false;
+                return;
+            }
             this.createImage(files[0]);
         },
         createImage(file) {

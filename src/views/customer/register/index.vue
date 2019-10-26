@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import { register } from "@/api/user";
+import { register } from "@/api/company/user";
 import { validationMixin } from "vuelidate";
 import { required, email, minLength } from "vuelidate/lib/validators";
 

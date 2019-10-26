@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { resendEmail } from "@/api/user";
+import { resendEmail } from "@/api/company/user";
 export default {
     props: ["user_id"],
     data() {
