@@ -30,7 +30,9 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
+.control{
+    margin-bottom: 20px;
+}
 a:focus,
 a:active {
   outline: none;
@@ -58,7 +60,9 @@ div:focus {
     height: 0;
   }
 }
-
+.link{
+    color:#2c7bd0!important
+}
 // main-container global css
 .app-container {
   padding: 20px;
