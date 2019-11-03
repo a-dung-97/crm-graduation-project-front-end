@@ -10,7 +10,11 @@
         ></iframe>-->
         <div class="user-profile">
             <div class="box-center avatar">
-                <el-avatar :src="user.avatar" icon="el-icon-user-solid" :size="150"></el-avatar>
+                <el-avatar
+                    :src="user.avatar||`https://ui-avatars.com/api/?name=${$store.getters.name}`"
+                    icon="el-icon-user-solid"
+                    :size="150"
+                ></el-avatar>
                 <el-button
                     class="btn-avatar btn-hidden"
                     type="primary"
