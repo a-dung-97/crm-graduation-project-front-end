@@ -123,8 +123,10 @@ export default {
                     this.loading = false;
                 })
                 .catch(error => {
-                    if (error.response.status === 401) this.loading = false;
-                    else
+                    if (error.response.status === 401) {
+                        this.loading = false;
+                        this.$message.error("Sai tài khoản hoặc mật khẩu");
+                    } else
                         this.$router.push({
                             name: "email-confirmation",
                             params: {

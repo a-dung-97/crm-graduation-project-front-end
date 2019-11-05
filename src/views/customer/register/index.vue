@@ -58,11 +58,11 @@
                     <input
                         type="email"
                         class="form-control"
-                        v-model="form.full_name"
+                        v-model="form.name"
                         placeholder="Nhập họ tên của bạn"
                     />
                     <div class="form-feedback" v-if="$v.form.$dirty">
-                        <span v-if="!$v.form.full_name.required">Bạn chưa nhập họ tên</span>
+                        <span v-if="!$v.form.name.required">Bạn chưa nhập họ tên</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -124,7 +124,7 @@ export default {
                 required,
                 minLength: minLength(8)
             },
-            full_name: {
+            name: {
                 required
             }
         }
@@ -136,7 +136,7 @@ export default {
             form: {
                 email: "",
                 password: "",
-                full_name: "",
+                name: "",
                 phone_number: ""
             },
             errorEmail: false,
