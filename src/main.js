@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Notifications from 'vue-notification'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-
+Vue.prototype.$bus = new Vue();
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/src/locale/lang/vi' // lang i18n
@@ -16,9 +16,13 @@ import '@/permission' // permission control
 
 
 // Use v-calendar, v-date-picker & v-popover components
+Vue.filter('money', function (value) {
+    return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+})
 
-
-
+Vue.filter('date', function (value) {
+    return new Date(value).toLocaleDateString('en-GB');
+})
 
 /**
  * If you don't want to use mock-server

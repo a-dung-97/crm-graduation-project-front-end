@@ -5,15 +5,19 @@
             <el-col :span="3">
                 <el-button
                     class="fr"
-                    @click="$router.push('/goods/product/create')"
+                    @click="$router.push('/goods/issue/create')"
                     size="medium"
                     type="primary"
-                >Thêm sản phẩm</el-button>
+                >Thêm phiếu xuất</el-button>
             </el-col>
         </el-row>
         <el-row>
             <el-col :span="24">
-                <TableData :table-data="tableData" :loading.sync="loading" />
+                <TableData
+                    @handle-delete="getData"
+                    :table-data="tableData"
+                    :loading.sync="loading"
+                />
                 <Pagination
                     :pagination="pagination"
                     @size-change="params.per_page=$event;params.page=1;getData()"
@@ -24,7 +28,7 @@
     </div>
 </template>
 <script>
-import { index } from "@/api/goods/product";
+import { index } from "@/api/goods/issue";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
@@ -38,8 +42,7 @@ export default {
             params: {
                 per_page: 5,
                 page: 1,
-                search: "",
-                type: ""
+                search: ""
             }
         };
     },
@@ -56,9 +59,6 @@ export default {
                 this.loading = false;
             }
         }
-    },
-    mounted() {
-        this.$bus.$on("refresh", () => this.getData());
     },
     created() {
         this.getData();

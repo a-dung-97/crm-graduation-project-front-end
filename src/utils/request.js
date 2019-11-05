@@ -96,11 +96,11 @@ service.interceptors.response.use(
                 })
             })
         }
-        else
+        else if (error.response.status === 400)
             Message({
                 message: error.response.data.message,
                 type: 'error',
-                duration: 5 * 1000
+                duration: 3 * 1000
             })
         return Promise.reject(error)
     }

@@ -1,30 +1,24 @@
 <template>
     <div class="app-container">
         <el-row class="control">
-            <SearchForm :params="params" @handle-search="getData" />
-            <el-col :span="3">
-                <el-button
-                    class="fr"
-                    @click="$router.push('/goods/product/create')"
-                    size="medium"
-                    type="primary"
-                >Thêm sản phẩm</el-button>
-            </el-col>
+            <SearchForm :warehouses="warehouses" :params="params" @handle-search="getData" />
         </el-row>
+
         <el-row>
             <el-col :span="24">
-                <TableData :table-data="tableData" :loading.sync="loading" />
-                <Pagination
-                    :pagination="pagination"
-                    @size-change="params.per_page=$event;params.page=1;getData()"
-                    @current-change="params.page=$event;getData()"
-                />
+                <TableData :table-data="tableData" :loading.sync="loading"></TableData>
             </el-col>
         </el-row>
+        <Pagination
+            :pagination="pagination"
+            @size-change="params.per_page=$event;params.page=1;getData()"
+            @current-change="params.page=$event;getData()"
+        />
     </div>
 </template>
 <script>
-import { index } from "@/api/goods/product";
+import { index as getWarehouses } from "@/api/goods/warehouse";
+import { index } from "@/api/goods/inventory";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
@@ -35,11 +29,12 @@ export default {
             tableData: [],
             loading: false,
             pagination: {},
+            warehouses: [],
             params: {
                 per_page: 5,
                 page: 1,
-                search: "",
-                type: ""
+                warehouse: "",
+                search: ""
             }
         };
     },
@@ -51,19 +46,23 @@ export default {
                 this.tableData = data;
                 this.pagination = meta;
                 this.loading = false;
-            } catch (error) {
-                console.log(error);
-                this.loading = false;
-            }
+            } catch (error) {}
+        },
+        async getWarehouses() {
+            try {
+                const { data } = await getWarehouses();
+                this.warehouses = data;
+            } catch (error) {}
         }
-    },
-    mounted() {
-        this.$bus.$on("refresh", () => this.getData());
     },
     created() {
         this.getData();
+        this.getWarehouses();
     }
 };
 </script>
-<style lang="">
+<style lang="scss">
+.control {
+    margin-bottom: 20px;
+}
 </style>
