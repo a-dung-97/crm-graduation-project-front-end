@@ -7,7 +7,7 @@ export function index(params) {
         params
     })
 }
-export function create(data) {
+export function store(data) {
     return request({
         url: '/positions',
         method: 'post',

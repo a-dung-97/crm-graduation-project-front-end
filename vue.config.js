@@ -5,7 +5,7 @@ const defaultSettings = require('./src/settings.js')
 function resolve(dir) {
     return path.join(__dirname, dir)
 }
-
+// git push -f git@github.com:a-dung-97/a-dung-97.github.io.git master
 const name = defaultSettings.title || 'ADCRM' // page title
 
 // If your port is set to 80,
