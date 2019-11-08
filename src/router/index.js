@@ -7,6 +7,7 @@ import Layout from "@/layout";
 import companyRouters from './modules/company';
 import customerRouters from './modules/customer';
 import goodsRouter from './modules/goods/goods';
+import settingRouter from './modules/setting';
 export const constantRoutes = [
     customerRouters,
     {
@@ -41,11 +42,12 @@ export const constantRoutes = [
         path: "/404",
         component: () => import("@/views/404"),
         hidden: true
-    }
+    },
+
 ];
 
 export const asyncRoutes = [
-    companyRouters, goodsRouter,
+    companyRouters, goodsRouter, settingRouter,
     { path: '*', redirect: '/404', hidden: true }
 ];
 const createRouter = () =>
