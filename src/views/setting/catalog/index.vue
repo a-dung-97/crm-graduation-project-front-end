@@ -116,9 +116,6 @@ export default {
                 let request = await index();
                 this.tableData = request.data;
                 this.loading = false;
-                // console.log(
-                //     this.tableData.find(item => item.name == "Liên hệ").children
-                // );
                 for (let obj in this.catalog) {
                     this.catalog[obj] = this.tableData.find(
                         item => item.name == obj
