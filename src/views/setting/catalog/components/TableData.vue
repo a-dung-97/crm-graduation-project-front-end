@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="tableData" v-loading="loading" style="width: 100%" row-key="id" border>
+    <el-table :data="tableData" style="width: 100%" row-key="id" border>
         <el-table-column prop="name" label="Tên danh mục" min-width="280"></el-table-column>
         <el-table-column prop="description" label="Mô tả" min-width="280"></el-table-column>
         <el-table-column label="Hành động" align="center" min-width="80">
@@ -46,7 +46,7 @@
 <script>
 import { destroy } from "@/api/setting/catalog";
 export default {
-    props: ["tableData", "loading", "form"],
+    props: ["tableData", "form"],
     methods: {
         handleEdit(row) {
             this.form.id = row.id;
