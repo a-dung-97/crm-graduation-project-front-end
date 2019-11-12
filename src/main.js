@@ -13,7 +13,7 @@ import store from './store'
 import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
-
+import FullScreenLoading from '@/mixins/fullscreen-loading'
 
 // Use v-calendar, v-date-picker & v-popover components
 Vue.filter('money', function (value) {
@@ -23,6 +23,9 @@ Vue.filter('money', function (value) {
 Vue.filter('date', function (value) {
     return new Date(value).toLocaleDateString('en-GB');
 })
+
+Vue.mixin(FullScreenLoading);
+
 
 /**
  * If you don't want to use mock-server

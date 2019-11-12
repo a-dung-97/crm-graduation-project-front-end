@@ -26,7 +26,7 @@
         </el-upload>
         <span slot="footer" class="dialog-footer">
             <el-button @click="closeDialog">Hủy</el-button>
-            <el-button type="primary" @click="submitUpload">Cập nhật</el-button>
+            <el-button type="primary" :loading="loading" @click="submitUpload">Cập nhật</el-button>
         </span>
     </el-dialog>
 </template>
@@ -44,6 +44,7 @@ export default {
     methods: {
         closeDialog() {
             this.$emit("update:showDialog", false);
+            this.fileList = [];
         },
         addFileByType() {
             switch (this.type) {
@@ -67,7 +68,6 @@ export default {
         reload() {
             this.loading = false;
             this.$message.success("Tải file lên thành công");
-            this.fileList = [];
             this.closeDialog();
             this.$emit("reload");
         },
