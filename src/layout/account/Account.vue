@@ -1,5 +1,5 @@
 <template>
-    <div class="customer-body">
+    <div class="account-body">
         <Header>
             <div class="breadcrumb" v-if="header.name">
                 Setup Account >
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "~@/styles/customer/app.scss";
+@import "~@/styles/account/app.scss";
 </style>
 <style lang="css">
 body {

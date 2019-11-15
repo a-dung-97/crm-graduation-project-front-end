@@ -7,7 +7,7 @@
     >
         <div class="service">
             <div class="service-img">
-                <img src="@/assets/images/customer/vector image 6.svg" alt />
+                <img src="@/assets/images/account/vector image 6.svg" alt />
             </div>
             <div class="service-name">Personal</div>
             <p class="service-description">
@@ -19,7 +19,7 @@
         </div>
         <div class="service">
             <div class="service-img">
-                <img src="@/assets/images/customer/vector image 7.svg" alt />
+                <img src="@/assets/images/account/vector image 7.svg" alt />
             </div>
             <div class="service-name">Team</div>
             <p class="service-description">
@@ -31,7 +31,7 @@
         </div>
         <div class="service">
             <div class="service-img">
-                <img src="@/assets/images/customer/vector image 8.svg" alt />
+                <img src="@/assets/images/account/vector image 8.svg" alt />
             </div>
             <div class="service-name">Corporate</div>
             <p class="service-description">

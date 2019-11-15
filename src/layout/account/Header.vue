@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="brand">
-            <img src="@/assets/images/customer/logo smartchecking-02.png" alt />
+            <img src="@/assets/images/account/logo smartchecking-02.png" alt />
             <span>ADCRM.VN</span>
         </div>
         <slot></slot>

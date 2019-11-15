@@ -7,7 +7,7 @@
             element-loading-background="rgba(0, 0, 0, 0.8)"
         >
             <aside>
-                <img src="@/assets/images/customer/vector image 4.svg" style="width:410px" alt />
+                <img src="@/assets/images/account/vector image 4.svg" style="width:410px" alt />
                 <p>Xác nhận địa chỉ email của bạn!</p>
             </aside>
             <section class="email-confirmation">

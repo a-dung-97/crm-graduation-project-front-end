@@ -7,7 +7,7 @@
     >
         <aside>
             <img
-                src="@/assets/images/customer/vector image 5.svg"
+                src="@/assets/images/account/vector image 5.svg"
                 style="width:490px;margin-top:50px"
                 alt
             />

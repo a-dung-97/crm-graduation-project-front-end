@@ -1,6 +1,6 @@
 import Layout from '@/layout';
 
-const companyRouters = {
+const companyRouter = {
     path: "/company",
     component: Layout,
     redirect: "/company/position",
@@ -58,4 +58,4 @@ const companyRouters = {
 
     ]
 }
-export default companyRouters
+export default companyRouter

@@ -14,13 +14,13 @@
             />
         </svg>
 
-        <el-button
+        <!-- <el-button
             @click="$bus.$emit('refresh')"
             circle
             icon="el-icon-refresh"
             type="primary"
             size="mini"
-        ></el-button>
+        ></el-button>-->
     </div>
 </template>
 

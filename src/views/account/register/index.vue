@@ -6,7 +6,7 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
     >
         <aside>
-            <img src="@/assets/images/customer/vector image 7.svg" alt />
+            <img src="@/assets/images/account/vector image 7.svg" alt />
             <p>Quản lý và chăm sóc khách hàng toàn diện!</p>
         </aside>
         <section class="register">
@@ -88,19 +88,19 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-social btn-fb">
-                        <img src="@/assets/images/customer/icon-fb.png" alt />
+                        <img src="@/assets/images/account/icon-fb.png" alt />
                         <span>Đăng kí bằng tài khoản Facebook</span>
                     </button>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-social btn-gg">
-                        <img src="@/assets/images/customer/icon-gg.png" alt />
+                        <img src="@/assets/images/account/icon-gg.png" alt />
                         <span>Đăng kí bằng tài khoản Google</span>
                     </button>
                 </div>
                 <div class="register-link">
                     Bạn đã có tài khoản?
-                    <router-link to="/customer/login">Đăng nhập</router-link>
+                    <router-link to="/account/login">Đăng nhập</router-link>
                 </div>
             </form>
         </section>

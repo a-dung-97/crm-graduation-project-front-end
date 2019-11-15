@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/customer/login', '/customer/register', '/customer/email-confirmation'
+const whiteList = ['/account/login', '/account/register', '/account/email-confirmation'
 ] // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
@@ -22,12 +22,12 @@ router.beforeEach(async (to, from, next) => {
     const token = getToken()
 
     if (token) {
-        if (to.path === '/customer/login' || to.path === '/customer/register') {
+        if (to.path === '/account/login' || to.path === '/account/register') {
             // if is logged in, redirect to the home page
             next({ path: '/' })
             NProgress.done()
         }
-        else if (to.path === "/customer/organization-information" || to.path === "/customer/services") {
+        else if (to.path === "/account/organization-information" || to.path === "/account/services") {
             next()
             NProgress.done()
         }
@@ -39,7 +39,7 @@ router.beforeEach(async (to, from, next) => {
             } else {
                 let payload = JSON.parse(atob(token.split('.')[1]));
                 if (payload.hasOwnProperty('is_setup') && !payload.is_setup) {
-                    next({ path: '/customer/organization-information' })
+                    next({ path: '/account/organization-information' })
                     NProgress.done();
                 }
                 else
@@ -73,7 +73,7 @@ router.beforeEach(async (to, from, next) => {
             next()
         } else {
             // other pages that do not have permission to access are redirected to the login page.
-            next(`/customer/login?redirect=${to.path}`)
+            next(`/account/login?redirect=${to.path}`)
             NProgress.done()
         }
     }
