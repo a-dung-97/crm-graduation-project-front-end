@@ -29,7 +29,7 @@
     </div>
 </template>
 <script>
-import { getFiles as getProductFiles } from "@/api/goods/product";
+import { addFiles, getFiles } from "@/api/general/file";
 import TableData from "./components/TableData";
 import DialogUpload from "./components/DialogUpload";
 import Pagination from "@/components/Pagination/index";
@@ -53,30 +53,21 @@ export default {
         async getData() {
             try {
                 this.loading = true;
-                const { data, meta } = await this.getDataFunc(
-                    this.$route.params.id,
-                    this.params
+                const { data, meta } = await getFiles(
+                    this.params,
+                    this.type,
+                    this.$route.params.id
                 );
                 this.tableData = data;
                 this.pagination = meta;
                 this.loading = false;
             } catch (error) {}
         },
-        getFilesByType() {
-            switch (this.type) {
-                case "product":
-                    this.getDataFunc = getProductFiles;
-                    break;
-                default:
-                    break;
-            }
-        },
         showDialogUpload() {
             this.showDialog = true;
         }
     },
     created() {
-        this.getFilesByType();
         this.getData();
     }
 };

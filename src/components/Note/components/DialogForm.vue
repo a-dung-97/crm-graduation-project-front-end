@@ -22,7 +22,7 @@
     </el-dialog>
 </template>
 <script>
-import { addNote as addNoteToProduct } from "@/api/goods/product";
+import { addNote } from "@/api/general/note";
 import { update } from "@/api/general/note";
 export default {
     props: ["form", "editing", "showDialog", "type"],
@@ -53,15 +53,6 @@ export default {
             this.$emit("update:showDialog", false);
             this.$refs["form"].resetFields();
         },
-        addNoteByType() {
-            switch (this.type) {
-                case "product":
-                    this.addDataFunc = addNoteToProduct;
-                    break;
-                default:
-                    break;
-            }
-        },
         async updateData() {
             try {
                 await this.$refs["form"].validate();
@@ -76,7 +67,7 @@ export default {
             try {
                 await this.$refs["form"].validate();
                 this.loading = true;
-                await this.addDataFunc(this.form, this.$route.params.id);
+                await addNote(this.form, this.type, this.$route.params.id);
                 this.reload();
             } catch (error) {
                 this.loading = false;
@@ -90,9 +81,6 @@ export default {
             this.closeDialog();
             this.$emit("reload");
         }
-    },
-    created() {
-        this.addNoteByType();
     }
 };
 </script>

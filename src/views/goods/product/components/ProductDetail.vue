@@ -194,7 +194,6 @@ export default {
                     this.form[field] = data[field];
                 }
                 this.loading = false;
-                console.log(data);
             } catch (error) {
                 console.log(error);
                 this.loading = false;

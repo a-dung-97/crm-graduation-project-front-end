@@ -13,3 +13,17 @@ export function download(data) {
         responseType: "arraybuffer",
     })
 }
+export function addFiles(data, type, id) {
+    return request({
+        url: `/files/${type}/${id}`,
+        method: 'post',
+        data
+    })
+}
+export function getFiles(params, type, id) {
+    return request({
+        url: `/files/${type}/${id}`,
+        method: 'get',
+        params
+    })
+}

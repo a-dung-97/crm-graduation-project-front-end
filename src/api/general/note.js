@@ -20,3 +20,17 @@ export function destroy(id) {
         method: 'delete',
     })
 }
+export function addNote(data, type, id) {
+    return request({
+        url: `/notes/${type}/${id}`,
+        method: 'post',
+        data
+    })
+}
+export function getNotes(params, type, id) {
+    return request({
+        url: `/notes/${type}/${id}`,
+        method: 'get',
+        params
+    })
+}

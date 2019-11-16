@@ -1,12 +1,12 @@
 <template>
     <div class="app-container">
-        <ProductDetail :is-edit="false" />
+        <LeadDetail :is-edit="false" />
     </div>
 </template>
 <script>
-import ProductDetail from "./components/ProductDetail";
+import LeadDetail from "./components/LeadDetail";
 export default {
-    components: { ProductDetail }
+    components: { LeadDetail }
 };
 </script>
 <style>

@@ -47,13 +47,7 @@ export default {
             this.fileList = [];
         },
         addFileByType() {
-            switch (this.type) {
-                case "product":
-                    this.action = `${process.env.VUE_APP_BASE_API}products/${this.$route.params.id}/file`;
-                    break;
-                default:
-                    break;
-            }
+            this.action = `${process.env.VUE_APP_BASE_API}files/${this.type}/${this.$route.params.id}`;
         },
         async createData() {
             try {

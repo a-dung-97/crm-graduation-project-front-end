@@ -27,3 +27,10 @@ export function destroy(id) {
         method: 'delete',
     })
 }
+export function list(root, parent) {
+    return request({
+        url: '/catalogs/list',
+        method: 'get',
+        params: { root, parent }
+    })
+}

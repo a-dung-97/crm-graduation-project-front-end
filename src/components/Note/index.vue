@@ -37,7 +37,7 @@
     </div>
 </template>
 <script>
-import { getNotes as getProductNotes } from "@/api/goods/product";
+import { getNotes } from "@/api/general/note";
 import TableData from "./components/TableData";
 import DialogForm from "./components/DialogForm";
 import Pagination from "@/components/Pagination/index";
@@ -67,23 +67,15 @@ export default {
         async getData() {
             try {
                 this.loading = true;
-                const { data, meta } = await this.getDataFunc(
-                    this.$route.params.id,
-                    this.params
+                const { data, meta } = await getNotes(
+                    this.params,
+                    this.type,
+                    this.$route.params.id
                 );
                 this.tableData = data;
                 this.pagination = meta;
                 this.loading = false;
             } catch (error) {}
-        },
-        getNotesByType() {
-            switch (this.type) {
-                case "product":
-                    this.getDataFunc = getProductNotes;
-                    break;
-                default:
-                    break;
-            }
         },
         showDialogForm(mode) {
             if (mode == "edit") this.editing = true;
@@ -95,7 +87,6 @@ export default {
         }
     },
     created() {
-        this.getNotesByType();
         this.getData();
     }
 };
