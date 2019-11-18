@@ -23,7 +23,9 @@ Vue.filter('money', function (value) {
 Vue.filter('date', function (value) {
     return new Date(value).toLocaleDateString('en-GB');
 })
-
+Vue.filter('datetime', function (value) {
+    return new Date(value).toLocaleDateString('en-GB') + ' ' + new Date(value).toLocaleTimeString('en-GB');
+})
 Vue.mixin(FullScreenLoading);
 Vue.mixin(Catalog);
 

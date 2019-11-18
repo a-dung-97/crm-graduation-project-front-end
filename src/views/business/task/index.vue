@@ -1,21 +1,24 @@
 <template>
     <div class="app-container">
         <el-row class="control">
-            <SearchForm :params="params" @handle-search="getData" />
+            <el-col :span="21">
+                <SearchForm :params="params" @handle-search="getData" />
+            </el-col>
+
             <el-col :span="3">
                 <el-button
                     class="fr"
-                    @click="$router.push('/goods/issue/create')"
+                    @click="$router.push('/business/task/create')"
                     size="medium"
                     type="primary"
-                >Thêm phiếu xuất</el-button>
+                >Thêm công việc</el-button>
             </el-col>
         </el-row>
-        <el-row>
+        <el-row style="margin-top:30px">
             <el-col :span="24">
                 <TableData
-                    @handle-delete="getData"
                     :table-data="tableData"
+                    @handle-delete="getData"
                     :loading.sync="loading"
                 />
                 <Pagination
@@ -28,7 +31,7 @@
     </div>
 </template>
 <script>
-import { index } from "@/api/goods/issue";
+import { index } from "@/api/business/task";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
@@ -42,7 +45,12 @@ export default {
             params: {
                 perPage: 5,
                 page: 1,
-                search: ""
+                title: "",
+                startDate: "",
+                status: "",
+                finishDate: "",
+                user: "",
+                type: ""
             }
         };
     },

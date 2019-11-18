@@ -11,7 +11,7 @@
         <el-select
             v-model="params.type"
             placeholder="Loại"
-            @change="getData(1,pagination.per_page)"
+            @change="getData(1,pagination.perPage)"
             clearable
             size="medium"
         >

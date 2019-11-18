@@ -41,7 +41,7 @@
         </el-table>
         <Pagination
             :pagination="pagination"
-            @size-change="params.per_page=$event;params.page=1;getData()"
+            @size-change="params.perPage=$event;params.page=1;getData()"
             @current-change="params.page=$event;getData()"
         />
     </el-dialog>
@@ -66,7 +66,7 @@ export default {
             name: "",
             params: {
                 name: "",
-                per_page: 5,
+                perPage: 5,
                 page: ""
             }
         };

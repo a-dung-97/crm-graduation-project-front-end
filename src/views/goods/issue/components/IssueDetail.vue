@@ -116,7 +116,7 @@
 <script>
 import ProductList from "./ProductList";
 import { validatePhoneNumber } from "@/utils/validate";
-import SelectProductTable from "./SelectProductTable";
+import SelectProductTable from "@/components/dialogs/SelectProduct/index";
 import { store, show, update } from "@/api/goods/issue";
 import { index as getWareHouses } from "@/api/goods/warehouse";
 export default {

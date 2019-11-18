@@ -11,7 +11,7 @@
         <!-- <el-select
             v-model="params.parent"
             placeholder="Phòng ban cha"
-            @change="getData(1,pagination.per_page)"
+            @change="getData(1,pagination.perPage)"
             size="small"
         >
             <el-option

@@ -9,6 +9,7 @@ import accountRouter from './modules/account';
 import customerRouter from './modules/customer/index';
 import goodsRouter from './modules/goods/index';
 import settingRouter from './modules/setting';
+import businessRouter from './modules/business/index';
 export const constantRoutes = [
     accountRouter,
     {
@@ -48,7 +49,7 @@ export const constantRoutes = [
 ];
 
 export const asyncRoutes = [
-    companyRouter, goodsRouter, customerRouter, settingRouter,
+    companyRouter, goodsRouter, customerRouter, businessRouter, settingRouter,
     { path: '*', redirect: '/404', hidden: true }
 ];
 const createRouter = () =>

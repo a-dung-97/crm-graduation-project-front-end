@@ -97,7 +97,7 @@
 </template>
 <script>
 import ProductList from "./ProductList";
-import SelectProductTable from "./SelectProductTable";
+import SelectProductTable from "@/components/dialogs/SelectProduct/index";
 import { store, show, update } from "@/api/goods/receipt";
 import { index as getWareHouses } from "@/api/goods/warehouse";
 export default {

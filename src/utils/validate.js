@@ -19,8 +19,25 @@ export function validUsername(str) {
     return valid_map.indexOf(str.trim()) >= 0
 }
 export function validatePhoneNumber(rule, value, callback) {
+
     if (value === "") {
         callback(new Error("Hãy nhập số điện thoại của bạn"));
+
+    } else if (
+        !value.match(
+            /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+        )
+    ) {
+        callback(new Error("Số điện thoại bạn nhập không hợp lệ"));
+    } else {
+        callback();
+    }
+};
+export function validatePhoneNumberWithEmptyValue(rule, value, callback) {
+
+    if (value === "") {
+        callback();
+
     } else if (
         !value.match(
             /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/

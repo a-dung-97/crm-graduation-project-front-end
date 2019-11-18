@@ -58,11 +58,18 @@
                                     </el-select>
                                 </el-input>
                             </el-form-item>
-                            <el-form-item label="Email">
+                            <el-form-item label="Email" prop="email">
                                 <el-input v-model="form.email"></el-input>
                             </el-form-item>
                             <el-form-item label="Sinh nhật">
-                                <el-input v-model="form.birthday"></el-input>
+                                <el-date-picker
+                                    class="w-100"
+                                    v-model="form.birthday"
+                                    type="date"
+                                    placeholder="Chọn ngày sinh"
+                                    format="dd/MM/yyyy"
+                                    value-format="yyyy-MM-dd"
+                                ></el-date-picker>
                             </el-form-item>
                             <el-form-item label="Trạng thái">
                                 <el-select
@@ -83,7 +90,7 @@
                             <el-form-item label="Tên" prop="last_name">
                                 <el-input v-model="form.last_name"></el-input>
                             </el-form-item>
-                            <el-form-item label="Số điện thoại">
+                            <el-form-item label="Số điện thoại" prop="phone_number">
                                 <el-input v-model="form.phone_number"></el-input>
                             </el-form-item>
                             <el-form-item label="Facebook">
@@ -171,6 +178,7 @@
 </template>
 <script>
 import { store, show, update } from "@/api/customer/lead";
+import { validatePhoneNumberWithEmptyValue } from "@/utils/validate";
 import TagArea from "@/components/TagArea/index";
 import { list } from "@/api/setting/catalog";
 export default {
@@ -205,6 +213,19 @@ export default {
                     {
                         required: true,
                         message: "Hãy nhập tên tiềm năng",
+                        trigger: "blur"
+                    }
+                ],
+                email: [
+                    {
+                        type: "email",
+                        message: "Bạn hãy nhập một địa chỉ email",
+                        trigger: "blur"
+                    }
+                ],
+                phone_number: [
+                    {
+                        validator: validatePhoneNumberWithEmptyValue,
                         trigger: "blur"
                     }
                 ]
