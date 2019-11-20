@@ -30,13 +30,19 @@
                     tag="a"
                     class="link"
                     :to="scope.row.type=='Tiềm năng'?`/customer/lead/show/${scope.row.taskable.id}`:`/customer/customer/show/${scope.row.taskable.id}`"
-                >{{ scope.row.taskable.first_name+' '+scope.row.taskable.last_name }}</router-link>
+                >{{ scope.row.taskable.name }}</router-link>
             </template>
         </el-table-column>
         <el-table-column prop="user" width="150" label="Chủ sở hữu"></el-table-column>
-        <el-table-column prop="start_date" width="140" label="Ngày bắt đầu"></el-table-column>
-        <el-table-column prop="expiration_date" width="140" label="Ngày hết hạn"></el-table-column>
-        <el-table-column prop="finish_date" width="140" label="Ngày hoàn thành"></el-table-column>
+        <el-table-column width="140" label="Ngày bắt đầu">
+            <template slot-scope="scope">{{ scope.row.start_date|date }}</template>
+        </el-table-column>
+        <el-table-column width="140" label="Ngày hết hạn">
+            <template slot-scope="scope">{{ scope.row.expiration_date|date }}</template>
+        </el-table-column>
+        <el-table-column width="140" label="Ngày hoàn thành">
+            <template slot-scope="scope">{{ scope.row.finish_date|date }}</template>
+        </el-table-column>
         <el-table-column width="120" fixed="right" align="center" label="Hành động">
             <template slot-scope="scope">
                 <el-button
@@ -44,7 +50,7 @@
                     @click="$router.push(`/business/task/edit/${scope.row.id}`)"
                     icon="el-icon-edit"
                     circle
-                    :disabled="scope.row.finish_date"
+                    :disabled="scope.row.finish_date!=null"
                 ></el-button>
                 <el-button
                     type="danger"

@@ -78,7 +78,7 @@
                                     placeholder="Trạng thái"
                                 >
                                     <el-option
-                                        v-for="item in options['Trạng thái']"
+                                        v-for="item in catalogs['Trạng thái']"
                                         :key="item.id"
                                         :label="item.name"
                                         :value="item.id"
@@ -103,7 +103,7 @@
                                     placeholder="Nguồn"
                                 >
                                     <el-option
-                                        v-for="item in options['Nguồn']"
+                                        v-for="item in catalogs['Nguồn']"
                                         :key="item.id"
                                         :label="item.name"
                                         :value="item.id"
@@ -137,7 +137,7 @@
                                     placeholder="Ngành nghề"
                                 >
                                     <el-option
-                                        v-for="item in options['Ngành nghề']"
+                                        v-for="item in catalogs['Ngành nghề']"
                                         :key="item.id"
                                         :label="item.name"
                                         :value="item.id"
@@ -147,7 +147,7 @@
                         </el-col>
                         <el-col :md="12" :sm="24">
                             <el-form-item label="Website">
-                                <el-input v-model="form.company"></el-input>
+                                <el-input v-model="form.website"></el-input>
                             </el-form-item>
                             <el-form-item label="Fax">
                                 <el-input v-model="form.fax"></el-input>
@@ -178,7 +178,7 @@
 </template>
 <script>
 import { store, show, update } from "@/api/customer/lead";
-import { validatePhoneNumberWithEmptyValue } from "@/utils/validate";
+import { validateMobileNumberWithEmptyValue } from "@/utils/validate";
 import TagArea from "@/components/TagArea/index";
 import { list } from "@/api/setting/catalog";
 export default {
@@ -191,9 +191,9 @@ export default {
                 first_name: "",
                 last_name: "",
                 honorific: "",
-                birdthday: "",
+                birthday: "",
                 email: "",
-                phone: "",
+                phone_number: "",
                 facebook: "",
                 status_id: "",
                 source_id: "",
@@ -225,12 +225,12 @@ export default {
                 ],
                 phone_number: [
                     {
-                        validator: validatePhoneNumberWithEmptyValue,
+                        validator: validateMobileNumberWithEmptyValue,
                         trigger: "blur"
                     }
                 ]
             },
-            options: {
+            catalogs: {
                 Nguồn: [],
                 "Trạng thái": [],
                 "Ngành nghề": []

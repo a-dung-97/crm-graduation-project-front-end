@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-row class="control">
+        <el-row class="mb-20">
             <el-col :span="24">
                 <el-button
                     class="fr"
@@ -43,7 +43,7 @@ export default {
             getDataFunc: "",
             pagination: {},
             params: {
-                perPage: 5,
+                perPage: 10,
                 page: 1
             },
             showDialog: false
@@ -61,6 +61,7 @@ export default {
                 this.tableData = data;
                 this.pagination = meta;
                 this.loading = false;
+                this.$emit("handle-load", meta.total);
             } catch (error) {}
         },
         showDialogUpload() {
@@ -73,7 +74,4 @@ export default {
 };
 </script>
 <style lang="scss">
-.control {
-    margin-bottom: 20px;
-}
 </style>

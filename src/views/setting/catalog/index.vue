@@ -6,6 +6,17 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
     >
         <el-tabs tab-position="left" style="max-height: calc(100vh - 50px);">
+            <el-tab-pane label="Khách hàng">
+                <TableData
+                    :form="form"
+                    v-if="tableData.length>0"
+                    :table-data="catalog['Khách hàng']"
+                    @handle-edit="showDialogForm('edit')"
+                    @handle-create="showDialogForm('create',$event)"
+                    @handle-delete="getData()"
+                    :loading.sync="loading"
+                ></TableData>
+            </el-tab-pane>
             <el-tab-pane label="Liên hệ">
                 <TableData
                     :form="form"
@@ -98,7 +109,8 @@ export default {
                 "Hóa đơn": [],
                 "Tiềm năng": [],
                 "Đơn hàng": [],
-                "Báo giá": []
+                "Báo giá": [],
+                "Khách hàng": []
             },
             showDialog: false,
             editing: false,
@@ -121,7 +133,6 @@ export default {
                         item => item.name == obj
                     ).children;
                 }
-                console.log(this.catalog);
             } catch (error) {}
         },
         showDialogForm(mode, id = null) {
@@ -140,7 +151,4 @@ export default {
 };
 </script>
 <style lang="scss">
-.control {
-    margin-bottom: 20px;
-}
 </style>

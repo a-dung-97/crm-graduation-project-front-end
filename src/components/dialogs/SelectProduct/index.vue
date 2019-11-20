@@ -66,7 +66,7 @@ export default {
             name: "",
             params: {
                 name: "",
-                perPage: 5,
+                perPage: 10,
                 page: ""
             }
         };

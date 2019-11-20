@@ -38,7 +38,7 @@
                                 >
                                     <el-option
                                         style="max-height:100%"
-                                        v-for="item in users"
+                                        v-for="item in userOptions"
                                         :key="item.id"
                                         :label="item.name"
                                         :value="item.id"
@@ -196,7 +196,6 @@ export default {
     data() {
         return {
             showDialog: false,
-            users: "",
             name: "",
             dialogFormVisible: false,
             reminder: false,
@@ -293,16 +292,9 @@ export default {
                 this.loading = false;
             }
         },
-        async getUsers() {
-            try {
-                const { data } = await index();
-                this.users = data;
-            } catch (error) {
-                console.log(error);
-            }
-        },
         handleSelect(val) {
-            this.name = val.full_name;
+            console.log(val);
+            this.name = val.name;
             this.form.taskable_id = val.id;
         }
     },

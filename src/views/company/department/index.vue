@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <el-row class="control">
+        <el-row class="mb-20">
             <SearchForm :params="params" @handle-search="getData" />
             <el-col :span="3">
                 <el-button
@@ -58,7 +58,7 @@ export default {
             recursive: [],
             pagination: {},
             params: {
-                perPage: 5,
+                perPage: 10,
                 page: 1,
                 search: "",
                 parent: ""
@@ -115,7 +115,4 @@ export default {
 };
 </script>
 <style lang="scss">
-.control {
-    margin-bottom: 20px;
-}
 </style>

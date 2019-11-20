@@ -76,7 +76,7 @@
 </template>
 <script>
 import { invite, update } from "@/api/company/user";
-import { validatePhoneNumber } from "@/utils/validate";
+import { validateMobileNumber } from "@/utils/validate";
 export default {
     props: ["form", "editing", "showDialog", "options"],
     data() {
@@ -105,7 +105,7 @@ export default {
                 phone_number: [
                     {
                         required: true,
-                        validator: validatePhoneNumber,
+                        validator: validateMobileNumber,
                         trigger: "blur"
                     }
                 ],

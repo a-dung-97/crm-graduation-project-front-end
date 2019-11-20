@@ -32,9 +32,9 @@
                     <el-input v-model="params.title" size="medium" placeholder="Tiêu đề" clearable></el-input>
                 </el-col>
                 <el-col class="col" :span="6">
-                    <el-select v-model="params.users" clearable placeholder="Chủ sở hữu">
+                    <el-select v-model="params.user" clearable placeholder="Chủ sở hữu">
                         <el-option
-                            v-for="item in users"
+                            v-for="item in userOptions"
                             :key="item.id"
                             :label="item.name"
                             :value="item.id"
@@ -74,20 +74,9 @@ import { index } from "@/api/company/user";
 export default {
     props: ["params"],
     data() {
-        return {
-            users: []
-        };
+        return {};
     },
-    methods: {
-        async getUsers() {
-            try {
-                const { data } = await index();
-                this.users = data;
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    },
+    methods: {},
     created() {
         this.getUsers();
     }

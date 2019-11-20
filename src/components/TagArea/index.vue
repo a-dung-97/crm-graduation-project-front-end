@@ -8,16 +8,6 @@
             :disable-transitions="false"
             @close="handleClose(tag)"
         >{{tag}}</el-tag>
-
-        <!-- <el-input
-            class="input-new-tag"
-            v-if="inputVisible"
-            v-model="inputValue"
-            ref="saveTagInput"
-            size="mini"
-            @keyup.enter.native="handleInputConfirm"
-            @blur="handleInputConfirm"
-        ></el-input>-->
         <el-button
             icon="el-icon-plus"
             style="margin-left:10px"

@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <el-row class="control">
+        <el-row class="mb-20">
             <SearchForm :warehouses="warehouses" :params="params" @handle-search="getData" />
         </el-row>
 
@@ -31,7 +31,7 @@ export default {
             pagination: {},
             warehouses: [],
             params: {
-                perPage: 5,
+                perPage: 10,
                 page: 1,
                 warehouse: "",
                 search: ""
@@ -62,7 +62,4 @@ export default {
 };
 </script>
 <style lang="scss">
-.control {
-    margin-bottom: 20px;
-}
 </style>

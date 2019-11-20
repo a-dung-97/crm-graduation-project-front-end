@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <el-row class="control">
+        <el-row class="mb-20">
             <el-col :span="21">
                 <SearchForm :params="params" @handle-search="getData" />
             </el-col>
@@ -43,7 +43,7 @@ export default {
             loading: false,
             pagination: {},
             params: {
-                perPage: 5,
+                perPage: 10,
                 page: 1,
                 title: "",
                 startDate: "",

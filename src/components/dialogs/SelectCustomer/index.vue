@@ -23,9 +23,11 @@
             v-loading="loading"
             style="width: 100%"
         >
-            <el-table-column prop="full_name" label="Họ tên"></el-table-column>
+            <el-table-column v-if="type=='App\\Lead'" prop="name" label="Họ tên"></el-table-column>
+            <el-table-column v-else prop="name" label="Tên"></el-table-column>
             <el-table-column prop="email" label="Email"></el-table-column>
             <el-table-column prop="phone_number" label="Số điện thoại"></el-table-column>
+            <el-table-column prop="mobile_number" label="Số di động"></el-table-column>
         </el-table>
         <Pagination
             :pagination="pagination"
@@ -56,7 +58,7 @@ export default {
             name: "",
             params: {
                 name: "",
-                perPage: 5,
+                perPage: 10,
                 list: true
             }
         };

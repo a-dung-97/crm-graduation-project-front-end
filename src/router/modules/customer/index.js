@@ -1,17 +1,21 @@
 import Layout from '@/layout';
 import leadRouter from './lead';
-const customerRouter = {
+import customerRouter from './customer';
+import contactRouter from './contact';
+const customerManagementRouter = {
     path: "/customer",
     component: Layout,
     name: "Quản lý khách hàng",
     alwaysShow: true,
     redirect: "/customer/lead/index",
     meta: {
-        title: "Quản lý khách hàng",
+        title: "Khách hàng",
         icon: "dashboard"
     },
     children: [
         ...leadRouter,
+        ...customerRouter,
+        ...contactRouter
     ]
 }
-export default customerRouter
+export default customerManagementRouter

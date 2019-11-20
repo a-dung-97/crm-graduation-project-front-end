@@ -1,16 +1,27 @@
 <template>
     <div class="app-container">
-        <el-row class="control">
-            <SearchForm :params="params" @handle-search="getData" />
-            <el-col :span="3">
+        <el-row class="mb-20">
+            <!-- <SearchForm :params="params" @handle-search="getData" /> -->
+
+            <el-col :span="24">
+                <el-button disabled type="primary" size="small">Xóa</el-button>
+                <el-button disabled type="primary" size="small">Gửi email</el-button>
+                <el-button disabled type="primary" size="small">Gửi SMS</el-button>
+                <el-button disabled type="primary" size="small">Danh sách email</el-button>
+                <el-button disabled type="primary" size="small">Chuyển chủ sở hữu</el-button>
                 <el-button
                     class="fr"
-                    @click="$router.push('/goods/product/create')"
+                    @click="$router.push('/customer/lead/create')"
                     size="medium"
                     type="primary"
-                >Thêm sản phẩm</el-button>
+                    icon="el-icon-plus"
+                    circle
+                ></el-button>
             </el-col>
         </el-row>
+
+        <SearchForm :params="params" @handle-search="getData" />
+
         <el-row>
             <el-col :span="24">
                 <TableData :table-data="tableData" :loading.sync="loading" />
@@ -24,7 +35,7 @@
     </div>
 </template>
 <script>
-import { index } from "@/api/goods/product";
+import { index } from "@/api/customer/lead";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
@@ -36,10 +47,19 @@ export default {
             loading: false,
             pagination: {},
             params: {
-                perPage: 5,
+                perPage: 10,
                 page: 1,
                 search: "",
-                type: ""
+                source: "",
+                company: "",
+                branch: "",
+                user: "",
+                createdAt: "",
+                scoreFrom: "",
+                scoreTo: "",
+                tags: "",
+                birthday: "",
+                interactive: ""
             }
         };
     },

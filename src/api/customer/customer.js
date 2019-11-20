@@ -34,31 +34,3 @@ export function destroy(id) {
         method: 'delete',
     })
 }
-export function addNote(data, id) {
-    return request({
-        url: `/customers/${id}/note`,
-        method: 'post',
-        data
-    })
-}
-export function addFile(data, id) {
-    return request({
-        url: `/customers/${id}/file`,
-        method: 'post',
-        data
-    })
-}
-export function getNotes(id, params) {
-    return request({
-        url: `/customers/${id}/note`,
-        method: 'get',
-        params
-    })
-}
-export function getFiles(id, params) {
-    return request({
-        url: `/customers/${id}/file`,
-        method: 'get',
-        params
-    })
-}

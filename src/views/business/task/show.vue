@@ -12,7 +12,7 @@
                         <el-tab-pane v-else label="Tiềm năng" name="lead">
                             <div class="infomation">
                                 <i class="el-icon-user"></i>
-                                <span>{{ data.taskable.detail.full_name }}</span>
+                                <span>{{ data.taskable.detail.name }}</span>
                             </div>
                             <div class="infomation">
                                 <i class="el-icon-phone-outline"></i>

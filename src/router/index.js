@@ -6,7 +6,7 @@ Vue.use(Router);
 import Layout from "@/layout";
 import companyRouter from './modules/company';
 import accountRouter from './modules/account';
-import customerRouter from './modules/customer/index';
+import customerManagementRouter from './modules/customer/index';
 import goodsRouter from './modules/goods/index';
 import settingRouter from './modules/setting';
 import businessRouter from './modules/business/index';
@@ -49,7 +49,7 @@ export const constantRoutes = [
 ];
 
 export const asyncRoutes = [
-    companyRouter, goodsRouter, customerRouter, businessRouter, settingRouter,
+    companyRouter, goodsRouter, customerManagementRouter, businessRouter, settingRouter,
     { path: '*', redirect: '/404', hidden: true }
 ];
 const createRouter = () =>

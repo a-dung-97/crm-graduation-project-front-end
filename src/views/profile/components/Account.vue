@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { validatePhoneNumber } from "@/utils/validate";
+import { validateMobileNumber } from "@/utils/validate";
 import { update } from "@/api/company/user";
 export default {
     props: {
@@ -51,7 +51,7 @@ export default {
                 phone_number: [
                     {
                         required: true,
-                        validator: validatePhoneNumber,
+                        validator: validateMobileNumber,
                         trigger: "blur"
                     }
                 ]
