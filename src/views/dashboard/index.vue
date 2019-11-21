@@ -1,9 +1,5 @@
 <template>
-    <div class="dashboard-container">
-        <el-select class="abc">
-            <el-select style="width:100px;" slot="prefix"></el-select>
-        </el-select>
-    </div>
+    <div class="dashboard-container"></div>
 </template>
 
 <script>
@@ -12,24 +8,9 @@ import { mapGetters } from "vuex";
 export default {
     name: "Dashboard",
     data() {
-        return {
-            select: "",
-            options: [
-                {
-                    id: 1,
-                    type: "user",
-                    name: "AD"
-                }
-            ]
-        };
+        return {};
     },
-    methods: {
-        async test() {
-            console.log(this.select);
-            const data = await test({ options: this.select });
-            console.log(data);
-        }
-    },
+
     computed: {
         ...mapGetters(["name"])
     }

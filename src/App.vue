@@ -14,18 +14,18 @@ export default {
 ::-webkit-scrollbar-track {
     //box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: white;
-    border-radius: 10px;
+    // border-radius: 10px;
     z-index: 9999;
 }
 ::-webkit-scrollbar {
     z-index: 9999;
     width: 0px;
-    height: 14px;
+    height: 17px;
     //background-color: white;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    // border-radius: 10px;
     z-index: 9999;
 
     background-image: -webkit-gradient(

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-// create an axios instance
+import router from '@/router';
 const service = axios.create({
     baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
     // withCredentials: true, // send cookies when cross-domain requests
@@ -102,6 +102,8 @@ service.interceptors.response.use(
                 type: 'error',
                 duration: 3 * 1000
             })
+        else if (error.response.status === 404)
+            router.push('/404');
         return Promise.reject(error)
     }
 )

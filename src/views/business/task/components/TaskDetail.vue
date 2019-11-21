@@ -40,10 +40,10 @@
                                         style="max-height:100%"
                                         v-for="item in userOptions"
                                         :key="item.id"
-                                        :label="item.name"
+                                        :label="item.obj"
                                         :value="item.id"
                                     >
-                                        <span style="float: left">{{ item.name }}</span>
+                                        <span style="float: left">{{ item.obj }}</span>
                                         <span
                                             style="float: right; color: #8492a6; font-size: 13px"
                                         >{{ item.email }}</span>
@@ -55,13 +55,13 @@
                             </el-form-item>
                             <el-form-item label="Đối tượng">
                                 <el-input
-                                    v-model="name"
+                                    v-model="obj"
                                     ref="input"
-                                    @focus="openDialog"
+                                    @focus="openDialog('obj')"
                                     :placeholder="form.taskable_type=='App\\Lead'?'Chọn tiềm năng':'Chọn khách hàng'"
                                 >
                                     <el-select
-                                        @change="form.taskable_id='';name=''"
+                                        @change="form.taskable_id='';obj=''"
                                         style="width:130px"
                                         v-model="form.taskable_type"
                                         slot="prepend"
@@ -72,7 +72,15 @@
                                 </el-input>
                             </el-form-item>
                             <el-form-item label="Liên hệ">
-                                <el-input :disabled="form.taskable_type=='App\\Lead'"></el-input>
+                                <el-input
+                                    ref="input1"
+                                    :disabled="form.taskable_type=='App\\Lead'"
+                                    @focus="openDialog('contact')"
+                                    clearable
+                                    @clear="form.contact_id=''"
+                                    v-model="contact"
+                                    placeholder="Chọn liên hệ"
+                                ></el-input>
                             </el-form-item>
                             <el-form-item label="Nhắc nhở">
                                 <el-switch
@@ -154,11 +162,7 @@
                 </el-card>
             </el-col>
         </el-form>
-        <SelectCustomer
-            @handle-select="handleSelect"
-            :type="form.taskable_type"
-            :show-dialog.sync="showDialog"
-        />
+        <SelectCustomer @handle-select="handleSelect" :type="type" :show-dialog.sync="showDialog" />
     </el-row>
 </template>
 <script>
@@ -195,8 +199,9 @@ export default {
     },
     data() {
         return {
+            contact: "",
             showDialog: false,
-            name: "",
+            obj: "",
             dialogFormVisible: false,
             reminder: false,
             form: {
@@ -216,7 +221,8 @@ export default {
                 status: "",
                 reminder_time: "",
                 reminder_type: "",
-                description: ""
+                description: "",
+                contact_id: ""
             },
             loading: "",
             rules: {
@@ -235,13 +241,17 @@ export default {
                     }
                 ]
             },
-            data: ""
+            data: "",
+            type: ""
         };
     },
     methods: {
-        openDialog() {
+        openDialog(type) {
+            if (type == "obj") this.type = this.form.taskable_type;
+            else this.type = "App\\Contact";
             this.showDialog = true;
             this.$refs["input"].blur();
+            this.$refs["input1"].blur();
         },
         async createTask() {
             try {
@@ -264,7 +274,7 @@ export default {
                 if (data.finish_date) this.$router.push("/404");
                 this.data = data;
 
-                this.name = data.taskable;
+                this.obj = data.taskable;
                 if (data.reminder_type) {
                     this.reminder = true;
                 }
@@ -293,9 +303,13 @@ export default {
             }
         },
         handleSelect(val) {
-            console.log(val);
-            this.name = val.name;
-            this.form.taskable_id = val.id;
+            if (this.type == "App\\Lead" || this.type == "App\\Customer") {
+                this.obj = val.name;
+                this.form.taskable_id = val.id;
+            } else {
+                this.contact = val.name;
+                this.form.contact_id = val.id;
+            }
         }
     },
     created() {

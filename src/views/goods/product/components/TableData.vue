@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="tableData" border v-loading="loading" style="width: 100%">
+    <el-table height="70vh" :data="tableData" border v-loading="loading" style="width: 100%">
         <el-table-column align="center" type="index" width="50" label="STT"></el-table-column>
         <el-table-column width="300" label="Tên">
             <template slot-scope="scope">

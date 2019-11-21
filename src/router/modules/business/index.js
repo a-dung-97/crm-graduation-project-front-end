@@ -12,6 +12,15 @@ const businessRouter = {
     },
     children: [
         ...taskRouter,
+        {
+            path: "note/index",
+            name: "Ghi chú",
+            component: () => import("@/views/business/note/index"),
+            meta: {
+                title: "Ghi chú",
+                icon: 'dashboard'
+            }
+        },
     ]
 }
 export default businessRouter

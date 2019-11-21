@@ -26,7 +26,9 @@ Vue.filter('date', function (value) {
     else return null
 })
 Vue.filter('datetime', function (value) {
-    return new Date(value).toLocaleDateString('en-GB') + ' ' + new Date(value).toLocaleTimeString('en-GB');
+    if (value)
+        return new Date(value).toLocaleDateString('en-GB') + ' ' + new Date(value).toLocaleTimeString('en-GB');
+    else return null
 })
 Vue.mixin(FullScreenLoading);
 Vue.mixin(Catalog);

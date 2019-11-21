@@ -8,19 +8,27 @@
                 <el-button disabled type="primary" size="small">Gửi email</el-button>
                 <el-button disabled type="primary" size="small">Gửi SMS</el-button>
                 <el-button disabled type="primary" size="small">Danh sách email</el-button>
-                <el-button disabled type="primary" size="small">Chuyển chủ sở hữu</el-button>
+
                 <el-button
                     class="fr"
-                    @click="$router.push('/goods/product/create')"
+                    @click="$router.push('/customer/contact/create')"
                     size="medium"
                     type="primary"
                     icon="el-icon-plus"
                     circle
                 ></el-button>
+                <el-button
+                    class="fr"
+                    @click="getData"
+                    size="medium"
+                    type="primary"
+                    icon="el-icon-search"
+                    circle
+                ></el-button>
             </el-col>
         </el-row>
 
-        <SearchForm :params="params" @handle-search="getData" />
+        <SearchForm :params="params" />
 
         <el-row>
             <el-col :span="24">
@@ -35,7 +43,7 @@
     </div>
 </template>
 <script>
-import { index } from "@/api/customer/lead";
+import { index } from "@/api/customer/contact";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
@@ -49,17 +57,15 @@ export default {
             params: {
                 perPage: 10,
                 page: 1,
-                search: "",
-                source: "",
-                company: "",
-                branch: "",
-                user: "",
+                name: "",
+                email: "",
+                phoneNumber: "",
+                mobileNumber: "",
                 createdAt: "",
-                scoreFrom: "",
-                scoreTo: "",
-                tags: "",
-                birthday: "",
-                interactive: ""
+                position: "",
+                gender: "",
+                ownerableType: "",
+                ownerableId: ""
             }
         };
     },

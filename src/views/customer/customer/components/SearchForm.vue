@@ -68,13 +68,14 @@
             </el-row>
             <el-row :gutter="10">
                 <el-col :span="8">
-                    <el-row :gutter="1">
+                    <el-row>
                         <el-col :span="8">
                             <el-select
                                 class="w-100"
                                 v-model="params.ownerableType"
                                 @change="params.ownerableId=''"
                                 size="medium"
+                                clearable
                             >
                                 <el-option label="Nhân viên" value="App\User"></el-option>
                                 <el-option label="Nhóm" value="App\Group"></el-option>
@@ -83,6 +84,7 @@
                         <el-col :span="16">
                             <el-select
                                 class="w-100"
+                                :disabled="params.ownerableType==''"
                                 v-model="params.ownerableId"
                                 size="medium"
                                 clearable

@@ -17,10 +17,18 @@
                     icon="el-icon-plus"
                     circle
                 ></el-button>
+                <el-button
+                    class="fr"
+                    @click="getData"
+                    size="medium"
+                    type="primary"
+                    icon="el-icon-search"
+                    circle
+                ></el-button>
             </el-col>
         </el-row>
 
-        <SearchForm :params="params" @handle-search="getData" />
+        <SearchForm :params="params" />
 
         <el-row>
             <el-col :span="24">
@@ -59,7 +67,9 @@ export default {
                 scoreTo: "",
                 tags: "",
                 birthday: "",
-                interactive: ""
+                interactive: "",
+                ownerableType: "",
+                ownerableId: ""
             }
         };
     },

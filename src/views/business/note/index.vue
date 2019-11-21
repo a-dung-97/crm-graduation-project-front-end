@@ -2,25 +2,20 @@
     <div class="app-container">
         <el-row class="mb-20">
             <!-- <SearchForm :params="params" @handle-search="getData" /> -->
-
-            <el-col :span="24">
-                <el-button disabled type="primary" size="small">Xóa</el-button>
-                <el-button disabled type="primary" size="small">Gửi email</el-button>
-                <el-button disabled type="primary" size="small">Gửi SMS</el-button>
-                <el-button disabled type="primary" size="small">Danh sách email</el-button>
-                <el-button disabled type="primary" size="small">Chuyển chủ sở hữu</el-button>
+            <el-col :span="16">
+                <SearchForm :params="params" />
+            </el-col>
+            <el-col :span="8">
                 <el-button
                     class="fr"
-                    @click="$router.push('/customer/customer/create')"
+                    @click="getData"
                     size="medium"
                     type="primary"
-                    icon="el-icon-plus"
+                    icon="el-icon-search"
                     circle
                 ></el-button>
             </el-col>
         </el-row>
-
-        <SearchForm :params="params" @handle-search="getData" />
 
         <el-row>
             <el-col :span="24">
@@ -35,7 +30,7 @@
     </div>
 </template>
 <script>
-import { index } from "@/api/customer/customer";
+import { index } from "@/api/general/note";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
@@ -49,15 +44,11 @@ export default {
             params: {
                 perPage: 10,
                 page: 1,
-                search: "",
-                source: "",
-                branch: "",
-                ownerable: "",
-                createdAt: "",
-                tags: "",
-                birthday: "",
-                ownerableType: "",
-                ownerableId: ""
+                title: "",
+                content: "",
+                user: "",
+                type: "",
+                createdAt: ""
             }
         };
     },
@@ -74,9 +65,6 @@ export default {
                 this.loading = false;
             }
         }
-    },
-    mounted() {
-        this.$bus.$on("refresh", () => this.getData());
     },
     created() {
         this.getData();

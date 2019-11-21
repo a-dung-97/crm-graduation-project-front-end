@@ -1,7 +1,7 @@
 <template>
-    <el-table :data="tableData" border v-loading="loading" style="width: 100%">
+    <el-table height="58vh" :data="tableData" border v-loading="loading" style="width: 100%">
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column width="200" label="Họ tên">
+        <el-table-column fixed width="200" label="Họ tên">
             <template slot-scope="scope">
                 <router-link
                     tag="a"
@@ -12,7 +12,7 @@
         </el-table-column>
         <el-table-column prop="email" width="250" label="Email"></el-table-column>
         <el-table-column prop="phone_number" width="120" label="Số điện thoại"></el-table-column>
-        <el-table-column prop="user" width="200" label="Chủ sở hữu"></el-table-column>
+        <el-table-column prop="owner" width="200" label="Chủ sở hữu"></el-table-column>
         <el-table-column prop="company" width="200" label="Công ty"></el-table-column>
         <el-table-column prop="office_address" width="200" label="Địa chỉ"></el-table-column>
         <el-table-column width="150" label="Ngày tạo">

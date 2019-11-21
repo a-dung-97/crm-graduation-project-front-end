@@ -1,6 +1,7 @@
 <template>
     <el-dialog
-        title="Chọn sản phẩm"
+        top="0"
+        :title="type=='App\\Lead'?'Chọn tiềm năng':'Chọn khách hàng'"
         :visible.sync="showDialog "
         :before-close="closeDialog"
         width="75%"
@@ -17,6 +18,7 @@
         </el-input>
         <el-table
             ref="singleTable"
+            height="400px"
             highlight-current-row
             @current-change="handleCurrentChange"
             :data="tableData"
@@ -39,7 +41,8 @@
 
 <script>
 import { index as getLeads } from "@/api/customer/lead";
-import { index as getCustomer } from "@/api/customer/customer";
+import { index as getCustomers } from "@/api/customer/customer";
+import { index as getContacts } from "@/api/customer/contact";
 import Pagination from "@/components/Pagination/index";
 export default {
     props: ["showDialog", "type"],
@@ -71,7 +74,9 @@ export default {
             try {
                 this.loading = true;
                 if (this.type == "App\\Lead") this.getDataFunc = getLeads;
-                else this.getDataFunc = getCustomer;
+                else if (this.type == "App\\Customer")
+                    this.getDataFunc = getCustomers;
+                else this.getDataFunc = getContacts;
                 const { data, meta } = await this.getDataFunc(this.params);
                 this.tableData = data;
                 this.pagination = meta;

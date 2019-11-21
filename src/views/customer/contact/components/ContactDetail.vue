@@ -1,14 +1,18 @@
 <template>
-    <el-row>
+    <el-row
+        v-loading.fullscreen.lock="loading"
+        element-loading-text="Xin vui lòng chờ"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
+    >
         <el-col :span="24">
-            <el-button v-if="isEdit" @click="updateCustomer" type="success" class="fr">Cập nhật</el-button>
-            <el-button size="medium" v-else @click="createCustomer" type="primary" class="fr">Lưu</el-button>
+            <el-button v-if="isEdit" @click="updateContact" type="success" class="fr">Cập nhật</el-button>
+            <el-button size="medium" v-else @click="createContact" type="primary" class="fr">Lưu</el-button>
         </el-col>
-        <el-form :model="form" :rules="rules" ref="form" label-position="left" label-width="135px">
+        <el-form :model="form" :rules="rules" ref="form" label-position="left" label-width="150px">
             <el-col style="margin-top:20px" :span="24">
                 <el-card>
                     <div slot="header">
-                        <span>Thông tin khách hàng</span>
+                        <span>Thông tin liên hệ</span>
                     </div>
                     <el-row :gutter="30">
                         <el-col :md="12" :sm="24">
@@ -63,14 +67,23 @@
                                     </el-col>
                                 </el-row>
                             </el-form-item>
-                            <el-form-item label="Mã" prop="code">
-                                <el-input placeholder="Nhập mã" v-model="form.code"></el-input>
-                            </el-form-item>
-                            <el-form-item label="Tên" prop="name">
-                                <el-input placeholder="Nhập tên" v-model="form.name"></el-input>
+                            <el-form-item label="Họ tên đệm">
+                                <el-input placeholder="Nhập họ tên đệm" v-model="form.first_name">
+                                    <el-select
+                                        style="width:80px"
+                                        v-model="form.honorific"
+                                        slot="prepend"
+                                        placeholder="Chọn"
+                                    >
+                                        <el-option label="Ông" value="Ông"></el-option>
+                                        <el-option label="Bà" value="Bà"></el-option>
+                                        <el-option label="Anh" value="Anh"></el-option>
+                                        <el-option label="Chị" value="Chị"></el-option>
+                                    </el-select>
+                                </el-input>
                             </el-form-item>
                             <el-form-item label="Email" prop="email">
-                                <el-input placeholder="Nhập email" v-model="form.email"></el-input>
+                                <el-input placeholder="Nhập địa chỉ email" v-model="form.email"></el-input>
                             </el-form-item>
                             <el-form-item label="Số điện thoại" prop="phone_number">
                                 <el-input
@@ -84,109 +97,8 @@
                                     v-model="form.mobile_number"
                                 ></el-input>
                             </el-form-item>
-                            <el-form-item label="Fax">
+                            <el-form-item label="Fax" prop="fax">
                                 <el-input placeholder="Nhập số fax" v-model="form.fax"></el-input>
-                            </el-form-item>
-                            <el-form-item label="Địa chỉ văn phòng">
-                                <el-input
-                                    placeholder="Nhập địa chỉ văn phòng"
-                                    v-model="form.office_address"
-                                ></el-input>
-                            </el-form-item>
-                            <el-form-item label="Địa chỉ hóa đơn">
-                                <el-input
-                                    placeholder="Nhập địa chỉ hóa đơn"
-                                    v-model="form.invoice_address"
-                                ></el-input>
-                            </el-form-item>
-                            <el-form-item label="Địa chỉ giao hàng">
-                                <el-input
-                                    placeholder="Nhập địa chỉ giao hàng"
-                                    v-model="form.delivery_address"
-                                ></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :span="12">
-                            <el-form-item label="Website">
-                                <el-input placeholder="Website" v-model="form.website"></el-input>
-                            </el-form-item>
-                            <el-form-item label="Khách hàng cha">
-                                <el-input
-                                    ref="input"
-                                    @focus="openDialog"
-                                    clearable
-                                    @clear="form.parent_id=''"
-                                    v-model="name"
-                                    placeholder="Chọn khách hàng cha"
-                                ></el-input>
-                            </el-form-item>
-
-                            <el-form-item label="Loại khách hàng">
-                                <el-select
-                                    style="width:100%"
-                                    v-model="form.type_id"
-                                    placeholder="Chọn loại khách hàng"
-                                >
-                                    <el-option
-                                        v-for="item in catalogs['Loại']"
-                                        :key="item.id"
-                                        :label="item.name"
-                                        :value="item.id"
-                                    ></el-option>
-                                </el-select>
-                            </el-form-item>
-                            <el-form-item label="Nguồn">
-                                <el-select
-                                    style="width:100%"
-                                    v-model="form.source_id"
-                                    placeholder="Nguồn"
-                                >
-                                    <el-option
-                                        v-for="item in catalogs['Nguồn']"
-                                        :key="item.id"
-                                        :label="item.name"
-                                        :value="item.id"
-                                    ></el-option>
-                                </el-select>
-                            </el-form-item>
-
-                            <el-form-item label="Ngành nghề">
-                                <el-select
-                                    style="width:100%"
-                                    v-model="form.branch_id"
-                                    placeholder="Chọn ngành nghề"
-                                >
-                                    <el-option
-                                        v-for="item in catalogs['Ngành nghề']"
-                                        :key="item.id"
-                                        :label="item.name"
-                                        :value="item.id"
-                                    ></el-option>
-                                </el-select>
-                            </el-form-item>
-                            <el-form-item label="Số nhân viên">
-                                <el-input
-                                    placeholder="Nhập số nhân viên"
-                                    v-model="form.number_of_workers"
-                                ></el-input>
-                            </el-form-item>
-                            <el-form-item label="Doanh thu">
-                                <el-input
-                                    type="number"
-                                    placeholder="Nhập doanh thu"
-                                    style="width:100%"
-                                    v-model="form.revenue"
-                                ></el-input>
-                            </el-form-item>
-                            <el-form-item label="Mã số thuế">
-                                <el-input placeholder="Nhập mã số thuế" v-model="form.tax_code"></el-input>
-                            </el-form-item>
-                            <el-form-item label="Đánh giá">
-                                <el-input
-                                    placeholder="Nhập đánh giá"
-                                    type="number"
-                                    v-model="form.evaluate"
-                                ></el-input>
                             </el-form-item>
                             <el-form-item label="Sinh nhật">
                                 <el-date-picker
@@ -198,6 +110,78 @@
                                     value-format="yyyy-MM-dd"
                                 ></el-date-picker>
                             </el-form-item>
+                            <el-form-item label="Liên hệ chính">
+                                <el-switch v-model="form.primary"></el-switch>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-form-item prop="customer_id" label="Khách hàng">
+                                <el-input
+                                    ref="input"
+                                    @focus="openDialog"
+                                    clearable
+                                    @clear="form.customer_id=''"
+                                    v-model="name"
+                                    placeholder="Chọn khách hàng"
+                                ></el-input>
+                            </el-form-item>
+                            <el-form-item label="Tên" prop="last_name">
+                                <el-input placeholder="Nhập tên" v-model="form.last_name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Skype">
+                                <el-input placeholder="Nhập số Skype" v-model="form.skype"></el-input>
+                            </el-form-item>
+                            <el-form-item label="Facebook">
+                                <el-input
+                                    placeholder="Nhập địa chỉ Facebook"
+                                    v-model="form.facebook"
+                                ></el-input>
+                            </el-form-item>
+                            <el-form-item label="Địa chỉ văn phòng">
+                                <el-input
+                                    placeholder="Nhập địa chỉ văn phòng"
+                                    v-model="form.office_address"
+                                ></el-input>
+                            </el-form-item>
+                            <el-form-item label="Phòng ban">
+                                <el-select
+                                    style="width:100%"
+                                    v-model="form.department_id"
+                                    placeholder="Chọn phòng ban"
+                                >
+                                    <el-option
+                                        v-for="item in catalogs['Phòng ban']"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id"
+                                    ></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="Chức vụ">
+                                <el-select
+                                    style="width:100%"
+                                    v-model="form.position_id"
+                                    placeholder="Chọn chức vụ"
+                                >
+                                    <el-option
+                                        v-for="item in catalogs['Chức vụ']"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id"
+                                    ></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="Giới tính">
+                                <el-select
+                                    style="width:100%"
+                                    v-model="form.gender"
+                                    placeholder="Chọn giới tính"
+                                    clearable
+                                >
+                                    <el-option :value="1" label="Nam"></el-option>
+                                    <el-option :value="0" label="Nữ"></el-option>
+                                </el-select>
+                            </el-form-item>
                         </el-col>
                     </el-row>
                 </el-card>
@@ -208,24 +192,24 @@
                     <el-input v-model="form.description" type="textarea"></el-input>
                 </el-card>
             </el-col>
+            <SelectCustomer
+                @handle-select="handleSelect"
+                type="App\Customer"
+                :show-dialog.sync="showDialog"
+            />
         </el-form>
-        <SelectCustomer
-            @handle-select="handleSelect"
-            :type="form.taskable_type"
-            :show-dialog.sync="showDialog"
-        />
     </el-row>
 </template>
 <script>
-import SelectCustomer from "@/components/dialogs/SelectCustomer/index";
-
-import { store, show, update } from "@/api/customer/customer";
+import { store, show, update } from "@/api/customer/contact";
 import {
     validateMobileNumberWithEmptyValue,
     validatePhoneNumber
 } from "@/utils/validate";
 import TagArea from "@/components/TagArea/index";
 import { list } from "@/api/setting/catalog";
+import SelectCustomer from "@/components/dialogs/SelectCustomer/index";
+
 export default {
     props: ["isEdit"],
     components: { TagArea, SelectCustomer },
@@ -237,28 +221,24 @@ export default {
                 id: "",
                 ownerable_type: "App\\User",
                 ownerable_id: "",
-                code: "",
-                name: "",
-                email: "",
-                phone_number: "",
+                first_name: "",
+                honorific: "",
+                last_name: "",
                 mobile_number: "",
-                office_address: "",
-                invoice_address: "",
-                delivery_address: "",
-                description: "",
-                tax_code: "",
-                birthday: "",
-                website: "",
-                parent_id: "",
-                number_of_workers: "",
-                branch_id: "",
-                revenue: "",
-                evaluate: "",
-                parent_id: "",
+                phone_number: "",
                 fax: "",
-                type_id: "",
-                source_id: ""
+                birthday: "",
+                primary: false,
+                customer_id: "",
+                skype: "",
+                facebook: "",
+                office_address: "",
+                department_id: "",
+                position_id: "",
+                gender: "",
+                description: ""
             },
+            loading: "",
             rules: {
                 ownerable_id: [
                     {
@@ -267,17 +247,17 @@ export default {
                         trigger: "blur"
                     }
                 ],
-                code: [
+                customer_id: [
                     {
                         required: true,
-                        message: "Hãy nhập mã khách hàng",
+                        message: "Hãy chọn khách hàng",
                         trigger: "blur"
                     }
                 ],
-                name: [
+                last_name: [
                     {
                         required: true,
-                        message: "Hãy nhập tên khách hàng",
+                        message: "Hãy nhập tên tiềm năng",
                         trigger: "blur"
                     }
                 ],
@@ -299,81 +279,81 @@ export default {
                         validator: validateMobileNumberWithEmptyValue,
                         trigger: "blur"
                     }
+                ],
+                fax: [
+                    {
+                        validator: validatePhoneNumber,
+                        trigger: "blur"
+                    }
                 ]
             },
             catalogs: {
-                Nguồn: [],
-                Loại: [],
-                "Ngành nghề": []
-            },
-            option: {}
+                "Phòng ban": [],
+                "Chức vụ": []
+            }
         };
     },
     methods: {
         handleSelect(val) {
             this.name = val.name;
-            this.form.parent_id = val.id;
+            this.form.customer_id = val.id;
         },
         openDialog() {
-            console.log("ok");
             this.showDialog = true;
             this.$refs["input"].blur();
         },
-        async createCustomer() {
+        async createContact() {
             try {
                 await this.$refs["form"].validate();
-                this.openFullScreen();
+                this.loading = true;
                 const { data } = await store(this.form);
-                this.closeFullScreen();
-                this.$router.push(`/customer/customer/show/${data.id}`);
+                this.loading = false;
+                this.$router.push(`/customer/contact/show/${data.id}`);
             } catch (error) {
                 console.log(error);
-                this.closeFullScreen();
+                this.loading = false;
             }
         },
-        async getCustomer() {
+        async getContact() {
             try {
-                this.openFullScreen();
+                this.loading = true;
                 const { data } = await show(this.$route.params.id, {
                     edit: true
                 });
-                this.name = data.parent;
+                this.name = data.customer;
                 for (let field in this.form) {
                     this.form[field] = data[field];
                 }
-                this.closeFullScreen();
+                this.loading = false;
                 console.log(data);
             } catch (error) {
                 console.log(error);
-                this.closeFullScreen();
+                this.loading = false;
             }
         },
-        async updateCustomer() {
+        async updateContact() {
             try {
-                this.openFullScreen();
-
+                this.loading = true;
                 await this.$refs["form"].validate();
-
-                await update(this.form, this.$route.params.id);
-                this.closeFullScreen();
+                let data = await update(this.form, this.$route.params.id);
+                this.loading = false;
                 this.$router.push(
-                    `/customer/customer/show/${this.$route.params.id}`
+                    `/customer/contact/show/${this.$route.params.id}`
                 );
             } catch (error) {
                 console.log(error);
-                this.closeFullScreen();
+                this.loading = false;
             }
         }
     },
     created() {
         Promise.all([
-            this.getCatalog("Khách hàng", "Nguồn"),
-            this.getCatalog("Khách hàng", "Loại"),
-            this.getCatalog("Khách hàng", "Ngành nghề"),
+            this.getCatalog("Liên hệ", "Phòng ban"),
+            this.getCatalog("Liên hệ", "Chức vụ"),
             this.getUsers(),
             this.getGroups()
         ]);
-        if (this.isEdit) this.getCustomer();
+        if (this.isEdit) this.getContact();
     }
 };
 </script>

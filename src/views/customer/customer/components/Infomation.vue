@@ -2,7 +2,7 @@
     <el-card>
         <el-row>
             <el-col :span="12">
-                <h3 class="title" style="margin-top:10px">Thông tin khách hàng</h3>
+                <TagArea type="customer" />
             </el-col>
             <el-col :span="12">
                 <el-button
@@ -105,6 +105,14 @@
                         <p class="content">{{ data.created_at|date }}</p>
                     </el-col>
                 </el-row>
+                <el-row class="item">
+                    <el-col :span="12">
+                        <p class="my-label">Người tạo</p>
+                    </el-col>
+                    <el-col :span="12">
+                        <p class="content">{{ data.created_by }}</p>
+                    </el-col>
+                </el-row>
             </el-col>
             <el-col :span="12">
                 <el-row class="item">
@@ -195,6 +203,14 @@
                         <p class="content">{{ data.updated_at|datetime }}</p>
                     </el-col>
                 </el-row>
+                <el-row class="item">
+                    <el-col :span="12">
+                        <p class="my-label">Người cập nhật</p>
+                    </el-col>
+                    <el-col :span="12">
+                        <p class="content">{{ data.updated_by }}</p>
+                    </el-col>
+                </el-row>
             </el-col>
         </el-row>
 
@@ -208,7 +224,11 @@
 </template>
 <script>
 import { show } from "@/api/customer/customer";
+import TagArea from "@/components/TagArea/index";
+
 export default {
+    components: { TagArea },
+
     data() {
         return {
             data: ""

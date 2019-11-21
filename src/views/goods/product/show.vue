@@ -5,10 +5,10 @@
                 <ProductDetail :is-show="true" />
             </el-tab-pane>
             <el-tab-pane :label="'Đính kèm '+(count.file>0?('('+count.file+')'):'')">
-                <File @handle-load="handleLoad('file',$event)" type="customer" />
+                <File @handle-load="handleLoad('file',$event)" type="product" />
             </el-tab-pane>
             <el-tab-pane :label="'Ghi chú ' +(count.note>0?('('+count.note+')'):'')">
-                <Note @handle-load="handleLoad('note',$event)" type="customer" />
+                <Note @handle-load="handleLoad('note',$event)" type="product" />
             </el-tab-pane>
         </el-tabs>
     </div>
