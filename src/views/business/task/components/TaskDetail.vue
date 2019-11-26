@@ -40,10 +40,10 @@
                                         style="max-height:100%"
                                         v-for="item in userOptions"
                                         :key="item.id"
-                                        :label="item.obj"
+                                        :label="item.name"
                                         :value="item.id"
                                     >
-                                        <span style="float: left">{{ item.obj }}</span>
+                                        <span style="float: left">{{ item.name }}</span>
                                         <span
                                             style="float: right; color: #8492a6; font-size: 13px"
                                         >{{ item.email }}</span>
@@ -89,6 +89,7 @@
                                     inactive-color="#ff4949"
                                 ></el-switch>
                             </el-form-item>
+
                             <template v-if="reminder">
                                 <el-form-item label="Ngày nhắc">
                                     <el-date-picker
@@ -162,7 +163,12 @@
                 </el-card>
             </el-col>
         </el-form>
-        <SelectCustomer @handle-select="handleSelect" :type="type" :show-dialog.sync="showDialog" />
+        <SelectCustomer
+            @handle-select="handleSelect"
+            :customer="form.taskable_id"
+            :type="type"
+            :show-dialog.sync="showDialog"
+        />
     </el-row>
 </template>
 <script>
@@ -273,7 +279,7 @@ export default {
                 });
                 if (data.finish_date) this.$router.push("/404");
                 this.data = data;
-
+                this.contact = data.contact;
                 this.obj = data.taskable;
                 if (data.reminder_type) {
                     this.reminder = true;
@@ -306,6 +312,8 @@ export default {
             if (this.type == "App\\Lead" || this.type == "App\\Customer") {
                 this.obj = val.name;
                 this.form.taskable_id = val.id;
+                this.contact = "";
+                this.form.contact_id = "";
             } else {
                 this.contact = val.name;
                 this.form.contact_id = val.id;

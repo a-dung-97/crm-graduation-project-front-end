@@ -1,7 +1,7 @@
 <template>
     <el-dialog
         top="0"
-        :title="type=='App\\Lead'?'Chọn tiềm năng':(type=='App\\Customer'?'Chọn khách hàng':'Chọn liên hệ')"
+        title="Chọn cơ hội"
         :visible.sync="showDialog "
         :before-close="closeDialog"
         width="75%"
@@ -25,11 +25,14 @@
             v-loading="loading"
             style="width: 100%"
         >
-            <el-table-column v-if="type=='App\\Lead'" prop="name" label="Họ tên"></el-table-column>
-            <el-table-column v-else prop="name" label="Tên"></el-table-column>
-            <el-table-column prop="email" label="Email"></el-table-column>
-            <el-table-column prop="phone_number" label="Số điện thoại"></el-table-column>
-            <el-table-column prop="mobile_number" label="Số di động"></el-table-column>
+            <el-table-column prop="name" label="Tên"></el-table-column>
+            <el-table-column prop="email" label="Ngày tạo">
+                <template slot-scope="scope">{{ scope.row.created_at|datetime }}</template>
+            </el-table-column>
+            <el-table-column prop="email" label="Ngày kết thúc">
+                <template slot-scope="scope">{{ scope.row.end_date|date }}</template>
+            </el-table-column>
+            <el-table-column prop="customer" label="Khách hàng"></el-table-column>
         </el-table>
         <Pagination
             :pagination="pagination"
@@ -40,12 +43,10 @@
 </template>
 
 <script>
-import { index as getLeads } from "@/api/customer/lead";
-import { index as getCustomers } from "@/api/customer/customer";
-import { index as getContacts } from "@/api/customer/contact";
+import { index } from "@/api/business/opportunity";
 import Pagination from "@/components/Pagination/index";
 export default {
-    props: ["showDialog", "type", "customer"],
+    props: ["showDialog", "customer"],
     components: { Pagination },
     watch: {
         showDialog(val) {
@@ -58,7 +59,6 @@ export default {
             loading: false,
             getDataFunc: "",
             pagination: {},
-            name: "",
             params: {
                 name: "",
                 perPage: 10,
@@ -73,14 +73,8 @@ export default {
         async getData() {
             try {
                 this.loading = true;
-                if (this.type == "App\\Lead") this.getDataFunc = getLeads;
-                else if (this.type == "App\\Customer")
-                    this.getDataFunc = getCustomers;
-                else {
-                    this.params.customer = this.customer;
-                    this.getDataFunc = getContacts;
-                }
-                const { data, meta } = await this.getDataFunc(this.params);
+                this.params.customer = this.customer;
+                const { data, meta } = await index(this.params);
                 this.tableData = data;
                 this.pagination = meta;
                 this.loading = false;

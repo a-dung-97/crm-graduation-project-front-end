@@ -2,13 +2,13 @@
     <div class="app-container">
         <el-row class="mb-20">
             <el-col :span="21">
-                <SearchForm :params="params" @handle-search="getData" />
+                <SearchForm :params="params" />
             </el-col>
 
             <el-col :span="3">
                 <el-button
                     class="fr"
-                    @click="$router.push('/business/task/create')"
+                    @click="$router.push('/business/opportunity/create')"
                     size="medium"
                     type="primary"
                     circle
@@ -24,7 +24,7 @@
                 ></el-button>
             </el-col>
         </el-row>
-        <el-row style="margin-top:30px">
+        <el-row>
             <el-col :span="24">
                 <TableData
                     :table-data="tableData"
@@ -41,7 +41,7 @@
     </div>
 </template>
 <script>
-import { index } from "@/api/business/task";
+import { index } from "@/api/business/opportunity";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
@@ -55,12 +55,13 @@ export default {
             params: {
                 perPage: 10,
                 page: 1,
-                title: "",
-                startDate: "",
-                status: "",
-                finishDate: "",
-                user: "",
-                type: ""
+                name: "",
+                customer: "",
+                source: "",
+                endDate: "",
+                createdAt: "",
+                ownerableType: "",
+                ownerableId: ""
             }
         };
     },

@@ -1,19 +1,16 @@
 <template>
     <el-card>
         <el-row>
-            <el-col :span="18">
-                <TagArea type="contact" />
-            </el-col>
-            <el-col :span="6">
+            <el-col :span="24">
                 <el-button
                     class="fr"
-                    @click="$router.push(`/customer/contact/edit/${$route.params.id}`)"
+                    @click="$router.push(`/business/opportunity/edit/${$route.params.id}`)"
                     type="primary"
                     size="small"
                 >Sửa</el-button>
             </el-col>
         </el-row>
-        <h3 class="title">Thông tin liên hệ</h3>
+        <h3 class="title">Thông tin cơ hội</h3>
         <el-row>
             <el-col :span="12">
                 <el-row class="item">
@@ -26,7 +23,7 @@
                 </el-row>
                 <el-row class="item">
                     <el-col :span="10">
-                        <p class="my-label">Họ tên</p>
+                        <p class="my-label">Tên</p>
                     </el-col>
                     <el-col :span="14">
                         <p class="content">{{ data.name}}</p>
@@ -34,43 +31,84 @@
                 </el-row>
                 <el-row class="item">
                     <el-col :span="10">
-                        <p class="my-label">Email</p>
+                        <p class="my-label">Liên hệ</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.email }}</p>
+                        <p class="content">{{ data.contact }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">
                     <el-col :span="10">
-                        <p class="my-label">Sinh nhật</p>
+                        <p class="my-label">Khách hàng</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.birthday|date }}</p>
+                        <p class="content">{{ data.customer }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">
                     <el-col :span="10">
-                        <p class="my-label">Giới tính</p>
+                        <p class="my-label">Nguồn</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.gender==null?null:(data.gender?'Nam':'Nữ') }}</p>
-                    </el-col>
-                </el-row>
-
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Chức vụ</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.position }}</p>
+                        <p class="content">{{ data.source }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">
                     <el-col :span="10">
-                        <p class="my-label">Phòng ban</p>
+                        <p class="my-label">Kiểu</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.department }}</p>
+                        <p class="content">{{ data.type }}</p>
+                    </el-col>
+                </el-row>
+                <el-row class="item">
+                    <el-col :span="10">
+                        <p class="my-label">Bước tiếp theo</p>
+                    </el-col>
+                    <el-col :span="14">
+                        <p class="content">{{ data.next_step }}</p>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="12">
+                <el-row class="item">
+                    <el-col :span="10">
+                        <p class="my-label">Ngày kết thúc</p>
+                    </el-col>
+                    <el-col :span="14">
+                        <p class="content">{{ data.end_date|date }}</p>
+                    </el-col>
+                </el-row>
+                <el-row class="item">
+                    <el-col :span="10">
+                        <p class="my-label">Trạng thái</p>
+                    </el-col>
+                    <el-col :span="14">
+                        <p class="content">{{ data.status }}</p>
+                    </el-col>
+                </el-row>
+                <el-row class="item">
+                    <el-col :span="10">
+                        <p class="my-label">Xác suất thành công</p>
+                    </el-col>
+                    <el-col :span="14">
+                        <p class="content">{{ data.probability_of_success }} %</p>
+                    </el-col>
+                </el-row>
+                <el-row class="item">
+                    <el-col :span="10">
+                        <p class="my-label">Giá trị</p>
+                    </el-col>
+                    <el-col :span="14">
+                        <p class="content">{{ data.value }}</p>
+                    </el-col>
+                </el-row>
+                <el-row class="item">
+                    <el-col :span="10">
+                        <p class="my-label">Doanh số kì vọng</p>
+                    </el-col>
+                    <el-col :span="14">
+                        <p class="content">{{ data.expected_sales }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">
@@ -79,91 +117,6 @@
                     </el-col>
                     <el-col :span="14">
                         <p class="content">{{ data.created_at|datetime }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Người tạo</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.created_by }}</p>
-                    </el-col>
-                </el-row>
-            </el-col>
-            <el-col :span="12">
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Số điện thoại</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.phone_number }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Số di động</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.mobile_number }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Fax</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.fax }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Facebook</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.facebook }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Skype</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.skype }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Địa chỉ văn phòng</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.office_address }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Liên hệ chính</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">
-                            <i v-if="data.primary" style="color:#34910db" class="el-icon-check"></i>
-                        </p>
-                    </el-col>
-                </el-row>
-
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Cập nhật lần cuối lúc</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.updated_at|datetime }}</p>
-                    </el-col>
-                </el-row>
-                <el-row class="item">
-                    <el-col :span="10">
-                        <p class="my-label">Người cập nhật</p>
-                    </el-col>
-                    <el-col :span="14">
-                        <p class="content">{{ data.updated_by }}</p>
                     </el-col>
                 </el-row>
             </el-col>
@@ -177,17 +130,15 @@
     </el-card>
 </template>
 <script>
-import TagArea from "@/components/TagArea/index";
-import { show } from "@/api/customer/contact";
+import { show } from "@/api/business/opportunity";
 export default {
-    components: { TagArea },
     data() {
         return {
             data: ""
         };
     },
     methods: {
-        async getCustomer() {
+        async getOpportunity() {
             try {
                 this.openFullScreen();
                 const { data } = await show(this.$route.params.id);
@@ -200,7 +151,7 @@ export default {
         }
     },
     created() {
-        this.getCustomer();
+        this.getOpportunity();
     }
 };
 </script>

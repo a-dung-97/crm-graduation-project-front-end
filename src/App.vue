@@ -11,6 +11,8 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "~animate.css";
+
 ::-webkit-scrollbar-track {
     //box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: white;

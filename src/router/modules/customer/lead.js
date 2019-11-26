@@ -35,6 +35,15 @@ const leadRouter = [
             title: "Chi tiết tiềm năng",
         }
     },
+    {
+        path: "lead/convert/:id",
+        name: "Chuyển đổi tiềm năng",
+        hidden: true,
+        component: () => import("@/views/customer/lead/convert"),
+        meta: {
+            title: "Chuyển đổi tiềm năng",
+        }
+    },
 ]
 
 export default leadRouter

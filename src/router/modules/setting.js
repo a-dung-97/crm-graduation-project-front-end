@@ -20,6 +20,15 @@ const settingRouter = {
                 icon: "dashboard",
             }
         },
+        {
+            path: "lead-score-rule",
+            name: "Quy tắc tính điểm",
+            component: () => import("@/views/setting/lead-score-rule/index"),
+            meta: {
+                title: "Quy tắc tính điểm",
+                icon: "dashboard",
+            }
+        },
     ]
 }
 export default settingRouter

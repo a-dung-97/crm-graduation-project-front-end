@@ -1,5 +1,7 @@
 import Layout from '@/layout';
 import taskRouter from './task';
+import opportunityRouter from './opportunity';
+import quoteRouter from './quote';
 const businessRouter = {
     path: "/business",
     component: Layout,
@@ -12,6 +14,8 @@ const businessRouter = {
     },
     children: [
         ...taskRouter,
+        ...opportunityRouter,
+        ...quoteRouter,
         {
             path: "note/index",
             name: "Ghi chú",

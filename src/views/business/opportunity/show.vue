@@ -5,13 +5,10 @@
                 <Infomation />
             </el-tab-pane>
             <el-tab-pane :label="'Đính kèm '+(count.file>0?('('+count.file+')'):'')">
-                <File @handle-load="handleLoad('file',$event)" type="contact" />
+                <File @handle-load="handleLoad('file',$event)" type="opportunity" />
             </el-tab-pane>
             <el-tab-pane :label="'Ghi chú ' +(count.note>0?('('+count.note+')'):'')">
-                <Note @handle-load="handleLoad('note',$event)" type="contact" />
-            </el-tab-pane>
-            <el-tab-pane :label="'Hoạt động '+(count.task>0?('('+count.task+')'):'')">
-                <Task @handle-load="handleLoad('task',$event)" type="contact" />
+                <Note @handle-load="handleLoad('note',$event)" type="opportunity" />
             </el-tab-pane>
         </el-tabs>
     </div>

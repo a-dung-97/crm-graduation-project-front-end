@@ -1,11 +1,13 @@
 <template>
     <div>
-        <el-table :data="tableData" border v-loading="loading" style="width: 100%">
+        <el-table height="65vh" :data="tableData" border v-loading="loading" style="width: 100%">
             <el-table-column align="center" type="index" width="50" label="STT"></el-table-column>
             <el-table-column prop="title" label="Tiêu đề"></el-table-column>
             <el-table-column prop="content" label="Nội dung"></el-table-column>
             <el-table-column prop="user" width="220" label="Người tạo"></el-table-column>
-            <el-table-column prop="created_at" width="150" label="Ngày tạo"></el-table-column>
+            <el-table-column prop="created_at" width="150" label="Ngày tạo">
+                <template slot-scope="scope">{{ scope.row.created_at|datetime }}</template>
+            </el-table-column>
             <el-table-column align="center" width="150" label="Hành động">
                 <template slot-scope="scope">
                     <el-button

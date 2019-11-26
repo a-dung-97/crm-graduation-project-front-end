@@ -5,11 +5,9 @@
                 <el-card style="height:420px">
                     <el-tabs v-if="data" v-model="tab" stretch>
                         <el-tab-pane
-                            v-if="data.taskable.type=='App\\Customer'"
-                            label="Khách hàng"
-                            name="customer"
-                        ></el-tab-pane>
-                        <el-tab-pane v-else label="Tiềm năng" name="lead">
+                            :label="data.taskable.type=='App\\Customer'?'Khách hàng':'Tiềm năng'"
+                            name="taskable"
+                        >
                             <div class="infomation">
                                 <i class="el-icon-user"></i>
                                 <span>{{ data.taskable.detail.name }}</span>
@@ -19,11 +17,32 @@
                                 <span>{{ data.taskable.detail.phone_number }}</span>
                             </div>
                             <div class="infomation">
+                                <i class="el-icon-mobile-phone"></i>
+                                <span>{{ data.taskable.detail.mobile_number }}</span>
+                            </div>
+                            <div class="infomation">
                                 <i class="el-icon-message"></i>
                                 <span>{{ data.taskable.detail.email }}</span>
                             </div>
                         </el-tab-pane>
-                        <!-- <el-tab-pane label="Liên hệ" name="contact"></el-tab-pane> -->
+                        <el-tab-pane v-if="data.contact" label="Liên hệ" name="contact">
+                            <div class="infomation">
+                                <i class="el-icon-user"></i>
+                                <span>{{ data.contact.name }}</span>
+                            </div>
+                            <div class="infomation">
+                                <i class="el-icon-phone-outline"></i>
+                                <span>{{ data.contact.phone_number }}</span>
+                            </div>
+                            <div class="infomation">
+                                <i class="el-icon-mobile-phone"></i>
+                                <span>{{ data.contact.mobile_number }}</span>
+                            </div>
+                            <div class="infomation">
+                                <i class="el-icon-message"></i>
+                                <span>{{ data.contact.email }}</span>
+                            </div>
+                        </el-tab-pane>
                         <el-tab-pane label="Mốc thời gian" name="timeline">
                             <el-timeline style="padding-left:0">
                                 <el-timeline-item
@@ -169,7 +188,7 @@ export default {
     data() {
         return {
             data: "",
-            tab: ""
+            tab: "taskable"
         };
     },
     methods: {
@@ -178,8 +197,6 @@ export default {
                 this.openFullScreen();
                 const { data } = await show(this.$route.params.id);
                 this.data = data;
-                if (data.taskable.type == "App\\Lead") this.tab = "lead";
-                else this.tab = "customer";
                 this.closeFullScreen();
             } catch (error) {
                 this.closeFullScreen();

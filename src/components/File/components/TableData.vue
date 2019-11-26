@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="tableData" border v-loading="loading" style="width: 100%">
+    <el-table height="65vh" :data="tableData" border v-loading="loading" style="width: 100%">
         <el-table-column align="center" type="index" width="50" label="STT"></el-table-column>
         <el-table-column prop="name" label="Tên tệp"></el-table-column>
         <el-table-column prop="size" width="150" label="Dung lượng"></el-table-column>
