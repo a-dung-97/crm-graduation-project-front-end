@@ -2,6 +2,7 @@ import Layout from '@/layout';
 import taskRouter from './task';
 import opportunityRouter from './opportunity';
 import quoteRouter from './quote';
+import orderRouter from './order';
 const businessRouter = {
     path: "/business",
     component: Layout,
@@ -16,6 +17,7 @@ const businessRouter = {
         ...taskRouter,
         ...opportunityRouter,
         ...quoteRouter,
+        ...orderRouter,
         {
             path: "note/index",
             name: "Ghi chú",

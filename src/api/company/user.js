@@ -101,3 +101,34 @@ export function getCompany() {
         method: 'get',
     })
 }
+export function getEmailAddresses() {
+    return request({
+        url: '/email-addresses',
+        method: 'get',
+    })
+}
+export function deleteEmailAddress(id) {
+    return request({
+        url: '/email-addresses/' + id,
+        method: 'delete',
+    })
+}
+export function sendConfirmEmail(id) {
+    return request({
+        url: '/email-addresses/' + id + '/confirm',
+        method: 'get',
+    })
+}
+export function setPrimary(id) {
+    return request({
+        url: '/email-addresses/' + id + '/primary',
+        method: 'put',
+    })
+}
+export function createEmailAddress(data) {
+    return request({
+        url: '/email-addresses',
+        method: 'post',
+        data
+    })
+}

@@ -14,7 +14,6 @@ export default {
     methods: {
         async getCatalog(root, parent) {
             const { data } = await list(root, parent);
-            console.log(data);
             this.catalogs[parent] = data
         },
         async getUsers() {

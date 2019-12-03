@@ -5,7 +5,13 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
     >
         <el-col :span="24">
-            <el-button v-if="isEdit" @click="updateContact" type="success" class="fr">Cập nhật</el-button>
+            <el-button
+                size="medium"
+                v-if="isEdit"
+                @click="updateContact"
+                type="success"
+                class="fr"
+            >Cập nhật</el-button>
             <el-button size="medium" v-else @click="createContact" type="primary" class="fr">Lưu</el-button>
         </el-col>
         <el-form :model="form" :rules="rules" ref="form" label-position="left" label-width="150px">
@@ -221,6 +227,7 @@ export default {
                 id: "",
                 ownerable_type: "App\\User",
                 ownerable_id: "",
+                email: "",
                 first_name: "",
                 honorific: "",
                 last_name: "",

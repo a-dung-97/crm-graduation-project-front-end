@@ -198,7 +198,7 @@ import TagArea from "@/components/TagArea/index";
 import SelectCustomer from "@/components/dialogs/SelectCustomer/index";
 
 export default {
-    props: ["isEdit"],
+    props: ["isEdit", "user"],
     components: { TagArea, SelectCustomer },
     data() {
         return {
@@ -325,6 +325,11 @@ export default {
         }
     },
     created() {
+        if (this.user) {
+            console.log(this.form);
+            this.form.customer_id = this.user.id;
+            this.customer = this.user.name;
+        }
         Promise.all([
             this.getCatalog("Cơ hội", "Kiểu"),
             this.getCatalog("Cơ hội", "Nguồn"),
@@ -333,6 +338,7 @@ export default {
             this.getGroups()
         ]);
         if (this.isEdit) this.getOpportunity();
-    }
+    },
+    mounted() {}
 };
 </script>

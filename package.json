@@ -15,6 +15,7 @@
         "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
     },
     "dependencies": {
+        "@tinymce/tinymce-vue": "^3.0.1",
         "animate.css": "^3.7.2",
         "axios": "0.18.1",
         "element-ui": "^2.12.0",

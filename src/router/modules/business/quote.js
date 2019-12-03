@@ -14,6 +14,7 @@ const quoteRouter = [
         name: "Thêm mới báo giá",
         component: () => import("@/views/business/quote/create"),
         hidden: true,
+        props: true,
         meta: {
             title: "Thêm mới báo giá",
         }

@@ -16,7 +16,12 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="Điều kiện" prop="condition">
-                <el-select class="w-100" v-model="form.condition" placeholder="Chọn điều kiện">
+                <el-select
+                    :disabled="form.field==''"
+                    class="w-100"
+                    v-model="form.condition"
+                    placeholder="Chọn điều kiện"
+                >
                     <template v-if="form.field=='Nguồn'||form.field=='Ngành nghề'">
                         <el-option label="Là" value="="></el-option>
                         <el-option label="Không là" value="!="></el-option>

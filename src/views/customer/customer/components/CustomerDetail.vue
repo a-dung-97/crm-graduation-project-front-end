@@ -211,7 +211,7 @@
         </el-form>
         <SelectCustomer
             @handle-select="handleSelect"
-            :type="form.taskable_type"
+            type="App\Customer"
             :show-dialog.sync="showDialog"
         />
     </el-row>

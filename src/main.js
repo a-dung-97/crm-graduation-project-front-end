@@ -17,7 +17,8 @@ import FullScreenLoading from '@/mixins/fullscreen-loading'
 import Catalog from '@/mixins/catalog'
 // Use v-calendar, v-date-picker & v-popover components
 Vue.filter('money', function (value) {
-    return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    if (value != null)
+        return value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 })
 
 Vue.filter('date', function (value) {

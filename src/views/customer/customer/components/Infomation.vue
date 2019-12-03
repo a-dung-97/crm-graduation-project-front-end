@@ -239,6 +239,7 @@ export default {
             try {
                 this.openFullScreen();
                 const { data } = await show(this.$route.params.id);
+                this.$emit("loaded", { id: data.id, name: data.name });
                 this.data = data;
                 this.closeFullScreen();
             } catch (error) {

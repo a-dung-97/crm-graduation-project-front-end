@@ -6,6 +6,9 @@ export default {
                 file: 0,
                 note: 0,
                 task: 0,
+                opportunity: 0,
+                order: 0,
+                quote: 0,
             }
         };
     },

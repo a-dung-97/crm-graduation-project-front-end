@@ -34,3 +34,10 @@ export function destroy(id) {
         method: 'delete',
     })
 }
+export function getRelatedInfo(id, type, params) {
+    return request({
+        url: `/customers/${id}/${type}`,
+        method: 'get',
+        params
+    })
+}

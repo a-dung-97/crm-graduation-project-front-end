@@ -16,7 +16,7 @@
                     :type="scope.row.type === 'Tiềm năng' ? 'success' : 'primary'"
                     disable-transitions
                     size="small"
-                >{{scope.row.type==='product'?'Tiềm năng':"Khách hàng"}}</el-tag>
+                >{{scope.row.type==='Tiềm năng'?'Tiềm năng':"Khách hàng"}}</el-tag>
             </template>
         </el-table-column>
         <el-table-column width="130" label="Trạng thái">

@@ -21,6 +21,9 @@
                         <button class="btn btn-action" @click.prevent="resend">Gửi lại email</button>
                     </div>
                     <div class="form-group">
+                        <button class="btn btn-action" @click.prevent="$router.push('/')">Đăng nhập</button>
+                    </div>
+                    <div class="form-group">
                         <button class="btn btn-social">
                             <span>Liên hệ hỗ trợ</span>
                         </button>

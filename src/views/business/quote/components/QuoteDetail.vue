@@ -224,7 +224,8 @@ import SelectOpportunity from "@/components/dialogs/SelectOpportunity/index";
 
 import ProductList from "./ProductList";
 import SelectProductTable from "@/components/dialogs/SelectProduct/index";
-import { store, show, update } from "@/api/business/quote";
+import { store, show, update, clone } from "@/api/business/quote";
+import { show as getOrder } from "@/api/business/order";
 export default {
     components: {
         ProductList,
@@ -232,7 +233,7 @@ export default {
         SelectCustomer,
         SelectOpportunity
     },
-    props: ["isEdit", "isShow"],
+    props: ["isEdit", "isShow", "user"],
     data() {
         return {
             type: "",
@@ -341,13 +342,46 @@ export default {
         async getQuote() {
             try {
                 this.openFullScreen();
-                const { data } = await show(this.$route.params.id);
+                let id = this.$route.params.id || this.$route.query.cloneId;
+                const { data } = await show(id);
                 this.contact = data.contact;
                 this.customer = data.customer;
-                this.opportunity = data.opportunity.name || "";
+                this.opportunity = data.opportunity
+                    ? data.opportunity.name
+                    : "";
                 for (let field in this.form) {
                     this.form[field] = data[field];
                 }
+                if (this.$route.query.cloneId) this.form.code = "";
+                this.closeFullScreen();
+            } catch (error) {
+                console.log(error);
+                this.closeFullScreen();
+            }
+        },
+        async getOrder(id) {
+            try {
+                this.openFullScreen();
+                const { data } = await getOrder(id);
+                this.customer = data.customer.name;
+                this.contact = data.contact ? data.contact.name : "";
+                this.opportunity = data.opportunity
+                    ? data.opportunity.name
+                    : "";
+                this.quote = data.quote ? data.quote.code : "";
+                for (let field in this.form) {
+                    if (
+                        field == "ownerable_type" ||
+                        field == "ownerable_id" ||
+                        field == "customer_id" ||
+                        field == "opportunity" ||
+                        field == "contact_id" ||
+                        field == "delivery_address" ||
+                        field == "products"
+                    )
+                        this.form[field] = data[field];
+                }
+                if (this.$route.query.cloneId) this.form.code = "";
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);
@@ -419,6 +453,17 @@ export default {
         }
     },
     created() {
+        if (this.user) {
+            console.log(this.form);
+            this.form.customer_id = this.user.id;
+            this.customer = this.user.name;
+        }
+        if (this.$route.query.cloneId) {
+            this.getQuote();
+        }
+        if (this.$route.query.orderId) {
+            this.getOrder(this.$route.query.orderId);
+        }
         Promise.all([
             this.getCatalog("Báo giá", "Trạng thái"),
             this.getUsers(),

@@ -13,6 +13,7 @@ const opportunityRouter = [
         name: "Thêm mới cơ hội",
         component: () => import("@/views/business/opportunity/create"),
         hidden: true,
+        props: true,
         meta: {
             title: "Thêm mới cơ hội",
         }

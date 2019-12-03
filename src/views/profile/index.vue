@@ -12,8 +12,8 @@
                             <el-tab-pane label="Tài khoản" name="account">
                                 <account :user="user" />
                             </el-tab-pane>
-                            <el-tab-pane label="Công ty" name="company">
-                                <company />
+                            <el-tab-pane label="Email" name="email">
+                                <Email />
                             </el-tab-pane>
                         </el-tabs>
                     </el-card>
@@ -28,10 +28,11 @@ import { mapGetters } from "vuex";
 import UserCard from "./components/UserCard";
 import Company from "./components/Company";
 import Account from "./components/Account";
+import Email from "./components/Email";
 
 export default {
     name: "Profile",
-    components: { Company, Account, UserCard },
+    components: { Company, Account, UserCard, Email },
     data() {
         return {
             user: {},

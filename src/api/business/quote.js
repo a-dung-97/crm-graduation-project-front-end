@@ -33,3 +33,10 @@ export function destroy(id) {
         method: 'delete',
     })
 }
+
+export function getOrders(id) {
+    return request({
+        url: `/quotes/${id}/order`,
+        method: 'get',
+    })
+}

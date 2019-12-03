@@ -10,6 +10,15 @@ const companyRouter = {
     },
     children: [
         {
+            path: "information",
+            name: "Thông tin công ty",
+            component: () => import("@/views/company/information/index"),
+            meta: {
+                title: "Thông tin công ty",
+                icon: "people",
+            }
+        },
+        {
             path: "department",
             name: "Phòng ban",
             component: () => import("@/views/company/department/index"),

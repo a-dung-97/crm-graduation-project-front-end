@@ -8,6 +8,13 @@
                     type="primary"
                     size="small"
                 >Sửa</el-button>
+                <el-button
+                    class="fr mr-10"
+                    @click="$router.push(`/business/quote/create/?cloneId=${$route.params.id}`)"
+                    type="primary"
+                    size="small"
+                >Sao chép</el-button>
+                <el-button class="fr" type="primary" size="small">In</el-button>
             </el-col>
         </el-row>
         <h3 class="title">Thông tin báo giá</h3>
@@ -172,14 +179,19 @@
                 </el-table-column>
             </el-table>
         </el-row>
+        <Order />
     </el-card>
 </template>
 <script>
 import { show } from "@/api/business/quote";
+import Order from "./Order/index";
 export default {
+    components: { Order },
     data() {
         return {
-            data: ""
+            data: {
+                products: []
+            }
         };
     },
     computed: {
