@@ -101,10 +101,11 @@ export function getCompany() {
         method: 'get',
     })
 }
-export function getEmailAddresses() {
+export function getEmailAddresses(params) {
     return request({
         url: '/email-addresses',
         method: 'get',
+        params
     })
 }
 export function deleteEmailAddress(id) {

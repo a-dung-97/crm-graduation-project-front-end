@@ -10,6 +10,7 @@ const getters = {
     position: state => state.user.position,
     department: state => state.user.department,
     email: state => state.user.email,
-    permission_routes: state => state.permission.routes
+    permission_routes: state => state.permission.routes,
+    tiny_drive_token: state => state.user.tiny_drive_token
 }
 export default getters

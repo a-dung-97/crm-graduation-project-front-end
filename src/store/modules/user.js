@@ -12,7 +12,8 @@ const state = {
     phone_number: '',
     department: '',
     position: '',
-    email: ''
+    email: '',
+    tiny_drive_token: "",
 }
 
 const mutations = {
@@ -46,6 +47,9 @@ const mutations = {
     SET_EMAIL: (state, email) => {
         state.email = email
     },
+    SET_TINY_DRIVE_TOKEN: (state, tiny_drive_token) => {
+        state.tiny_drive_token = tiny_drive_token
+    },
 }
 
 const actions = {
@@ -74,7 +78,7 @@ const actions = {
                     reject('Verification failed, please Login again.')
                 }
 
-                const { id, roles, name, avatar, company, phone_number, department, position, email } = data
+                const { id, roles, name, avatar, company, phone_number, department, position, email, tiny_drive_token } = data
 
                 // roles must be a non-empty array
                 if (!roles || roles.length <= 0) {
@@ -90,6 +94,7 @@ const actions = {
                 commit('SET_DEPARTMENT', department)
                 commit('SET_POSITION', position)
                 commit('SET_EMAIL', email)
+                commit('SET_TINY_DRIVE_TOKEN', tiny_drive_token)
                 resolve(data)
             }).catch(error => {
                 reject(error)

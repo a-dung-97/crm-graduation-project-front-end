@@ -4,11 +4,17 @@
             <!-- <SearchForm :params="params" @handle-search="getData" /> -->
 
             <el-col :span="24">
-                <el-button disabled type="primary" size="small">Xóa</el-button>
-                <el-button disabled type="primary" size="small">Gửi email</el-button>
-                <el-button disabled type="primary" size="small">Gửi SMS</el-button>
-                <el-button disabled type="primary" size="small">Danh sách email</el-button>
-                <el-button disabled type="primary" size="small">Chuyển chủ sở hữu</el-button>
+                <el-button :disabled="true" type="primary" size="small">Xóa</el-button>
+                <el-button :disabled="isSelecting" type="primary" size="small">Gửi email</el-button>
+                <el-button :disabled="isSelecting" type="primary" size="small">Gửi SMS</el-button>
+                <el-button
+                    :disabled="isSelecting"
+                    @click="showMailingListDialog=true"
+                    type="primary"
+                    size="small"
+                >Danh sách email</el-button>
+                <el-button :disabled="isSelecting" type="primary" size="small">Chuyển chủ sở hữu</el-button>
+                <el-button :disabled="isSelecting" type="primary" size="small">Xuất Excel</el-button>
                 <el-button
                     class="fr"
                     @click="$router.push('/customer/lead/create')"
@@ -32,7 +38,11 @@
 
         <el-row>
             <el-col :span="24">
-                <TableData :table-data="tableData" :loading.sync="loading" />
+                <TableData
+                    @selection-change="handleSelectionChange"
+                    :table-data="tableData"
+                    :loading.sync="loading"
+                />
                 <Pagination
                     :pagination="pagination"
                     @size-change="params.perPage=$event;params.page=1;getData()"
@@ -40,6 +50,7 @@
                 />
             </el-col>
         </el-row>
+        <MailingList :members="selected" :show-dialog.sync="showMailingListDialog" type="lead" />
     </div>
 </template>
 <script>
@@ -47,8 +58,11 @@ import { index } from "@/api/customer/lead";
 import TableData from "./components/TableData";
 import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
+import MailingList from "@/components/MailingList/index";
+import selectMulti from "@/mixins/select-multi";
 export default {
-    components: { TableData, Pagination, SearchForm },
+    components: { TableData, Pagination, SearchForm, MailingList },
+    mixins: [selectMulti],
     data() {
         return {
             tableData: [],
@@ -87,9 +101,7 @@ export default {
             }
         }
     },
-    mounted() {
-        this.$bus.$on("refresh", () => this.getData());
-    },
+
     created() {
         this.getData();
     }

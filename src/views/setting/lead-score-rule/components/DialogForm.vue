@@ -21,6 +21,7 @@
                     class="w-100"
                     v-model="form.condition"
                     placeholder="Chọn điều kiện"
+                    @change="handleChange"
                 >
                     <template v-if="form.field=='Nguồn'||form.field=='Ngành nghề'">
                         <el-option label="Là" value="="></el-option>
@@ -144,6 +145,10 @@ export default {
                 await store(this.form);
                 this.reload();
             } catch (error) {}
+        },
+        handleChange(val) {
+            if (val == "bỏ trống" || val == "không bỏ trống")
+                this.form.value = "";
         },
         reload() {
             this.loading = false;

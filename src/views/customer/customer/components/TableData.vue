@@ -1,5 +1,12 @@
 <template>
-    <el-table height="58vh" :data="tableData" border v-loading="loading" style="width: 100%">
+    <el-table
+        height="58vh"
+        @selection-change="$emit('selection-change', $event)"
+        :data="tableData"
+        border
+        v-loading="loading"
+        style="width: 100%"
+    >
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="code" width="110" fixed label="Mã"></el-table-column>
 
