@@ -13,6 +13,9 @@
             <el-tab-pane :label="'Hoạt động '+(count.task>0?('('+count.task+')'):'')">
                 <Task @handle-load="handleLoad('task',$event)" type="customer" />
             </el-tab-pane>
+            <el-tab-pane :label="'Email '+(count.email>0?('('+count.email+')'):'')">
+                <Email @handle-load="handleLoad('email',$event)" type="customer" />
+            </el-tab-pane>
             <el-tab-pane :label="'Cơ hội '+(count.opportunity>0?('('+count.opportunity+')'):'')">
                 <Opportunity :user="user" @handle-load="handleLoad('opportunity',$event)" />
             </el-tab-pane>
@@ -31,6 +34,8 @@ import CustomerDetail from "./components/CustomerDetail";
 import Infomation from "./components/Infomation";
 import Note from "@/components/Note/index";
 import File from "@/components/File/index";
+import Email from "@/components/Email/index";
+
 import Task from "@/components/Task/index";
 import Opportunity from "@/components/Opportunity/index";
 import Quote from "@/components/Quote/index";
@@ -44,7 +49,8 @@ export default {
         Infomation,
         Opportunity,
         Quote,
-        Order
+        Order,
+        Email
     },
     data() {
         return {

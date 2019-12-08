@@ -9,6 +9,7 @@ export default {
                 opportunity: 0,
                 order: 0,
                 quote: 0,
+                email: 0
             }
         };
     },

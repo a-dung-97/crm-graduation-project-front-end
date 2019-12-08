@@ -4,7 +4,6 @@
         api-key="1cvljup72sa0e27wxi67ov3qm5kxac1u56bvp9hihohdr8bc"
         v-model="value"
         :init="fullPlugin"
-        :initialValue="initialValue"
     ></editor>
 </template>
 
@@ -20,12 +19,13 @@ export default {
         value(val) {
             this.$emit("update:content", val);
         },
-        initialValue(val) {
-            this.value = val;
+        content(val) {
+            this.value = this.content;
         }
     },
     data() {
         let token = this.$store.getters.tiny_drive_token;
+        let height = this.height;
         return {
             value: "",
             fullPlugin: {
@@ -34,7 +34,8 @@ export default {
                         token
                     });
                 },
-                height: 450,
+                height,
+                selector: "textarea",
                 tinydrive_dropbox_app_key: "pgpbcjipdzj0e78",
                 language_url: `/tinymce/langs/vi.js`,
                 language: "vi",
@@ -46,15 +47,9 @@ export default {
             }
         };
     },
-    methods: {
-        addText() {
-            window.tinyMCE.execCommand(
-                "mceInsertContent",
-                false,
-                "%receipent.user%"
-            );
-        }
-    },
+
     created() {}
 };
 </script>
+<style lang="css">
+</style>

@@ -13,6 +13,13 @@ export function show(id) {
         method: 'get',
     })
 }
+export function getListEmail(params, id) {
+    return request({
+        url: `/email-campaigns/${id}/list`,
+        method: 'get',
+        params
+    })
+}
 export function store(data) {
     return request({
         url: '/email-campaigns',

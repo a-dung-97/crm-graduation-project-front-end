@@ -13,18 +13,22 @@
             <el-tab-pane :label="'Hoạt động '+(count.task>0?('('+count.task+')'):'')">
                 <Task @handle-load="handleLoad('task',$event)" type="contact" />
             </el-tab-pane>
+            <el-tab-pane :label="'Email '+(count.email>0?('('+count.email+')'):'')">
+                <Email @handle-load="handleLoad('email',$event)" type="contact" />
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
 <script>
 import count from "@/mixins/count";
+import Email from "@/components/Email/index";
 
 import Infomation from "./components/Infomation";
 import Note from "@/components/Note/index";
 import File from "@/components/File/index";
 import Task from "@/components/Task/index";
 export default {
-    components: { Note, File, Task, Infomation },
+    components: { Note, File, Task, Infomation, Email },
     mixins: [count]
 };
 </script>

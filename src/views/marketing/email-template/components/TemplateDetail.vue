@@ -2,11 +2,18 @@
     <el-card>
         <div style="height:32px;line-height:32px" slot="header">
             Thông tin mẫu email
-            <el-button class="fr" @click="createTemplate" type="primary" size="small">Thêm</el-button>
+            <el-button
+                class="fr"
+                v-if="isEdit"
+                @click="updateTemplate"
+                type="primary"
+                size="small"
+            >Sửa</el-button>
+            <el-button class="fr" v-else @click="createTemplate" type="primary" size="small">Thêm</el-button>
         </div>
         <el-row :gutter="20">
             <el-col :span="18">
-                <TinyMCE :initialValue="initialValue" :content.sync="form.content" />
+                <TinyMCE :initialValue="initialValue" :height="700" :content.sync="form.content" />
             </el-col>
             <el-col :span="6">
                 <el-form :model="form" :rules="rules" ref="form">
@@ -41,7 +48,7 @@
 </template>
 <script>
 import TinyMCE from "@/components/TinyMCE/index.vue";
-import { store, show } from "@/api/marketing/email-template";
+import { store, show, update } from "@/api/marketing/email-template";
 export default {
     components: { TinyMCE },
     props: ["isEdit"],
@@ -51,7 +58,7 @@ export default {
             initialValue: "",
             form: {
                 id: "",
-                name: "",
+                name: "Mẫu email trống",
                 content: "",
                 description: ""
             },
@@ -257,7 +264,20 @@ export default {
                 const { data } = await store(this.form);
                 this.loading = false;
                 this.closeFullScreen();
+                this.$message.success("Thêm dữ liệu thành công");
                 this.$router.push(`/marketing/email-template/index`);
+            } catch (error) {
+                console.log(error);
+                this.closeFullScreen();
+            }
+        },
+        async updateTemplate() {
+            try {
+                await this.$refs["form"].validate();
+                this.openFullScreen();
+                await update(this.form, this.$route.params.id);
+                this.closeFullScreen();
+                this.$message.success("Sửa dữ liệu thành công");
             } catch (error) {
                 console.log(error);
                 this.closeFullScreen();

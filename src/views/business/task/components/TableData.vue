@@ -20,12 +20,12 @@
             </template>
         </el-table-column>
         <el-table-column width="130" label="Trạng thái">
-            <template slot-scope="scope">
+            <template v-if="scope.row.status" slot-scope="scope">
                 <el-tag type="primary">{{ scope.row.status }}</el-tag>
             </template>
         </el-table-column>
         <el-table-column width="150" label="Đối tượng">
-            <template slot-scope="scope">
+            <template v-if="scope.row.taskable" slot-scope="scope">
                 <router-link
                     tag="a"
                     class="link"

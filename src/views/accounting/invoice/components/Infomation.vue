@@ -1,7 +1,7 @@
 <template>
     <el-card>
         <h3 class="title">
-            Thông tin cơ hội
+            Thông tin hóa đơn
             <el-button
                 class="fr"
                 @click="$router.push(`/accounting/invoice/edit/${$route.params.id}`)"
@@ -68,7 +68,7 @@
                         <p class="my-label">Số tiền thanh toán</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.payment_amount }}</p>
+                        <p class="content">{{ data.payment_amount|money }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">

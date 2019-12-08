@@ -5,6 +5,8 @@
         top="0vh"
         title="Thêm chiến dịch email"
         :before-close="closeDialog"
+        custom-class="abcd"
+        :append-to-body="true"
         :visible.sync="showDialog"
     >
         <el-steps style="margin-bottom:10px" :active="active" simple finish-status="success">
@@ -81,16 +83,25 @@
                     placeholder="Nhập chủ đề"
                     v-model="form.subject"
                 ></el-input>
-                <el-link type="primary">Chọn mẫu email</el-link>
-                <TinyMCE :content.sync="form.content" />
+                <el-link :underline="false" type="primary" @click="showDialog1=true">Chọn mẫu email</el-link>
+                <TinyMCE :height="450" :content.sync="form.content" />
             </template>
         </div>
-
+        <SelectEmailTemplate
+            @handle-select="handleSelectEmailTemplate"
+            :show-dialog.sync="showDialog1"
+        />
         <span slot="footer" class="dialog-footer">
             <el-button size="medium" v-if="active==0" @click="closeDialog">Hủy</el-button>
             <el-button size="medium" v-else @click="active=0">Quay lại</el-button>
             <el-button size="medium" v-if="active==0" @click="next" type="primary">Tiếp</el-button>
-            <el-button size="medium" v-else type="primary">Lưu</el-button>
+            <el-button
+                size="medium"
+                :loading="loading"
+                @click="createData"
+                v-else
+                type="primary"
+            >Lưu</el-button>
         </span>
     </el-dialog>
 </template>
@@ -99,10 +110,14 @@ import { index as getMailingLists } from "@/api/marketing/mailing-list";
 import { index as getCampaigns } from "@/api/marketing/email-campaign";
 import { getEmailAddresses } from "@/api/company/user";
 import { store } from "@/api/marketing/email-campaign";
+import SelectEmailTemplate from "@/components/dialogs/SelectEmailTemplate/index.vue";
 import TinyMCE from "@/components/TinyMCE/index";
+import checkEditor from "@/mixins/editor";
+
 export default {
     props: ["showDialog"],
-    components: { TinyMCE },
+    mixins: [checkEditor],
+    components: { TinyMCE, SelectEmailTemplate },
     watch: {
         showDialog() {
             for (let field in this.form) this.form[field] = "";
@@ -114,6 +129,7 @@ export default {
     },
     data() {
         return {
+            showDialog1: false,
             lists: [],
             active: 0,
             loading: false,
@@ -194,6 +210,10 @@ export default {
                 ];
             }
         },
+        handleSelectEmailTemplate(val) {
+            this.form.content = val.content;
+            this.form.subject = val.name;
+        },
         closeDialog() {
             this.$emit("update:showDialog", false);
             this.$refs["form"].resetFields();
@@ -212,35 +232,24 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+        },
+        async createData() {
+            try {
+                if (this.form.subject == "") {
+                    this.$message.error("Bạn chưa nhập tiêu đề");
+                    return;
+                }
+                if (!this.checkEditor(this.form.content)) return;
+                this.loading = true;
+                await store(this.form);
+                this.$message.success("Thêm chiến dịch email thành công");
+                this.$emit("reload");
+                this.closeDialog();
+                this.loading = false;
+            } catch (error) {
+                this.loading = false;
+            }
         }
-        // async updateData() {
-        //     try {
-        //         await this.$refs["form"].validate();
-        //         this.loading = true;
-        //         await update(this.form, this.form.id);
-        //         this.reload();
-        //     } catch (error) {
-        //         this.loading = false;
-        //     }
-        // },
-        // async createData() {
-        //     try {
-        //         await this.$refs["form"].validate();
-        //         this.loading = true;
-        //         await store(this.form);
-        //         this.reload();
-        //     } catch (error) {
-        //         this.loading = false;
-        //     }
-        // },
-        // reload() {
-        //     this.loading = false;
-        //     this.$message.success(
-        //         this.editing ? "Cập nhật thành công" : "Thêm mới thành công"
-        //     );
-        //     this.closeDialog();
-        //     this.$emit("reload");
-        // }
     },
     created() {
         this.getData();

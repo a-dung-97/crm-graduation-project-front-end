@@ -1,33 +1,36 @@
 <template>
     <el-dialog
-        top="0"
+        top="10vh"
         title="Chọn mẫu email"
         :visible.sync="showDialog "
         :before-close="closeDialog"
-        width="40%"
+        width="30%"
         center
         append-to-body
     >
         <el-input
+            class="w-100"
             prefix-icon="el-icon-search"
             v-model="params.code"
             style="width:25%"
             size="small"
-            placeholder="Tìm kiếm theo tên hoặc mô tả"
+            placeholder="Tìm kiếm theo tên"
         >
             <el-button @click="params.page=1;getData()" slot="append" icon="el-icon-search"></el-button>
         </el-input>
         <el-table
             ref="singleTable"
-            height="400px"
+            height="300px"
             highlight-current-row
             @current-change="handleCurrentChange"
             :data="tableData"
             v-loading="loading"
             style="width: 100%"
         >
-            <el-table-column prop="code" label="Mã"></el-table-column>
-            <el-table-column prop="customer" label="Khách hàng"></el-table-column>
+            <el-table-column prop="name" label="Tên"></el-table-column>
+            <el-table-column label="Ngày tạo">
+                <template slot-scope="scope">{{ scope.row.created_at }}</template>
+            </el-table-column>
         </el-table>
         <Pagination
             :pagination="pagination"
@@ -38,11 +41,10 @@
 </template>
 
 <script>
-import { index as getOrders } from "@/api/business/order";
-import { index as getQuotes } from "@/api/business/quote";
+import { index } from "@/api/marketing/email-template";
 import Pagination from "@/components/Pagination/index";
 export default {
-    props: ["showDialog", "customer", "type"],
+    props: ["showDialog"],
     components: { Pagination },
     watch: {
         showDialog(val) {
@@ -53,12 +55,11 @@ export default {
         return {
             tableData: [],
             loading: false,
-            getDataFunc: "",
             pagination: {},
             params: {
-                code: "",
                 perPage: 10,
-                list: true
+                list: true,
+                name: ""
             }
         };
     },
@@ -69,10 +70,7 @@ export default {
         async getData() {
             try {
                 this.loading = true;
-                this.params.customer = this.customer;
-                if (this.type == "order") this.getDataFunc = getOrders;
-                else this.getDataFunc = getQuotes;
-                const { data, meta } = await this.getDataFunc(this.params);
+                const { data, meta } = await index(this.params);
                 this.tableData = data;
                 this.pagination = meta;
                 this.loading = false;

@@ -146,7 +146,7 @@ export default {
                 "Bạn có muốn đặt địa chỉ email chính?",
                 "Xác nhận",
                 {
-                    confirmButtonText: "Xóa",
+                    confirmButtonText: "OK",
                     cancelButtonText: "Hủy",
                     type: "warning"
                 }

@@ -13,6 +13,9 @@
             <el-tab-pane :label="'Hoạt động '+(count.task>0?('('+count.task+')'):'')">
                 <Task @handle-load="handleLoad('task',$event)" type="lead" />
             </el-tab-pane>
+            <el-tab-pane :label="'Email '+(count.email>0?('('+count.email+')'):'')">
+                <Email @handle-load="handleLoad('email',$event)" type="lead" />
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
@@ -24,8 +27,9 @@ import Infomation from "./components/Infomation";
 import Note from "@/components/Note/index";
 import File from "@/components/File/index";
 import Task from "@/components/Task/index";
+import Email from "@/components/Email/index";
 export default {
-    components: { LeadDetail, Note, File, Task, Infomation },
+    components: { LeadDetail, Note, File, Task, Infomation, Email },
     mixins: [count]
 };
 </script>

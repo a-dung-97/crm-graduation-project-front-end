@@ -9,12 +9,12 @@ const emailCampaignRouter = [
         }
     },
     {
-        path: "email-campaign/create",
-        name: "CHi tiết chiến dịch email",
+        path: "email-campaign/show/:id",
+        name: "Chi tiết chiến dịch email",
         component: () => import("@/views/marketing/email-campaign/show"),
         hidden: true,
         meta: {
-            title: "CHi tiết chiến dịch email",
+            title: "Chi tiết chiến dịch email",
         }
     },
 ]

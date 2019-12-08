@@ -1,10 +1,12 @@
 <template>
-    <TemplateDetail :isEdit="true" />
+    <div class="app-container">
+        <Information />
+    </div>
 </template>
 <script>
-import TemplateDetail from "./components/TemplateDetail";
+import Information from "./components/Information";
 export default {
-    components: { TemplateDetail }
+    components: { Information }
 };
 </script>
 <style lang="">
