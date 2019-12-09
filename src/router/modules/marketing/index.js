@@ -1,6 +1,7 @@
 import Layout from '@/layout';
 import emailTemplateRouter from './email-template';
 import emailCampaignRouter from './email-campaign';
+import webformRouter from './webform';
 const marketingRouter = {
     path: "/marketing",
     component: Layout,
@@ -22,7 +23,8 @@ const marketingRouter = {
             }
         },
         ...emailTemplateRouter,
-        ...emailCampaignRouter
+        ...emailCampaignRouter,
+        ...webformRouter
     ]
 }
 export default marketingRouter

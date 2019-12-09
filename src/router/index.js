@@ -43,8 +43,8 @@ export const constantRoutes = [
         ]
     },
     {
-        path: "/test",
-        component: () => import("@/views/Test"),
+        path: "/webform/generated",
+        component: () => import("@/views/marketing/webform/generated"),
         hidden: true
     },
     {

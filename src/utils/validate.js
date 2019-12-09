@@ -33,6 +33,21 @@ export function validateMobileNumber(rule, value, callback) {
         callback();
     }
 };
+export function validateDomain(rule, value, callback) {
+
+    if (value === "") {
+        callback(new Error("Hãy nhập tên miền của bạn"));
+
+    } else if (
+        !value.match(
+            /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/
+        )
+    ) {
+        callback(new Error("Tên miền bạn nhập không hợp lệ"));
+    } else {
+        callback();
+    }
+}
 export function validateMobileNumberWithEmptyValue(rule, value, callback) {
 
     if (value === "" || value === null) {

@@ -158,6 +158,7 @@ export default {
         },
         async postData() {
             let data = await test();
+            window.top.location.href = "http://www.google.com";
             console.log(data);
         }
     },
@@ -165,7 +166,7 @@ export default {
         var url =
             window.location != window.parent.location
                 ? document.referrer
-                : document.location.href;
+                : document.location;
         console.log(url);
     }
 };

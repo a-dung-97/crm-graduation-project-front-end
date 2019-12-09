@@ -2,14 +2,13 @@
     <el-table
         ref="multipleTable"
         @selection-change="$emit('selection-change', $event)"
-        height="58vh"
         :data="tableData"
         border
         v-loading="loading"
         style="width: 100%"
     >
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column fixed width="200" label="Họ tên">
+        <el-table-column width="200" label="Họ tên">
             <template slot-scope="scope">
                 <router-link
                     tag="a"
