@@ -4,6 +4,9 @@
             <el-tab-pane label="Thông tin">
                 <Infomation @loaded="user=$event" />
             </el-tab-pane>
+            <el-tab-pane :label="'Liên hệ '+(count.contact>0?('('+count.contact+')'):'')">
+                <Contact :user="user" @handle-load="handleLoad('contact',$event)" />
+            </el-tab-pane>
             <el-tab-pane :label="'Đính kèm '+(count.file>0?('('+count.file+')'):'')">
                 <File @handle-load="handleLoad('file',$event)" type="customer" />
             </el-tab-pane>
@@ -40,6 +43,7 @@ import Task from "@/components/Task/index";
 import Opportunity from "@/components/Opportunity/index";
 import Quote from "@/components/Quote/index";
 import Order from "@/components/Order/index";
+import Contact from "@/components/Contact/index";
 export default {
     components: {
         CustomerDetail,
@@ -50,7 +54,8 @@ export default {
         Opportunity,
         Quote,
         Order,
-        Email
+        Email,
+        Contact
     },
     data() {
         return {

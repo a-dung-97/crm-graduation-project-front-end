@@ -53,9 +53,11 @@ export const constantRoutes = [
         hidden: true
     },
     {
-        path: "/test",
-        component: () => import("@/views/Test"),
-        hidden: true
+        path: "/pdf/download",
+        name: "pdf",
+        component: () => import("@/views/pdf.vue"),
+        hidden: true,
+        props: true
     },
 
 ];

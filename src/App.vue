@@ -22,7 +22,7 @@ export default {
 ::-webkit-scrollbar {
     z-index: 9999;
     width: 0px;
-    height: 17px;
+    height: 13px;
     //background-color: white;
 }
 

@@ -14,7 +14,13 @@
                     type="primary"
                     size="small"
                 >Sao chép</el-button>
-                <el-button class="fr" type="primary" size="small">In</el-button>
+                <el-button class="fr" @click="showDialog1=true" type="primary" size="small">In</el-button>
+                <el-button
+                    class="fr"
+                    type="primary"
+                    size="small"
+                    @click="showFormSendQuote"
+                >Gửi email</el-button>
             </el-col>
         </el-row>
         <h3 class="title">Thông tin báo giá</h3>
@@ -180,18 +186,31 @@
             </el-table>
         </el-row>
         <Order />
+        <SendingEmail v-if="quote" :show-dialog.sync="showDialog" type="customer" :quote="quote" />
+        <el-dialog center title="Báo giá" :visible.sync="showDialog1" top="5vh" width="80%">
+            <div id="print" v-if="showDialog1" v-html="quote.content"></div>
+            <span slot="footer" class="dialog-footer">
+                <el-button size="medium" @click="showDialog1=false">Hủy</el-button>
+                <el-button size="medium" @click="$htmlToPaper('print')" type="primary">In</el-button>
+            </span>
+        </el-dialog>
     </el-card>
 </template>
 <script>
-import { show } from "@/api/business/quote";
+import { show, sendQuote } from "@/api/business/quote";
+import SendingEmail from "@/components/SendingEmail/index";
+
 import Order from "./Order/index";
 export default {
-    components: { Order },
+    components: { Order, SendingEmail },
     data() {
         return {
             data: {
                 products: []
-            }
+            },
+            showDialog: false,
+            showDialog1: false,
+            quote: ""
         };
     },
     computed: {
@@ -215,11 +234,22 @@ export default {
         }
     },
     methods: {
-        async getOpportunity() {
+        showFormSendQuote() {
+            if (this.quote.email == "") {
+                this.$message.error("Khách hàng không có email");
+                return;
+            } else this.showDialog = true;
+        },
+
+        async getQuote() {
             try {
                 this.openFullScreen();
-                const { data } = await show(this.$route.params.id);
-                this.data = data;
+                const [data, quote] = await Promise.all([
+                    show(this.$route.params.id),
+                    sendQuote(this.$route.params.id)
+                ]);
+                this.data = data.data;
+                this.quote = quote.data;
                 this.data.opportunity = this.data.opportunity
                     ? [this.data.opportunity]
                     : [];
@@ -231,7 +261,7 @@ export default {
         }
     },
     created() {
-        this.getOpportunity();
+        this.getQuote();
     }
 };
 </script>

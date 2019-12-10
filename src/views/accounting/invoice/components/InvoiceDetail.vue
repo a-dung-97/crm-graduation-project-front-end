@@ -221,6 +221,12 @@ export default {
                         message: "Hãy chọn đơn hàng"
                     }
                 ],
+                user_id: [
+                    {
+                        required: true,
+                        message: "Hãy chọn người phụ trách"
+                    }
+                ],
                 payment_method: [
                     {
                         required: true,

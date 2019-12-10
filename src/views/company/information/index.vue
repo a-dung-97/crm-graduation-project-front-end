@@ -11,6 +11,12 @@
                         <el-form-item label="Địa chỉ" prop="address">
                             <el-input v-model="company.address" />
                         </el-form-item>
+                        <el-form-item label="Số điện thoại" prop="phone_number">
+                            <el-input v-model="company.phone_number" />
+                        </el-form-item>
+                        <el-form-item label="Mô tả" prop="phone_number">
+                            <el-input v-model="company.description" />
+                        </el-form-item>
                         <el-form-item>
                             <el-button
                                 :loading="loading"
@@ -27,6 +33,7 @@
 </template>
 
 <script>
+import { validatePhoneNumber } from "@/utils/validate";
 import { getCompany, updateCompany } from "@/api/company/user";
 export default {
     data() {
@@ -34,7 +41,9 @@ export default {
             loading: false,
             company: {
                 name: "",
-                address: ""
+                address: "",
+                description: "",
+                phone_number: ""
             },
             rules: {
                 name: [
@@ -48,6 +57,12 @@ export default {
                     {
                         required: true,
                         message: "Hãy nhập địa chỉ công ty của bạn",
+                        trigger: "blur"
+                    }
+                ],
+                phone_number: [
+                    {
+                        validator: validatePhoneNumber,
                         trigger: "blur"
                     }
                 ]

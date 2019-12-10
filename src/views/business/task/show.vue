@@ -5,6 +5,7 @@
                 <el-card style="height:420px">
                     <el-tabs v-if="data" v-model="tab" stretch>
                         <el-tab-pane
+                            v-if="data.taskable"
                             :label="data.taskable.type=='App\\Customer'?'Khách hàng':'Tiềm năng'"
                             name="taskable"
                         >
@@ -188,7 +189,7 @@ export default {
     data() {
         return {
             data: "",
-            tab: "taskable"
+            tab: ""
         };
     },
     methods: {
@@ -197,6 +198,7 @@ export default {
                 this.openFullScreen();
                 const { data } = await show(this.$route.params.id);
                 this.data = data;
+                this.tab = data.taskable ? "taskable" : "timeline";
                 this.closeFullScreen();
             } catch (error) {
                 this.closeFullScreen();

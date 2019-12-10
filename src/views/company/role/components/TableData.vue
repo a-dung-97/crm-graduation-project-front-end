@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-import { destroy } from "@/api/company/group";
+import { destroy } from "@/api/company/role";
 export default {
     props: ["tableData", "loading", "form"],
     methods: {

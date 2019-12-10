@@ -5,15 +5,12 @@
 
             <el-col :span="24">
                 <el-button :disabled="true" type="primary" size="small">Xóa</el-button>
-                <el-button :disabled="isSelecting" type="primary" size="small">Gửi email</el-button>
-                <el-button :disabled="isSelecting" type="primary" size="small">Gửi SMS</el-button>
                 <el-button
                     :disabled="isSelecting"
                     @click="showMailingListDialog=true"
                     type="primary"
                     size="small"
                 >Danh sách email</el-button>
-                <el-button :disabled="isSelecting" type="primary" size="small">Chuyển chủ sở hữu</el-button>
                 <el-button :disabled="isSelecting" type="primary" size="small">Xuất Excel</el-button>
                 <el-button
                     class="fr"

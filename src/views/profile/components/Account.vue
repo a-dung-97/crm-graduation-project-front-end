@@ -50,7 +50,6 @@ export default {
                 ],
                 phone_number: [
                     {
-                        required: true,
                         validator: validateMobileNumber,
                         trigger: "blur"
                     }

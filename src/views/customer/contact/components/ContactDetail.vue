@@ -217,7 +217,7 @@ import { list } from "@/api/setting/catalog";
 import SelectCustomer from "@/components/dialogs/SelectCustomer/index";
 
 export default {
-    props: ["isEdit"],
+    props: ["isEdit", "user"],
     components: { TagArea, SelectCustomer },
     data() {
         return {
@@ -250,15 +250,13 @@ export default {
                 ownerable_id: [
                     {
                         required: true,
-                        message: "Hãy chọn chủ sở hữu",
-                        trigger: "blur"
+                        message: "Hãy chọn chủ sở hữu"
                     }
                 ],
                 customer_id: [
                     {
                         required: true,
-                        message: "Hãy chọn khách hàng",
-                        trigger: "blur"
+                        message: "Hãy chọn khách hàng"
                     }
                 ],
                 last_name: [
@@ -354,6 +352,11 @@ export default {
         }
     },
     created() {
+        if (this.user) {
+            console.log(this.user);
+            this.form.customer_id = this.user.id;
+            this.name = this.user.name;
+        }
         Promise.all([
             this.getCatalog("Liên hệ", "Phòng ban"),
             this.getCatalog("Liên hệ", "Chức vụ"),

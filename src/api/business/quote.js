@@ -40,3 +40,9 @@ export function getOrders(id) {
         method: 'get',
     })
 }
+export function sendQuote(id) {
+    return request({
+        url: `/quotes/${id}/send`,
+        method: 'get',
+    })
+}

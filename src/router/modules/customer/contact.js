@@ -13,6 +13,7 @@ const contactRouter = [
         name: "Thêm mới liên hệ",
         component: () => import("@/views/customer/contact/create"),
         hidden: true,
+        props: true,
         meta: {
             title: "Thêm mới liên hệ",
         }

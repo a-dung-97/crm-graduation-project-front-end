@@ -41,7 +41,7 @@
                         <p class="my-label">Loại</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.type }}</p>
+                        <p class="content">{{ data.type=='product'?'Hàng hóa':'Dịch vụ' }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">

@@ -37,7 +37,12 @@
                 </el-col>
             </el-row>
         </el-form>
-        <el-link :underline="false" type="primary" @click="showDialog1=true">Chọn mẫu email</el-link>
+        <el-link
+            :underline="false"
+            type="primary"
+            v-if="quote==''"
+            @click="showDialog1=true"
+        >Chọn mẫu email</el-link>
         <TinyMCE :height="450" :content.sync="form.content" />
         <SelectEmailTemplate
             @handle-select="handleSelectEmailTemplate"
@@ -57,12 +62,12 @@ import TinyMCE from "@/components/TinyMCE/index";
 import checkEditor from "@/mixins/editor";
 
 export default {
-    props: ["showDialog", "type"],
+    props: ["showDialog", "type", "quote"],
     mixins: [checkEditor],
     components: { TinyMCE, SelectEmailTemplate },
     watch: {
         showDialog() {
-            for (let field in this.form) this.form[field] = "";
+            if (!this.quote) for (let field in this.form) this.form[field] = "";
             this.form.from_name = this.$store.getters.name;
             if (this.emailAddresses.length > 0)
                 this.form.from_email = this.emailAddresses[0].email;
@@ -131,7 +136,9 @@ export default {
                 await store({
                     ...this.form,
                     type: this.type,
-                    id: this.$route.params.id
+                    id: this.quote
+                        ? this.quote.customer_id
+                        : this.$route.params.id
                 });
                 this.$message.success("Gửi email thành công");
                 this.$emit("reload");
@@ -143,6 +150,7 @@ export default {
         }
     },
     created() {
+        if (this.quote) this.form.content = this.quote.content;
         this.getData();
     }
 };

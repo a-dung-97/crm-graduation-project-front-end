@@ -263,6 +263,7 @@ export default {
             try {
                 await this.$refs["form"].validate();
                 this.loading = true;
+                if (this.form.taskable_id == "") this.form.taskable_type = "";
                 const { data } = await store(this.form);
                 this.loading = false;
                 this.$router.push(`/business/task/show/${data.id}`);
@@ -287,6 +288,8 @@ export default {
                 for (let field in this.form) {
                     this.form[field] = data[field];
                 }
+                if (!data.taskable_type) this.form.taskable_type = "App\\Lead";
+
                 this.loading = false;
                 console.log(data);
             } catch (error) {

@@ -39,3 +39,9 @@ export function getInvoices(id) {
         method: 'get',
     })
 }
+export function sendOrder(id) {
+    return request({
+        url: `/orders/${id}/send`,
+        method: 'get',
+    })
+}

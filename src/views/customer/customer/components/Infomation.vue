@@ -128,7 +128,7 @@
                         <p class="my-label">Mã</p>
                     </el-col>
                     <el-col :span="12">
-                        <p class="content">{{ data.name }}</p>
+                        <p class="content">{{ data.code }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">

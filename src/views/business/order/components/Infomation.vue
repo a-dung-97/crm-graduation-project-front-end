@@ -21,7 +21,7 @@
                     type="primary"
                     size="small"
                 >Convert báo giá</el-button>
-                <el-button class="fr" type="primary" size="small">In</el-button>
+                <el-button class="fr" @click="showDialog=true" type="primary" size="small">In</el-button>
             </el-col>
         </el-row>
 
@@ -231,10 +231,17 @@
             </el-table>
         </el-row>
         <Invoice />
+        <el-dialog center title="Báo giá" :visible.sync="showDialog" top="5vh" width="80%">
+            <div id="print" v-if="showDialog" v-html="order.content"></div>
+            <span slot="footer" class="dialog-footer">
+                <el-button size="medium" @click="showDialog=false">Hủy</el-button>
+                <el-button size="medium" @click="$htmlToPaper('print')" type="primary">In</el-button>
+            </span>
+        </el-dialog>
     </el-card>
 </template>
 <script>
-import { show } from "@/api/business/order";
+import { show, sendOrder } from "@/api/business/order";
 import Invoice from "./Invoice/index";
 export default {
     components: { Invoice },
@@ -242,7 +249,9 @@ export default {
         return {
             data: {
                 products: []
-            }
+            },
+            order: "",
+            showDialog: false
         };
     },
     computed: {
@@ -266,11 +275,16 @@ export default {
         }
     },
     methods: {
-        async getOpportunity() {
+        async getOrder() {
             try {
                 this.openFullScreen();
-                const { data } = await show(this.$route.params.id);
-                this.data = data;
+                const [data, order] = await Promise.all([
+                    show(this.$route.params.id),
+                    sendOrder(this.$route.params.id)
+                ]);
+                this.data = data.data;
+                this.order = order.data;
+                console.log(data);
                 this.data.opportunity = this.data.opportunity
                     ? [this.data.opportunity]
                     : [];
@@ -282,7 +296,7 @@ export default {
         }
     },
     created() {
-        this.getOpportunity();
+        this.getOrder();
     }
 };
 </script>
