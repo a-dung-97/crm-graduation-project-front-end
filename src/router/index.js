@@ -52,6 +52,11 @@ export const constantRoutes = [
         component: () => import("@/views/404"),
         hidden: true
     },
+    {
+        path: "/test",
+        component: () => import("@/views/Test"),
+        hidden: true
+    },
 
 ];
 
@@ -61,6 +66,7 @@ export const asyncRoutes = [
 ];
 const createRouter = () =>
     new Router({
+        mode: process.env.NODE_ENV == 'production' ? 'history' : 'hash',
         scrollBehavior: () => ({
             y: 0
         }),

@@ -37,13 +37,13 @@
             </el-table-column>
             <el-table-column prop="failed" align="center" label="Trả lại">
                 <template slot-scope="scope">
-                    <i style="color:#2ecc71" class="el-icon-check" v-if="scope.row.failed"></i>
+                    <i style="color:#2ecc71" class="el-icon-check" v-if="!scope.row.failed"></i>
                     <i style="color:#e74c3c" class="el-icon-close" v-else></i>
                 </template>
             </el-table-column>
             <el-table-column prop="unsubscribed" align="center" label="Bỏ theo dõi">
                 <template slot-scope="scope">
-                    <i style="color:#2ecc71" class="el-icon-check" v-if="scope.row.unsubscribed"></i>
+                    <i style="color:#2ecc71" class="el-icon-check" v-if="!scope.row.unsubscribed"></i>
                     <i style="color:#e74c3c" class="el-icon-close" v-else></i>
                 </template>
             </el-table-column>

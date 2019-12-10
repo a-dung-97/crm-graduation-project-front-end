@@ -1,173 +1,53 @@
-<template>
-    <el-form
-        :model="ruleForm"
-        :rules="rules"
-        ref="ruleForm"
-        label-width="120px"
-        class="demo-ruleForm"
-    >
-        <el-form-item label="Activity name" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
-        </el-form-item>
-        <el-form-item label="Activity zone" prop="region">
-            <el-select v-model="ruleForm.region" placeholder="Activity zone">
-                <el-option label="Zone one" value="shanghai"></el-option>
-                <el-option label="Zone two" value="beijing"></el-option>
-            </el-select>
-        </el-form-item>
-        <el-form-item label="Activity time" required>
-            <el-col :span="11">
-                <el-form-item prop="date1">
-                    <el-date-picker
-                        type="date"
-                        placeholder="Pick a date"
-                        v-model="ruleForm.date1"
-                        style="width: 100%;"
-                    ></el-date-picker>
-                </el-form-item>
-            </el-col>
-            <el-col class="line" :span="2">-</el-col>
-            <el-col :span="11">
-                <el-form-item prop="date2">
-                    <el-time-picker
-                        placeholder="Pick a time"
-                        v-model="ruleForm.date2"
-                        style="width: 100%;"
-                    ></el-time-picker>
-                </el-form-item>
-            </el-col>
-        </el-form-item>
-        <el-form-item label="Instant delivery" prop="delivery">
-            <el-switch v-model="ruleForm.delivery"></el-switch>
-        </el-form-item>
-        <el-form-item label="Activity type" prop="type">
-            <el-checkbox-group v-model="ruleForm.type">
-                <el-checkbox label="Online activities" name="type"></el-checkbox>
-                <el-checkbox label="Promotion activities" name="type"></el-checkbox>
-                <el-checkbox label="Offline activities" name="type"></el-checkbox>
-                <el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
-            </el-checkbox-group>
-        </el-form-item>
-        <el-form-item label="Resources" prop="resource">
-            <el-radio-group v-model="ruleForm.resource">
-                <el-radio label="Sponsorship"></el-radio>
-                <el-radio label="Venue"></el-radio>
-            </el-radio-group>
-        </el-form-item>
-        <el-form-item label="Activity form" prop="desc">
-            <el-input type="textarea" v-model="ruleForm.desc"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">Create</el-button>
-            <el-button @click="resetForm('ruleForm')">Reset</el-button>
-            <el-button @click="postData">Post</el-button>
-        </el-form-item>
-    </el-form>
+ <template>
+    <div id="app">
+        <button @click="addText"></button>
+        <editor
+            style="width:900px"
+            ref="editor"
+            api-key="1cvljup72sa0e27wxi67ov3qm5kxac1u56bvp9hihohdr8bc"
+            v-model="content"
+            :init="fullPlugin"
+        ></editor>
+    </div>
 </template>
 
-<script>
-import { test } from "@/api/test";
+ <script>
+import Editor from "@tinymce/tinymce-vue";
+
 export default {
+    name: "Test",
+    components: {
+        editor: Editor
+    },
     data() {
         return {
-            ruleForm: {
-                name: "",
-                region: "",
-                date1: "",
-                date2: "",
-                delivery: false,
-                type: [],
-                resource: "",
-                desc: ""
-            },
-            rules: {
-                name: [
-                    {
-                        required: true,
-                        message: "Please input Activity name",
-                        trigger: "blur"
-                    },
-                    {
-                        min: 3,
-                        max: 5,
-                        message: "Length should be 3 to 5",
-                        trigger: "blur"
-                    }
-                ],
-                region: [
-                    {
-                        required: true,
-                        message: "Please select Activity zone",
-                        trigger: "change"
-                    }
-                ],
-                date1: [
-                    {
-                        type: "date",
-                        required: true,
-                        message: "Please pick a date",
-                        trigger: "change"
-                    }
-                ],
-                date2: [
-                    {
-                        type: "date",
-                        required: true,
-                        message: "Please pick a time",
-                        trigger: "change"
-                    }
-                ],
-                type: [
-                    {
-                        type: "array",
-                        required: true,
-                        message: "Please select at least one activity type",
-                        trigger: "change"
-                    }
-                ],
-                resource: [
-                    {
-                        required: true,
-                        message: "Please select activity resource",
-                        trigger: "change"
-                    }
-                ],
-                desc: [
-                    {
-                        required: true,
-                        message: "Please input activity form",
-                        trigger: "blur"
-                    }
-                ]
+            content: "Hello",
+            fullPlugin: {
+                tinydrive_token_provider: function(success) {
+                    success({
+                        token:
+                            "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxIiwibmFtZSI6Ik5ndXlcdTFlYzVuIEFuaCBEXHUwMTY5bmciLCJodHRwczpcL1wvY2xhaW1zLnRpbnkuY2xvdWRcL2RyaXZlXC9yb290IjoiXC8xIiwiZXhwIjoxNTc1OTI2ODA1fQ.d7DUImiao7NfjbMXpnUdys7c0qrxRgnVoSFg4wv-AIgvpxLshglo_hn-n_uxUMHUHArrU0R-vqBiAI7dRPg3Uw_6-7H7-v-Qzbqjr-e6TkOKa6WQmz1GfUfXQGxEH6sDrBtwSARbzKxbqWphH5qcqiEjAG-mMrYXDj0LmVnzgjZAVqqxzhzseYFLW-sBzgiw_YPOXrWzc1t5OJAD0JVci9-R7QrNTBcq3aaLHLcGs5AMjtJSJqYvzq6HHkCIInmlZBXYZgOdP_YbA_N8ysRoB05aRnuX7Lk8oHYmWfhLbOZzdCo97VY5L98aF-B-UzBWuA4qXfvS-oMl8suokGg4FA"
+                    });
+                },
+                selector: "textarea",
+                tinydrive_dropbox_app_key: "pgpbcjipdzj0e78",
+                menubar: "edit view insert format tools table tc help",
+                plugins:
+                    "print preview fullpage powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap  mentions quickbars linkchecker emoticons",
+                toolbar:
+                    "bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview print  insertfile image media pageembed link  ltr rtl"
             }
         };
     },
     methods: {
-        submitForm(formName) {
-            this.$refs[formName].validate(valid => {
-                if (valid) {
-                    alert("submit!");
-                } else {
-                    console.log("error submit!!");
-                    return false;
-                }
-            });
-        },
-        resetForm(formName) {
-            this.$refs[formName].resetFields();
-        },
-        async postData() {
-            let data = await test();
-            window.top.location.href = "http://www.google.com";
-            console.log(data);
+        addText() {
+            window.tinyMCE.execCommand(
+                "mceInsertContent",
+                false,
+                "%receipent.user%"
+            );
         }
     },
-    created() {
-        var url =
-            window.location != window.parent.location
-                ? document.referrer
-                : document.location;
-        console.log(url);
-    }
+    created() {}
 };
 </script>

@@ -135,6 +135,12 @@ export default {
                         });
                 });
         }
+    },
+    created() {
+        if (process.env.NODE_ENV == "production") {
+            this.form.email = "";
+            this.form.password = "";
+        }
     }
 };
 </script>
