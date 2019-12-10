@@ -39,8 +39,6 @@ export default {
                 height,
                 selector: "textarea",
                 tinydrive_dropbox_app_key: "pgpbcjipdzj0e78",
-                // language_url: `/tinymce/langs/vi.js`,
-                // language: "vi",
                 menubar: "edit view insert format tools table tc help",
                 plugins:
                     "print preview fullpage powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap  mentions quickbars linkchecker emoticons",
