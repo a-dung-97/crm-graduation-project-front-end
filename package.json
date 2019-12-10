@@ -5,8 +5,8 @@
     "author": "Pan <panfree23@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "start": "vue-cli-service serve",
-        "build:prod": "vue-cli-service build",
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
         "build:stage": "vue-cli-service build --mode staging",
         "preview": "node build/index.js --preview",
         "lint": "eslint --ext .js,.vue src",
@@ -62,7 +62,7 @@
         "webpack-dev-server": "^3.7.2"
     },
     "engines": {
-        "node": ">=8.9",
+        "node": "=12.13.1",
         "npm": ">= 3.0.0"
     },
     "browserslist": [
