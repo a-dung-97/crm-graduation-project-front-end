@@ -4,7 +4,7 @@
         api-key="1cvljup72sa0e27wxi67ov3qm5kxac1u56bvp9hihohdr8bc"
         v-model="value"
         :init="fullPlugin"
-        cloud-channel="5"
+        cloud-channel="5-stable"
     ></editor>
 </template>
 
@@ -36,6 +36,7 @@ export default {
                     });
                 },
                 height,
+                toolbar_drawer: false,
                 selector: "textarea",
                 tinydrive_dropbox_app_key: "pgpbcjipdzj0e78",
                 language_url: `/tinymce/langs/vi.js`,
