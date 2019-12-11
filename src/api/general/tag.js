@@ -1,14 +1,14 @@
 import request from '@/utils/request'
-export function deleteTag(name, type, id) {
+export function deleteTags(data, type) {
     return request({
-        url: `/tags/${type}/${id}`,
+        url: `/tags/${type}`,
         method: 'delete',
-        params: { name }
+        data
     })
 }
-export function changeTags(data, type, id) {
+export function changeTags(data, type) {
     return request({
-        url: `/tags/${type}/${id}`,
+        url: `/tags/${type}`,
         method: 'put',
         data
     })

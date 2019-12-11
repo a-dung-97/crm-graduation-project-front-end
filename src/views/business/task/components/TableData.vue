@@ -13,10 +13,11 @@
         <el-table-column width="120" label="Loại">
             <template slot-scope="scope">
                 <el-tag
-                    :type="scope.row.type === 'Tiềm năng' ? 'success' : 'primary'"
+                    v-if="scope.row.type"
+                    :type="scope.row.type === 'App\\Lead' ? 'success' : 'primary'"
                     disable-transitions
                     size="small"
-                >{{scope.row.type==='Tiềm năng'?'Tiềm năng':"Khách hàng"}}</el-tag>
+                >{{scope.row.type==='App\\Lead'?'Tiềm năng':"Khách hàng"}}</el-tag>
             </template>
         </el-table-column>
         <el-table-column width="130" label="Trạng thái">
@@ -29,7 +30,7 @@
                 <router-link
                     tag="a"
                     class="link"
-                    :to="scope.row.type=='Tiềm năng'?`/customer/lead/show/${scope.row.taskable.id}`:`/customer/customer/show/${scope.row.taskable.id}`"
+                    :to="scope.row.type=='App\\Lead'?`/customer/lead/show/${scope.row.taskable.id}`:`/customer/customer/show/${scope.row.taskable.id}`"
                 >{{ scope.row.taskable.name }}</router-link>
             </template>
         </el-table-column>

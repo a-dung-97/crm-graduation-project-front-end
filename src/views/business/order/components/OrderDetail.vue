@@ -121,6 +121,14 @@
                                 v-model="form.payment_method"
                             ></el-input>
                         </el-form-item>
+                        <el-form-item label="Phí giao hàng">
+                            <el-input
+                                type="number"
+                                min="0"
+                                placeholder="Nhập phí giao hàng"
+                                v-model="form.shipping_fee"
+                            ></el-input>
+                        </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="Ngày đặt hàng">
@@ -191,7 +199,12 @@
             <div slot="header">
                 <el-button @click="showDialog2=true" type="primary" size="small">Thêm sản phẩm</el-button>
             </div>
-            <ProductList :is-show="isShow" :products="form.products" :warehouses="warehouses" />
+            <ProductList
+                :shipping-fee="form.shipping_fee"
+                :is-show="isShow"
+                :products="form.products"
+                :warehouses="warehouses"
+            />
             <SelectProductTable
                 @select-product="handleSelectProduct($event)"
                 :show-dialog.sync="showDialog2"
@@ -262,7 +275,7 @@ export default {
                 delivery_date: "",
                 status_id: "",
                 delivery_address: "",
-
+                shipping_fee: "",
                 products: [],
                 payment_method: "",
                 delivery_method: ""

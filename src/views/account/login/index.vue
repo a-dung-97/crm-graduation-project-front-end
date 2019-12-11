@@ -30,7 +30,7 @@
                     <label for>
                         <div>
                             Mật khẩu
-                            <a href>Quên mật khẩu?</a>
+                            <a @click="showDialog=true">Quên mật khẩu?</a>
                         </div>
                     </label>
                     <input
@@ -73,12 +73,14 @@
                 </div>
             </form>
         </section>
+        <ResetPassword :show-dialog.sync="showDialog" />
     </main>
 </template>
 
 <script>
 import { validationMixin } from "vuelidate";
 import { required, email } from "vuelidate/lib/validators";
+import ResetPassword from "./components/ResetPassword";
 export default {
     mixins: [validationMixin],
     validations: {
@@ -92,10 +94,11 @@ export default {
             }
         }
     },
-
+    components: { ResetPassword },
     data() {
         return {
             loading: false,
+            showDialog: false,
             form: {
                 email: "dungnknd97@gmail.com",
                 password: "12345678"
@@ -104,6 +107,9 @@ export default {
         };
     },
     methods: {
+        async sendEmailPasswordReset() {
+            await this.$refs["form"].validate();
+        },
         submit() {
             this.$v.form.$touch();
             if (this.$v.form.$anyError) {

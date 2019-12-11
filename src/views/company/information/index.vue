@@ -14,7 +14,7 @@
                         <el-form-item label="Số điện thoại" prop="phone_number">
                             <el-input v-model="company.phone_number" />
                         </el-form-item>
-                        <el-form-item label="Mô tả" prop="phone_number">
+                        <el-form-item label="Mô tả">
                             <el-input v-model="company.description" />
                         </el-form-item>
                         <el-form-item>
@@ -22,7 +22,7 @@
                                 :loading="loading"
                                 type="primary"
                                 class="block mx-auto"
-                                @click="submit"
+                                @click.prevent="submit"
                             >Cập nhật</el-button>
                         </el-form-item>
                     </el-form>
@@ -40,10 +40,11 @@ export default {
         return {
             loading: false,
             company: {
+                id: "",
                 name: "",
                 address: "",
-                description: "",
-                phone_number: ""
+                description: null,
+                phone_number: null
             },
             rules: {
                 name: [
@@ -82,8 +83,9 @@ export default {
         async getCompany() {
             try {
                 this.openFullScreen();
-                let company = await getCompany();
-                this.company = company.data;
+                const { data } = await getCompany();
+                for (let field in this.company)
+                    this.company[field] = data[field];
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);

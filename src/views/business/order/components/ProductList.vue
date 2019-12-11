@@ -85,15 +85,19 @@
             <p>Tổng tiền hàng: {{ total.toFixed(2)|money }} đ</p>
             <p>Tổng tiền thuế: {{ (tax).toFixed(2)|money }} đ</p>
             <p>Tổng tiền chiết khấu: {{ discount.toFixed(2)|money }} đ</p>
-            <p>Tổng thanh toán: {{ (total+tax-discount).toFixed(2)|money }} đ</p>
+            <p>Phí giao hàng: {{ (fee).toFixed(2)|money }} đ</p>
+            <p>Tổng thanh toán: {{ (total+tax+fee-discount).toFixed(2)|money }} đ</p>
         </el-col>
     </el-row>
 </template>
 
 <script>
 export default {
-    props: ["products", "isShow"],
+    props: ["products", "isShow", "shippingFee"],
     computed: {
+        fee() {
+            return this.shippingFee != "" ? Number(this.shippingFee) : 0;
+        },
         total() {
             if (this.products.length == 0) return 0;
             return this.products

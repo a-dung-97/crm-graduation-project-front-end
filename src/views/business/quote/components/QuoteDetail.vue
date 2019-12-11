@@ -116,6 +116,14 @@
                                 placeholder="Chọn cơ hội"
                             ></el-input>
                         </el-form-item>
+                        <el-form-item label="Phí giao hàng">
+                            <el-input
+                                type="number"
+                                min="0"
+                                placeholder="Nhập phí giao hàng"
+                                v-model="form.shipping_fee"
+                            ></el-input>
+                        </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="Ngày báo giá">
@@ -198,7 +206,12 @@
             <div slot="header">
                 <el-button @click="showDialog2=true" type="primary" size="small">Thêm sản phẩm</el-button>
             </div>
-            <ProductList :is-show="isShow" :products="form.products" :warehouses="warehouses" />
+            <ProductList
+                :shipping-fee="form.shipping_fee"
+                :is-show="isShow"
+                :products="form.products"
+                :warehouses="warehouses"
+            />
             <SelectProductTable
                 @select-product="handleSelectProduct($event)"
                 :show-dialog.sync="showDialog2"
@@ -250,6 +263,7 @@ export default {
                 ownerable_id: "",
                 customer_id: "",
                 contact_id: "",
+                shipping_fee: "",
                 opportunity_id: "",
                 quote_date:
                     new Date().getFullYear() +

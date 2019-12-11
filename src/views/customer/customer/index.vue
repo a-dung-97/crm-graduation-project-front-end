@@ -11,7 +11,7 @@
                     type="primary"
                     size="small"
                 >Danh sách email</el-button>
-                <el-button :disabled="isSelecting" type="primary" size="small">Xuất Excel</el-button>
+                <el-button :disabled="true" type="primary" size="small">Xuất Excel</el-button>
                 <el-button
                     class="fr"
                     @click="$router.push('/customer/customer/create')"
@@ -20,6 +20,7 @@
                     icon="el-icon-plus"
                     circle
                 ></el-button>
+                <ChangingTag :objs="selected" type="customer" />
             </el-col>
         </el-row>
 
@@ -49,8 +50,9 @@ import Pagination from "@/components/Pagination/index";
 import SearchForm from "./components/SearchForm";
 import MailingList from "@/components/MailingList/index";
 import selectMulti from "@/mixins/select-multi";
+import ChangingTag from "@/components/TagChanging/index";
 export default {
-    components: { TableData, Pagination, SearchForm, MailingList },
+    components: { TableData, Pagination, SearchForm, MailingList, ChangingTag },
     mixins: [selectMulti],
     data() {
         return {

@@ -133,3 +133,24 @@ export function createEmailAddress(data) {
         data
     })
 }
+export function sendEmailPasswordReset(params) {
+    return request({
+        url: '/auth/password/reset',
+        method: 'get',
+        params
+    })
+}
+export function resetPassword(data) {
+    return request({
+        url: '/auth/password/reset',
+        method: 'post',
+        data
+    })
+}
+export function changePassword(data) {
+    return request({
+        url: '/auth/password/change',
+        method: 'post',
+        data
+    })
+}

@@ -1,29 +1,29 @@
 <template>
-    <el-form :model="user" :rules="rules" ref="form">
-        <el-form-item label="Họ tên" prop="name">
-            <el-input v-model.lazy="user.name" />
-        </el-form-item>
-        <el-form-item label="Số điện thoại" prop="phone_number">
-            <el-input v-model.trim="user.phone_number" />
-        </el-form-item>
-        <el-form-item label="Email">
-            <el-input disabled :placeholder="user.email" />
-        </el-form-item>
-        <el-form-item>
-            <el-button
-                :loading="loading"
-                type="primary"
-                class="block mx-auto"
-                @click="submit"
-            >Cập nhật</el-button>
-        </el-form-item>
-    </el-form>
+    <div>
+        <el-form :model="user" :rules="rules" ref="form">
+            <el-form-item label="Họ tên" prop="name">
+                <el-input v-model.lazy="user.name" />
+            </el-form-item>
+            <el-form-item label="Số điện thoại" prop="phone_number">
+                <el-input v-model.trim="user.phone_number" />
+            </el-form-item>
+            <el-form-item label="Email">
+                <el-input disabled :placeholder="user.email" />
+            </el-form-item>
+        </el-form>
+        <el-button :loading="loading" type="primary" @click="submit">Cập nhật</el-button>
+        <el-button type="primary" @click="showDialog=true">Đổi mật khẩu</el-button>
+        <ChangePassword :show-dialog.sync="showDialog" />
+    </div>
 </template>
 
 <script>
 import { validateMobileNumber } from "@/utils/validate";
 import { update } from "@/api/company/user";
+import ChangePassword from "./ChangePassword";
 export default {
+    components: { ChangePassword },
+
     props: {
         user: {
             type: Object,
@@ -40,6 +40,7 @@ export default {
     data() {
         return {
             loading: false,
+            showDialog: false,
             rules: {
                 name: [
                     {

@@ -79,7 +79,10 @@ export default {
             try {
                 await this.$confirm("Bạn có muốn xóa tag này", "Xác nhận xóa");
                 this.openFullScreen();
-                await deleteTag(tag, this.type, this.$route.params.id);
+                await deleteTag(
+                    { tags: [tag], objects: [this.$route.params.id] },
+                    this.type
+                );
                 this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
                 this.closeFullScreen();
             } catch (error) {
@@ -92,9 +95,8 @@ export default {
             try {
                 this.openFullScreen();
                 await changeTags(
-                    this.inputValue,
-                    this.type,
-                    this.$route.params.id
+                    { tags: this.inputValue, objects: [this.$route.params.id] },
+                    this.type
                 );
                 await this.getTags();
                 this.closeFullScreen();
@@ -102,6 +104,7 @@ export default {
                 this.$message.success("Thêm tag thành công");
             } catch (error) {
                 console.log(error);
+                this.closeFullScreen();
             }
         },
         resetInput() {

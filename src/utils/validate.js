@@ -65,7 +65,7 @@ export function validateMobileNumberWithEmptyValue(rule, value, callback) {
 };
 export function validatePhoneNumber(rule, value, callback) {
 
-    if (value === "" || value === null) {
+    if (value === "" || value === null || value === undefined) {
         callback();
 
     } else if (

@@ -212,7 +212,8 @@
                 <p>Tổng tiền hàng: {{ total.toFixed(2)|money }} đ</p>
                 <p>Tổng tiền thuế: {{ (tax).toFixed(2)|money }} đ</p>
                 <p>Tổng tiền chiết khấu: {{ discount.toFixed(2)|money }} đ</p>
-                <p>Tổng thanh toán: {{ (total+tax-discount).toFixed(2)|money }} đ</p>
+                <p>Phí giao hàng: {{ fee.toFixed(2)|money }} đ</p>
+                <p>Tổng thanh toán: {{ (total+tax-discount+fee).toFixed(2)|money }} đ</p>
             </el-col>
         </el-row>
         <h3 class="title">
@@ -255,6 +256,9 @@ export default {
         };
     },
     computed: {
+        fee() {
+            return Number(this.data.shipping_fee);
+        },
         total() {
             if (this.data.products.length == 0) return 0;
             return this.data.products
