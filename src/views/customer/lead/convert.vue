@@ -240,17 +240,17 @@ export default {
         },
         async convert() {
             try {
-                await this.$refs["form"].validate();
-                this.loading = true;
+                if (this.opportunity) await this.$refs["form"].validate();
+                this.openFullScreen();
                 const { data } = await convert(
                     { opportunity: this.opportunity, data: this.form },
                     this.$route.params.id
                 );
-                this.loading = false;
+                this.closeFullScreen();
                 this.$router.push(`/customer/customer/show/${data.id}`);
             } catch (error) {
                 console.log(error);
-                this.loading = false;
+                this.closeFullScreen();
             }
         }
     },
