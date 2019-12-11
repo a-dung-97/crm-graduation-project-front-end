@@ -1,5 +1,9 @@
 <template>
-    <div class="dashboard-container"></div>
+    <div class="dashboard-container">
+        <a
+            href="https://drive.google.com/file/d/1dJHzHLnC0yEJw52hYBazctkT5PZF3awZ/view?usp=sharing"
+        >Link báo cáo</a>
+    </div>
 </template>
 
 <script>
