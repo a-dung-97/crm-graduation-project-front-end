@@ -16,10 +16,10 @@
                     <el-input v-model="form.confirm_code"></el-input>
                 </el-form-item>
                 <el-form-item prop="password" label="Mật khẩu">
-                    <el-input v-model="form.password"></el-input>
+                    <el-input show-password v-model="form.password"></el-input>
                 </el-form-item>
                 <el-form-item prop="password_confirmation" label="Xác nhận mật khẩu">
-                    <el-input v-model="form.password_confirmation"></el-input>
+                    <el-input show-password v-model="form.password_confirmation"></el-input>
                 </el-form-item>
             </template>
         </el-form>
