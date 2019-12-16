@@ -11,6 +11,8 @@ export default {
                 quote: 0,
                 email: 0,
                 contact: 0,
+                call: 0,
+                appointment: 0,
             }
         };
     },

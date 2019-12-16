@@ -13,8 +13,27 @@
             <el-tab-pane :label="'Ghi chú ' +(count.note>0?('('+count.note+')'):'')">
                 <Note @handle-load="handleLoad('note',$event)" type="customer" />
             </el-tab-pane>
-            <el-tab-pane :label="'Hoạt động '+(count.task>0?('('+count.task+')'):'')">
-                <Task @handle-load="handleLoad('task',$event)" type="customer" />
+            <el-tab-pane :label="'Hoạt động'">
+                <el-tabs value="1" tab-position="left" style="height: 100%;">
+                    <el-tab-pane :label="'Công việc '+(count.task>0?('('+count.task+')'):'(0)')">
+                        <Task @handle-load="handleLoad('task',$event)" type="customer" />
+                    </el-tab-pane>
+                    <el-tab-pane :label="'Cuộc gọi '+(count.call>0?('('+count.call+')'):'(0)')">
+                        <Call
+                            :customer="user"
+                            @handle-load="handleLoad('call',$event)"
+                            type="customer"
+                        />
+                    </el-tab-pane>
+                    <el-tab-pane
+                        :label="'Cuộc hẹn '+(count.appointment>0?('('+count.appointment+')'):'(0)')"
+                    >
+                        <Appointment
+                            @handle-load="handleLoad('appointment',$event)"
+                            type="customer"
+                        />
+                    </el-tab-pane>
+                </el-tabs>
             </el-tab-pane>
             <el-tab-pane :label="'Email '+(count.email>0?('('+count.email+')'):'')">
                 <Email @handle-load="handleLoad('email',$event)" type="customer" />
@@ -38,8 +57,10 @@ import Infomation from "./components/Infomation";
 import Note from "@/components/Note/index";
 import File from "@/components/File/index";
 import Email from "@/components/Email/index";
+import Appointment from "@/components/Appointment/index";
 
 import Task from "@/components/Task/index";
+import Call from "@/components/Call/index";
 import Opportunity from "@/components/Opportunity/index";
 import Quote from "@/components/Quote/index";
 import Order from "@/components/Order/index";
@@ -55,7 +76,9 @@ export default {
         Quote,
         Order,
         Email,
-        Contact
+        Contact,
+        Call,
+        Appointment
     },
     data() {
         return {

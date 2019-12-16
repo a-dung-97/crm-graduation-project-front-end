@@ -229,11 +229,12 @@ export default {
         };
     },
     methods: {
-        async getCustomer() {
+        async getLead() {
             try {
                 this.openFullScreen();
                 const { data } = await show(this.$route.params.id);
                 this.data = data;
+                this.$emit("loaded", data.name);
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);
@@ -242,7 +243,7 @@ export default {
         }
     },
     created() {
-        this.getCustomer();
+        this.getLead();
     }
 };
 </script>

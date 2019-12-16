@@ -1,22 +1,51 @@
 <template>
-    <div class="dashboard-container">
-        <a
-            href="https://drive.google.com/file/d/1dJHzHLnC0yEJw52hYBazctkT5PZF3awZ/view?usp=sharing"
-        >Link báo cáo</a>
+    <div class="app-container">
+        <el-row class="mb-20" :gutter="20">
+            <el-col :span="12">
+                <RevenueReport />
+            </el-col>
+            <el-col :span="12">
+                <EmailCampaignReport />
+            </el-col>
+        </el-row>
+        <el-row class="mb-20" :gutter="20">
+            <el-col :span="12">
+                <ConvertedReport />
+            </el-col>
+            <el-col :span="12">
+                <ProductReport />
+            </el-col>
+        </el-row>
+        <el-row :gutter="20">
+            <el-col :span="12">
+                <TaskReport />
+            </el-col>
+            <el-col :span="12">
+                <LeadReport />
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <script>
-import { test } from "@/api/test";
-import { mapGetters } from "vuex";
+import TaskReport from "./components/TaskReport";
+import LeadReport from "./components/LeadReport";
+import ProductReport from "./components/ProductReport";
+import RevenueReport from "./components/RevenueReport";
+import EmailCampaignReport from "./components/EmailCampaignReport";
+import ConvertedReport from "./components/ConvertedReport";
 export default {
     name: "Dashboard",
+    components: {
+        TaskReport,
+        LeadReport,
+        ProductReport,
+        RevenueReport,
+        EmailCampaignReport,
+        ConvertedReport
+    },
     data() {
         return {};
-    },
-
-    computed: {
-        ...mapGetters(["name"])
     }
 };
 </script>

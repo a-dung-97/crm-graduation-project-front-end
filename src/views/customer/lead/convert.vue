@@ -5,8 +5,8 @@
                 <span style="line-height:35.6px">Chuyển đổi tiềm năng</span>
                 <el-button class="fr" @click="convert" size="medium" type="primary">Lưu</el-button>
             </div>
-            <p>Thêm mới khách hàng: {{ name }}</p>
-            <p>Thêm mới liên hệ: {{ name }}</p>
+            <p>Thêm mới khách hàng: {{ customerName }}</p>
+            <p>Thêm mới liên hệ: {{ contactName }}</p>
             <el-row style="margin-bottom:30px">
                 <el-col :span="3">Thêm mới cơ hội</el-col>
                 <el-col :span="3">
@@ -178,7 +178,8 @@ import { show, convert } from "@/api/customer/lead";
 export default {
     data() {
         return {
-            name: "",
+            customerName: "",
+            contactName: "",
             opportunity: false,
             form: {
                 id: "",
@@ -232,7 +233,8 @@ export default {
                 const { data } = await show(this.$route.params.id, {
                     getName: true
                 });
-                this.name = data.name;
+                this.customerName = data.company || data.name;
+                this.contactName = data.name;
                 this.closeFullScreen();
             } catch (error) {
                 this.closeFullScreen();

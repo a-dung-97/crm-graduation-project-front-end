@@ -36,7 +36,7 @@ import DialogForm from "./components/DialogForm";
 import Pagination from "@/components/Pagination/index";
 export default {
     components: { TableData, DialogForm, Pagination },
-    props: ["type"],
+    props: ["type", "opportunity"],
     data() {
         return {
             tableData: [],

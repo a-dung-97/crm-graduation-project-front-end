@@ -51,7 +51,7 @@
     </div>
 </template>
 <script>
-import { deleteTag, changeTags, index, getTags } from "@/api/general/tag";
+import { deleteTags, changeTags, index, getTags } from "@/api/general/tag";
 export default {
     props: ["type"],
     data() {
@@ -79,7 +79,7 @@ export default {
             try {
                 await this.$confirm("Bạn có muốn xóa tag này", "Xác nhận xóa");
                 this.openFullScreen();
-                await deleteTag(
+                await deleteTags(
                     { tags: [tag], objects: [this.$route.params.id] },
                     this.type
                 );

@@ -22,7 +22,7 @@
                     circle
                 ></el-button>
                 <el-button
-                    class="fr"
+                    class="fr mr-10"
                     @click="getData"
                     size="medium"
                     type="primary"

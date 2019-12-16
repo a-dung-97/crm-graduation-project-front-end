@@ -1,4 +1,4 @@
-const taskRouter = [
+const activityRouter = [
     {
         path: "task/index",
         name: "Công việc",
@@ -35,6 +35,24 @@ const taskRouter = [
             title: "Chi tiết công việc",
         }
     },
+    {
+        path: "call/show/:id",
+        name: "Chi tiết cuộc gọi",
+        hidden: true,
+        component: () => import("@/views/business/call/show"),
+        meta: {
+            title: "Chi tiết cuộc gọi",
+        }
+    },
+    {
+        path: "appointment/show/:id",
+        name: "Chi tiết cuộc hẹn",
+        hidden: true,
+        component: () => import("@/views/business/appointment/show"),
+        meta: {
+            title: "Chi tiết cuộc hẹn",
+        }
+    },
 ]
 
-export default taskRouter
+export default activityRouter

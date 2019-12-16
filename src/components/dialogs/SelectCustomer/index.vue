@@ -5,6 +5,7 @@
         :visible.sync="showDialog "
         :before-close="closeDialog"
         width="75%"
+        append-to-body
         center
     >
         <el-input

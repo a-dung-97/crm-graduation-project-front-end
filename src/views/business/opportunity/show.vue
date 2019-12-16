@@ -10,6 +10,9 @@
             <el-tab-pane :label="'Ghi chú ' +(count.note>0?('('+count.note+')'):'')">
                 <Note @handle-load="handleLoad('note',$event)" type="opportunity" />
             </el-tab-pane>
+            <el-tab-pane :label="'Hoạt động '+(count.task>0?('('+count.task+')'):'')">
+                <Task @handle-load="handleLoad('task',$event)" type="opportunity" />
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>

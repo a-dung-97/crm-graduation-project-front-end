@@ -22,21 +22,22 @@ export default {
 ::-webkit-scrollbar {
     z-index: 9999;
     width: 0px;
-    height: 13px;
+    height: 12px;
     //background-color: white;
 }
 
 ::-webkit-scrollbar-thumb {
     // border-radius: 10px;
     z-index: 9999;
+    background: #dfe6e9;
 
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.44, rgb(122, 153, 217)),
-        color-stop(0.72, rgb(73, 125, 189)),
-        color-stop(0.86, rgb(28, 58, 148))
-    );
+    // background-image: -webkit-gradient(
+    //     linear,
+    //     left bottom,
+    //     left top,
+    //     color-stop(0.44, rgb(122, 153, 217)),
+    //     color-stop(0.72, rgb(73, 125, 189)),
+    //     color-stop(0.86, rgb(28, 58, 148))
+    // );
 }
 </style>

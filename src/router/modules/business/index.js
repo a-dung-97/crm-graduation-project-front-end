@@ -1,5 +1,5 @@
 import Layout from '@/layout';
-import taskRouter from './task';
+import activityRouter from './activity';
 import opportunityRouter from './opportunity';
 import quoteRouter from './quote';
 import orderRouter from './order';
@@ -14,7 +14,7 @@ const businessRouter = {
         icon: "dashboard"
     },
     children: [
-        ...taskRouter,
+        ...activityRouter,
         ...opportunityRouter,
         ...quoteRouter,
         ...orderRouter,

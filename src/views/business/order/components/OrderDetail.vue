@@ -88,7 +88,7 @@
                                 ref="input"
                                 @focus="openDialog('customer')"
                                 clearable
-                                @clear="form.customer_id=''"
+                                @clear="form.customer_id='';form.opportunity_id='';form.contact_id='';contact='';opportunity=''"
                                 v-model="customer"
                                 placeholder="Chọn khách hàng"
                             ></el-input>
@@ -374,7 +374,10 @@ export default {
                 for (let field in this.form) {
                     this.form[field] = data[field];
                 }
-                if (this.$route.query.cloneId) this.form.code = "";
+                if (this.$route.query.cloneId) {
+                    this.form.code = "";
+                    this.form.id = "";
+                }
 
                 console.log(this.form);
                 this.closeFullScreen();
