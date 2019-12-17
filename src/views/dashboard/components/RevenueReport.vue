@@ -12,7 +12,7 @@
                 clearable
             >
                 <el-option value="today" label="Hôm nay"></el-option>
-                <el-option value="yestoday" label="Hôm qua"></el-option>
+                <el-option value="yesterday" label="Hôm qua"></el-option>
                 <el-option value="thisweek" label="Tuần này"></el-option>
                 <el-option value="lastweek" label="Tuần trước"></el-option>
                 <el-option value="thismonth" label="Tháng này"></el-option>
