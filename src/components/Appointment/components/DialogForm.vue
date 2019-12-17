@@ -63,8 +63,8 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
             <el-button @click="closeDialog">Hủy</el-button>
-            <el-button v-if="!isEdit" @click="createData" type="primary">Tạo mới</el-button>
-            <el-button v-else @click="updateData" type="primary">Cập nhật</el-button>
+            <el-button :loading="loading" v-if="!isEdit" @click="createData" type="primary">Tạo mới</el-button>
+            <el-button :loading="loading" v-else @click="updateData" type="primary">Cập nhật</el-button>
         </span>
         <SelectParticipants
             @handle-select="handleSelect"
@@ -108,6 +108,7 @@ export default {
     data() {
         return {
             selection: "",
+            loading: false,
             count: { users: 0, leads: 0, contacts: 0 },
             mode: "",
             showDialog1: false,
@@ -178,9 +179,8 @@ export default {
         async updateData() {
             try {
                 await this.$refs["form"].validate();
-                this.openFullScreen();
+                this.loading = true;
                 await update(this.form, this.form.id);
-                this.closeFullScreen();
                 this.$message.success("Sửa cuộc hẹn thành công");
                 this.reload();
             } catch (error) {

@@ -214,8 +214,10 @@
                 <p>Tổng tiền chiết khấu: {{ discount.toFixed(2)|money }} đ</p>
                 <p>Phí giao hàng: {{ fee.toFixed(2)|money }} đ</p>
                 <p>Tổng thanh toán: {{ (total+tax-discount+fee).toFixed(2)|money }} đ</p>
-                <p>Đã thanh toán: {{ data.paid.toFixed(2)|money }} đ</p>
-                <p>Còn nợ: {{ (total+tax-discount+fee-data.paid).toFixed(2)|money }} đ</p>
+                <template v-if="data.paid!=null">
+                    <p>Đã thanh toán: {{ (data.paid).toFixed(2)|money }} đ</p>
+                    <p>Còn nợ: {{ (total+tax-discount+fee-data.paid).toFixed(2)|money }} đ</p>
+                </template>
             </el-col>
         </el-row>
         <h3 class="title">

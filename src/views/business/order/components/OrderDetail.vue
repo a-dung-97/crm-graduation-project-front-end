@@ -485,6 +485,7 @@ export default {
             this.quote = this.quo.code;
             this.form.quote_id = this.quo.id;
             this.form.products = this.quo.products;
+            this.form.shipping_fee = this.quo.shipping_fee;
         }
 
         if (this.$route.query.cloneId) {
