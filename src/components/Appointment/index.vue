@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-row class="mb-20">
+        <el-row v-if="type!='customer'" class="mb-20">
             <el-col :span="24">
                 <el-button
                     class="fr"

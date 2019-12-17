@@ -20,7 +20,13 @@
             </el-select>
         </div>
         <div class="chart-container">
-            <DoughnutChart :chart-data="chartData" v-if="chartData" :styles="myStyles" />
+            <DoughnutChart
+                :rate="rate"
+                :chart-data="chartData"
+                v-if="chartData"
+                :styles="myStyles"
+            />
+            <h5 class="rate">Tỉ lệ chuyển đổi {{ rate }}%</h5>
         </div>
     </el-card>
 </template>
@@ -33,6 +39,7 @@ export default {
         return {
             loading: false,
             chartData: "",
+            rate: 0,
             params: {
                 time: ""
             },
@@ -57,6 +64,12 @@ export default {
                 ];
                 datasets[0].data = [...data];
                 this.chartData = { labels, datasets };
+                if (this.chartData.datasets[0].data.length > 0)
+                    this.rate =
+                        Math.round(
+                            (this.chartData.datasets[0].data[2] * 100 * 100) /
+                                this.chartData.datasets[0].data[0]
+                        ) / 100;
                 this.loading = false;
             } catch (error) {}
         }
@@ -68,6 +81,13 @@ export default {
 </script>
 <style lang="css">
 .chart-container {
-    height: 320px;
+    height: 310px;
+}
+.rate {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top: 5px;
+    color: #2c3e50;
 }
 </style>

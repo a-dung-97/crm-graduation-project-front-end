@@ -86,9 +86,16 @@ export default {
             if (!this.isEdit) {
                 for (let field in this.form)
                     if (field != "participants") this.form[field] = "";
-                for (let field in this.form["participants"])
+                for (let field in this.form["participants"]) {
                     this.form["participants"][field] = [];
-                for (let field in this.count) this.count[field] = 0;
+                }
+                this.form["participants"][`${this.type}s`] = [
+                    Number(this.$route.params.id)
+                ];
+                for (let field in this.count) {
+                    this.count[field] = 0;
+                }
+                this.count[`${this.type}s`] = 1;
             } else {
                 for (let field in this.form)
                     this.form[field] = this.data[field];
