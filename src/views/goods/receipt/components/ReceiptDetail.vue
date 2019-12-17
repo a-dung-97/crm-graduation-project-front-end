@@ -206,7 +206,7 @@ export default {
                 warehouse_id: "",
                 quantity: 1,
                 unit: val.unit,
-                price: val.sale_price,
+                price: val.perchase_price,
                 tax: val.tax
             };
             this.form.products.push(newProduct);
