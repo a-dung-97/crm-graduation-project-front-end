@@ -151,6 +151,20 @@
                             <p class="content">{{ data.status }}</p>
                         </el-col>
                     </el-row>
+                    <el-row v-if="data.opportunity" class="item">
+                        <el-col :span="6">
+                            <p class="my-label">Cơ hội</p>
+                        </el-col>
+                        <el-col :span="6">
+                            <p class="content">
+                                <router-link
+                                    tag="a"
+                                    style="color:#3498db"
+                                    :to="`/business/opportunity/show/${data.opportunity.id}`"
+                                >{{ data.opportunity.name }}</router-link>
+                            </p>
+                        </el-col>
+                    </el-row>
                     <h3 class="title">Mô tả công việc</h3>
                     <el-row>
                         <el-col :span="24">

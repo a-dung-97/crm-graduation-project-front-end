@@ -47,7 +47,7 @@
                         <p class="my-label">Khách hàng</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.customer }}</p>
+                        <p class="content">{{ data.customer?data.customer.name:'' }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">
@@ -55,7 +55,7 @@
                         <p class="my-label">Liên hệ</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.contact }}</p>
+                        <p class="content">{{ data.contact?data.contact.name:'' }}</p>
                     </el-col>
                 </el-row>
 
@@ -187,7 +187,7 @@
                 </el-table-column>
             </el-table>
         </el-row>
-        <Order />
+        <Order :quote="data" />
         <SendingEmail v-if="quote" :show-dialog.sync="showDialog" type="customer" :quote="quote" />
         <el-dialog center title="Báo giá" :visible.sync="showDialog1" top="5vh" width="80%">
             <div id="print" v-if="showDialog1" v-html="quote.content"></div>

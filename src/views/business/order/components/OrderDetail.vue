@@ -245,7 +245,7 @@ export default {
         SelectOpportunity,
         SelectOrderQuote
     },
-    props: ["isEdit", "isShow", "user"],
+    props: ["isEdit", "isShow", "cus", "oppor", "quo"],
     data() {
         return {
             type: "",
@@ -354,7 +354,9 @@ export default {
                 const { data } = await store(this.form);
 
                 this.closeFullScreen();
-                this.$router.push(`/business/order/show/${data.id}`);
+                if (this.cus || this.oppor || this.quo) {
+                    this.$router.go(-1);
+                } else this.$router.push(`/business/order/show/${data.id}`);
             } catch (error) {
                 console.log(error);
                 this.closeFullScreen();
@@ -451,10 +453,40 @@ export default {
         }
     },
     created() {
-        if (this.user) {
-            this.form.customer_id = this.user.id;
-            this.customer = this.user.name;
+        if (this.cus) {
+            this.form.customer_id = this.cus.id;
+            this.customer = this.cus.name;
+            this.form.delivery_address = this.cus.delivery_address;
+        } else if (this.oppor) {
+            this.form.customer_id = this.oppor.customer.id;
+            this.customer = this.oppor.customer.name;
+            this.form.delivery_address = this.oppor.customer.delivery_address;
+            this.opportunity = this.oppor.name;
+            this.form.opportunity_id = this.oppor.id;
+            this.form.contact_id = this.oppor.contact
+                ? this.oppor.contact.id
+                : null;
+            this.contact = this.oppor.contact ? this.oppor.contact.name : null;
+        } else if (this.quo) {
+            console.log(this.quo);
+            this.form.customer_id = this.quo.customer.id;
+            this.customer = this.quo.customer.name;
+            this.form.delivery_address = this.quo.customer.delivery_address;
+            this.opportunity = this.quo.opportunity[0]
+                ? this.quo.opportunity[0].name
+                : null;
+            this.form.opportunity_id = this.quo.opportunity[0]
+                ? this.quo.opportunity[0].id
+                : null;
+            this.form.contact_id = this.quo.contact
+                ? this.quo.contact.id
+                : null;
+            this.contact = this.quo.contact ? this.quo.contact.name : null;
+            this.quote = this.quo.code;
+            this.form.quote_id = this.quo.id;
+            this.form.products = this.quo.products;
         }
+
         if (this.$route.query.cloneId) {
             this.getOrder();
         }

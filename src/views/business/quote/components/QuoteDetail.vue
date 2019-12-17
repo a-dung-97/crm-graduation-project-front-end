@@ -246,7 +246,7 @@ export default {
         SelectCustomer,
         SelectOpportunity
     },
-    props: ["isEdit", "isShow", "user"],
+    props: ["isEdit", "isShow", "cus", "oppor"],
     data() {
         return {
             type: "",
@@ -347,7 +347,9 @@ export default {
                 const { data } = await store(this.form);
 
                 this.closeFullScreen();
-                this.$router.push(`/business/quote/show/${data.id}`);
+                if (this.cus || this.oppor) {
+                    this.$router.go(-1);
+                } else this.$router.push(`/business/quote/show/${data.id}`);
             } catch (error) {
                 console.log(error);
                 this.closeFullScreen();
@@ -470,10 +472,23 @@ export default {
         }
     },
     created() {
-        if (this.user) {
+        if (this.cus) {
             console.log(this.form);
-            this.form.customer_id = this.user.id;
-            this.customer = this.user.name;
+            this.form.customer_id = this.cus.id;
+            this.customer = this.cus.name;
+            this.form.delivery_address = this.cus.delivery_address;
+            this.form.invoice_address = this.cus.invoice_address;
+        } else if (this.oppor) {
+            this.form.customer_id = this.oppor.customer.id;
+            this.customer = this.oppor.customer.name;
+            this.form.delivery_address = this.oppor.customer.delivery_address;
+            this.form.invoice_address = this.oppor.customer.invoice_address;
+            this.opportunity = this.oppor.name;
+            this.form.opportunity_id = this.oppor.id;
+            this.form.contact_id = this.oppor.contact
+                ? this.oppor.contact.id
+                : null;
+            this.contact = this.oppor.contact ? this.oppor.contact.name : null;
         }
         if (this.$route.query.cloneId) {
             this.getQuote();

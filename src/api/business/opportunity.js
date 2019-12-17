@@ -34,4 +34,17 @@ export function destroy(id) {
         method: 'delete',
     })
 }
-
+export function getOrders(id, params) {
+    return request({
+        url: `/opportunities/${id}/orders`,
+        method: 'get',
+        params
+    })
+}
+export function getQuotes(id, params) {
+    return request({
+        url: `/opportunities/${id}/quotes`,
+        method: 'get',
+        params
+    })
+}

@@ -1,12 +1,12 @@
 <template>
     <div class="app-container">
-        <QuoteDetail :user="user" :is-edit="false" />
+        <QuoteDetail :oppor="opportunity" :cus="cus" :is-edit="false" />
     </div>
 </template>
 <script>
 import QuoteDetail from "./components/QuoteDetail";
 export default {
-    props: ["user"],
+    props: ["cus", "opportunity"],
     components: { QuoteDetail }
 };
 </script>

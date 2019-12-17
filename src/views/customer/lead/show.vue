@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-        <el-tabs value="3">
+        <el-tabs value="0">
             <el-tab-pane label="Thông tin">
                 <Infomation @loaded="name=$event" />
             </el-tab-pane>
@@ -11,7 +11,7 @@
                 <Note @handle-load="handleLoad('note',$event)" type="lead" />
             </el-tab-pane>
             <el-tab-pane label="Hoạt động">
-                <el-tabs value="2" tab-position="left" style="height: 100%;">
+                <el-tabs value="0" tab-position="left" style="height: 100%;">
                     <el-tab-pane :label="'Công việc '+(count.task>0?('('+count.task+')'):'(0)')">
                         <Task @handle-load="handleLoad('task',$event)" type="lead" />
                     </el-tab-pane>

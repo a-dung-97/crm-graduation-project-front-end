@@ -4,7 +4,7 @@
             <el-col :span="24">
                 <el-button
                     class="fr"
-                    @click="$router.push({name: 'Thêm mới đơn hàng',params:{user}})"
+                    @click="$router.push({name: 'Thêm mới đơn hàng',params:{cus}})"
                     size="medium"
                     type="primary"
                 >Thêm mới đơn hàng</el-button>
@@ -33,6 +33,7 @@ export default {
         return {
             tableData: [],
             loading: false,
+            cus: "",
             pagination: {},
             params: {
                 perPage: 10,
@@ -61,6 +62,9 @@ export default {
         }
     },
     created() {
+        this.bus.$on("customer", data => {
+            this.cus = data;
+        });
         this.getData();
     }
 };

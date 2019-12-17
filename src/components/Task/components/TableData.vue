@@ -54,9 +54,11 @@ export default {
                 cancelButtonText: "Hủy",
                 type: "warning"
             });
+            this.openFullScreen();
             await destroy(id);
             this.$message.success("Xóa dữ liệu thành công");
             this.$emit("handle-delete");
+            this.closeFullScreen();
         }
     }
 };

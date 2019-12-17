@@ -241,6 +241,7 @@ export default {
                 const { data } = await show(this.$route.params.id);
                 this.$emit("loaded", { id: data.id, name: data.name });
                 this.data = data;
+                this.bus.$emit("customer", data);
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);

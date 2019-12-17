@@ -2,7 +2,7 @@
     <div class="app-container">
         <el-tabs>
             <el-tab-pane label="Thông tin">
-                <Infomation @loaded="name=$event" />
+                <Infomation @customer="customerId=$event" @loaded="name=$event" />
             </el-tab-pane>
             <el-tab-pane :label="'Đính kèm '+(count.file>0?('('+count.file+')'):'')">
                 <File @handle-load="handleLoad('file',$event)" type="contact" />
@@ -10,10 +10,14 @@
             <el-tab-pane :label="'Ghi chú ' +(count.note>0?('('+count.note+')'):'')">
                 <Note @handle-load="handleLoad('note',$event)" type="contact" />
             </el-tab-pane>
-            <el-tab-pane :label="'Hoạt động'">
-                <el-tabs value="1" tab-position="left" style="height: 100%;">
+            <el-tab-pane lazy :label="'Hoạt động'">
+                <el-tabs value="0" tab-position="left" style="height: 100%;">
                     <el-tab-pane :label="'Công việc '+(count.task>0?('('+count.task+')'):'(0)')">
-                        <Task @handle-load="handleLoad('task',$event)" type="contact" />
+                        <Task
+                            :customer="customerId"
+                            @handle-load="handleLoad('task',$event)"
+                            type="contact"
+                        />
                     </el-tab-pane>
                     <el-tab-pane :label="'Cuộc gọi '+(count.call>0?('('+count.call+')'):'(0)')">
                         <Call
@@ -53,7 +57,8 @@ export default {
     mixins: [count],
     data() {
         return {
-            name: ""
+            name: "",
+            customerId: ""
         };
     }
 };

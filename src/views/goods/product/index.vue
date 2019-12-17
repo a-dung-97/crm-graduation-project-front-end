@@ -57,9 +57,7 @@ export default {
             }
         }
     },
-    mounted() {
-        this.$bus.$on("refresh", () => this.getData());
-    },
+
     created() {
         this.getData();
     }

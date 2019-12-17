@@ -193,6 +193,7 @@ export default {
                 const { data } = await show(this.$route.params.id);
                 this.data = data;
                 this.$emit("loaded", data.name);
+                this.$emit("customer", data.customer_id);
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);

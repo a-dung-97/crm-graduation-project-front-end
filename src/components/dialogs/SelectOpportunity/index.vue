@@ -6,6 +6,7 @@
         :before-close="closeDialog"
         width="75%"
         center
+        append-to-body
     >
         <el-input
             prefix-icon="el-icon-search"

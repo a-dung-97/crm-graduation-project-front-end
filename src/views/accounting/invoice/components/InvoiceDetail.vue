@@ -179,7 +179,7 @@ import TagArea from "@/components/TagArea/index";
 import SelectOrderQuote from "@/components/dialogs/SelectOrderQuote/index";
 
 export default {
-    props: ["isEdit"],
+    props: ["isEdit", "ord"],
     components: { TagArea, SelectOrderQuote },
     data() {
         return {
@@ -265,7 +265,8 @@ export default {
                 this.openFullScreen();
                 const { data } = await store(this.form);
                 this.closeFullScreen();
-                this.$router.push(`/accounting/invoice/show/${data.id}`);
+                if (this.ord) this.$router.go(-1);
+                else this.$router.push(`/accounting/invoice/show/${data.id}`);
             } catch (error) {
                 console.log(error);
                 if (error.response) this.closeFullScreen();
@@ -304,6 +305,13 @@ export default {
         }
     },
     created() {
+        if (this.ord) {
+            console.log(this.ord);
+            this.order = this.ord.code;
+            this.form.order_id = this.ord.id;
+            this.form.customer = this.ord.customer.name;
+            this.form.payment_amount = this.ord.total;
+        }
         Promise.all([
             this.getCatalog("Hóa đơn", "Trạng thái"),
             this.getUsers(),

@@ -26,7 +26,13 @@
             @size-change="params.perPage=$event;params.page=1;getData()"
             @current-change="params.page=$event;getData()"
         />
-        <DialogForm @reload="getData()" :show-dialog.sync="showDialog" :form="form" :type="type" />
+        <DialogForm
+            @reload="getData()"
+            :customer="customer"
+            :show-dialog.sync="showDialog"
+            :form="form"
+            :type="type"
+        />
     </div>
 </template>
 <script>
@@ -36,7 +42,7 @@ import DialogForm from "./components/DialogForm";
 import Pagination from "@/components/Pagination/index";
 export default {
     components: { TableData, DialogForm, Pagination },
-    props: ["type", "opportunity"],
+    props: ["type", "customer"],
     data() {
         return {
             tableData: [],
@@ -54,6 +60,8 @@ export default {
                 start_date: "",
                 expiration_date: "",
                 priority: "",
+                contact_id: "",
+                opportunity_id: "",
                 status: "",
                 reminder_time: "",
                 reminder_type: ""

@@ -13,8 +13,8 @@
             <el-tab-pane :label="'Ghi chú ' +(count.note>0?('('+count.note+')'):'')">
                 <Note @handle-load="handleLoad('note',$event)" type="customer" />
             </el-tab-pane>
-            <el-tab-pane :label="'Hoạt động'">
-                <el-tabs value="1" tab-position="left" style="height: 100%;">
+            <el-tab-pane lazy :label="'Hoạt động'">
+                <el-tabs value="0" tab-position="left" style="height: 100%;">
                     <el-tab-pane :label="'Công việc '+(count.task>0?('('+count.task+')'):'(0)')">
                         <Task @handle-load="handleLoad('task',$event)" type="customer" />
                     </el-tab-pane>

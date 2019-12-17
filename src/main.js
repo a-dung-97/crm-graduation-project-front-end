@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Notifications from 'vue-notification'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-Vue.prototype.$bus = new Vue();
+Vue.prototype.bus = new Vue();
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/src/locale/lang/vi' // lang i18n

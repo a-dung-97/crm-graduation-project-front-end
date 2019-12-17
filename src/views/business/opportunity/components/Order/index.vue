@@ -4,7 +4,7 @@
             Danh sách đơn hàng
             <el-button
                 class="fr"
-                @click="$router.push({name:'Thêm mới đơn hàng',params:{quote}})"
+                @click="$router.push({name:'Thêm mới đơn hàng',params:{opportunity}})"
                 type="primary"
                 size="small"
                 icon="el-icon-plus"
@@ -15,10 +15,10 @@
     </el-row>
 </template>
 <script>
-import { getOrders } from "@/api/business/quote";
+import { getOrders } from "@/api/business/opportunity";
 import TableData from "./components/TableData";
 export default {
-    props: ["quote"],
+    props: ["opportunity"],
     components: { TableData },
     data() {
         return {

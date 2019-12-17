@@ -13,6 +13,7 @@ const invoiceRouter = [
         name: "Thêm mới hóa đơn",
         component: () => import("@/views/accounting/invoice/create"),
         hidden: true,
+        props: true,
         meta: {
             title: "Thêm mới hóa đơn",
         }

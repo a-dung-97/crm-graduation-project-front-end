@@ -30,6 +30,26 @@
             <el-form-item label="Tiêu đề" prop="title">
                 <el-input v-model="form.title"></el-input>
             </el-form-item>
+            <el-form-item v-if="type=='opportunity'||type=='customer'" label="Liên hệ">
+                <el-input
+                    ref="input1"
+                    @focus="openDialog('contact')"
+                    clearable
+                    @clear="form.contact_id=''"
+                    v-model="contact"
+                    placeholder="Chọn liên hệ"
+                ></el-input>
+            </el-form-item>
+            <el-form-item v-if="type=='contact'||type=='customer'" label="Cơ hội">
+                <el-input
+                    ref="input2"
+                    @focus="openDialog('opportunity')"
+                    clearable
+                    @clear="form.opportunity_id=''"
+                    v-model="opportunity"
+                    placeholder="Chọn cơ hội"
+                ></el-input>
+            </el-form-item>
             <el-form-item label="Ngày bắt đầu">
                 <el-date-picker
                     class="w-100"
@@ -90,14 +110,33 @@
             <el-button @click="closeDialog">Hủy</el-button>
             <el-button :loading="loading" @click="createData" type="primary">Tạo mới</el-button>
         </span>
+        <SelectCustomer
+            @handle-select="handleSelectCon"
+            type="contact"
+            :show-dialog.sync="showDialog2"
+            :customer="customerId"
+        />
+        <SelectOpportunity
+            @handle-select="handleSelectOp"
+            :show-dialog.sync="showDialog1"
+            :customer="customerId"
+        />
     </el-dialog>
 </template>
 <script>
+import SelectCustomer from "@/components/dialogs/SelectCustomer/index";
+import SelectOpportunity from "@/components/dialogs/SelectOpportunity/index";
 import { addTask } from "@/api/business/task";
 export default {
-    props: ["form", "showDialog", "type"],
+    components: { SelectCustomer, SelectOpportunity },
+    props: ["form", "showDialog", "type", "customer"],
     data() {
         return {
+            mode: "",
+            showDialog1: false,
+            showDialog2: false,
+            contact: "",
+            opportunity: "",
             loading: false,
             reminder: false,
             rules: {
@@ -117,6 +156,12 @@ export default {
                 ]
             }
         };
+    },
+    computed: {
+        customerId() {
+            if (this.type == "customer") return this.$route.params.id;
+            else return this.customer;
+        }
     },
     watch: {
         reminder(val) {
@@ -139,6 +184,19 @@ export default {
         }
     },
     methods: {
+        openDialog(type) {
+            if (type == "opportunity") this.showDialog1 = true;
+            else this.showDialog2 = true;
+        },
+        handleSelectCon(val) {
+            this.contact = val.name;
+            this.form.contact_id = val.id;
+        },
+
+        handleSelectOp(val) {
+            this.opportunity = val.name;
+            this.form.opportunity_id = val.id;
+        },
         closeDialog() {
             this.$emit("update:showDialog", false);
             this.$refs["form"].resetFields();
@@ -147,7 +205,14 @@ export default {
             try {
                 await this.$refs["form"].validate();
                 this.loading = true;
-                await addTask(this.form, this.type, this.$route.params.id);
+                let data = this.form;
+                if (this.type != "customer" && this.type != "lead")
+                    data = {
+                        ...this.form,
+                        taskable_type: "App\\Customer",
+                        taskable_id: this.customerId
+                    };
+                await addTask(data, this.type, this.$route.params.id);
                 this.reload();
             } catch (error) {
                 this.loading = false;
@@ -161,6 +226,8 @@ export default {
         }
     },
     created() {
+        // if (this.type == "customer") this.customerId = this.$route.params.id;
+        // else this.customerId = this.customer;
         this.getUsers();
     }
 };

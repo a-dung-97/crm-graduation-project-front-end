@@ -1,12 +1,12 @@
 <template>
     <div class="app-container">
-        <OrderDetail :user="user" :is-edit="false" />
+        <OrderDetail :oppor="opportunity" :cus="cus" :quo="quote" :is-edit="false" />
     </div>
 </template>
 <script>
 import OrderDetail from "./components/OrderDetail";
 export default {
-    props: ["user"],
+    props: ["cus", "opportunity", "quote"],
 
     components: { OrderDetail }
 };

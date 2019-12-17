@@ -231,7 +231,7 @@
                 </el-table-column>
             </el-table>
         </el-row>
-        <Invoice />
+        <Invoice :order="data" />
         <el-dialog center title="Báo giá" :visible.sync="showDialog" top="5vh" width="80%">
             <div id="print" v-if="showDialog" v-html="order.content"></div>
             <span slot="footer" class="dialog-footer">
@@ -288,10 +288,11 @@ export default {
                 ]);
                 this.data = data.data;
                 this.order = order.data;
-                console.log(data);
                 this.data.opportunity = this.data.opportunity
                     ? [this.data.opportunity]
                     : [];
+                this.data["total"] =
+                    this.total + this.tax - this.discount + this.fee;
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);

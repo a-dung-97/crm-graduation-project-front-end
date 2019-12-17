@@ -34,7 +34,7 @@
                         <p class="my-label">Liên hệ</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.contact }}</p>
+                        <p class="content">{{ data.contact?data.contact.name:'' }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">
@@ -42,7 +42,7 @@
                         <p class="my-label">Khách hàng</p>
                     </el-col>
                     <el-col :span="14">
-                        <p class="content">{{ data.customer }}</p>
+                        <p class="content">{{ data.customer?data.customer.name:null }}</p>
                     </el-col>
                 </el-row>
                 <el-row class="item">
@@ -127,11 +127,16 @@
                 <p class="content">{{ data.description }}</p>
             </el-col>
         </el-row>
+        <Quote :opportunity="data" />
+        <Order :opportunity="data" />
     </el-card>
 </template>
 <script>
 import { show } from "@/api/business/opportunity";
+import Quote from "./Quote/index";
+import Order from "./Order/index";
 export default {
+    components: { Quote, Order },
     data() {
         return {
             data: ""
@@ -143,6 +148,7 @@ export default {
                 this.openFullScreen();
                 const { data } = await show(this.$route.params.id);
                 this.data = data;
+                this.$emit("customer", data.customer.id);
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);

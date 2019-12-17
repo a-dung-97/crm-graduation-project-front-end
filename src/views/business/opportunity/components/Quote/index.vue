@@ -1,10 +1,10 @@
 <template>
     <el-row class="mb-20">
         <h3 class="title">
-            Danh sách đơn hàng
+            Danh sách báo giá
             <el-button
                 class="fr"
-                @click="$router.push({name:'Thêm mới đơn hàng',params:{quote}})"
+                @click="$router.push({name:'Thêm mới báo giá',params:{opportunity}})"
                 type="primary"
                 size="small"
                 icon="el-icon-plus"
@@ -15,10 +15,10 @@
     </el-row>
 </template>
 <script>
-import { getOrders } from "@/api/business/quote";
+import { getQuotes } from "@/api/business/opportunity";
 import TableData from "./components/TableData";
 export default {
-    props: ["quote"],
+    props: ["opportunity"],
     components: { TableData },
     data() {
         return {
@@ -30,7 +30,7 @@ export default {
         async getData() {
             try {
                 this.loading = true;
-                const { data, meta } = await getOrders(this.$route.params.id);
+                const { data, meta } = await getQuotes(this.$route.params.id);
                 this.tableData = data;
                 this.loading = false;
             } catch (error) {}
