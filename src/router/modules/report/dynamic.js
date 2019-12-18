@@ -6,7 +6,7 @@ const dynamicRouter = [
         component: () => import("@/views/report/dynamic/index"),
         meta: {
             title: "Báo cáo động",
-            icon: 'dashboard'
+            icon: 'report1'
         }
     },
     {

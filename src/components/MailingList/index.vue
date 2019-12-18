@@ -78,7 +78,6 @@ export default {
                     name: item.name
                 }))
             ];
-            console.log(this.lists);
         },
         async getMailingLists() {
             try {

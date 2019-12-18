@@ -6,7 +6,7 @@ const orderRouter = [
         component: () => import("@/views/business/order/index"),
         meta: {
             title: "Đơn hàng",
-            icon: 'dashboard'
+            icon: 'order'
         }
     },
     {

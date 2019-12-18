@@ -50,12 +50,7 @@
                     <span>{{ user.position }}</span>
                 </div>
             </div>
-            <div class="user-bio-section">
-                <div class="user-bio-section-header">
-                    <svg-icon icon-class="education" />
-                    <span>{{ user.role|uppercaseFirst }}</span>
-                </div>
-            </div>
+
             <div class="user-bio-section">
                 <div class="user-bio-section-header">
                     <svg-icon icon-class="skill" />
@@ -69,11 +64,6 @@
 <script>
 import { changeAvatar } from "@/api/company/user";
 export default {
-    filters: {
-        uppercaseFirst(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-    },
     props: {
         user: {
             type: Object,

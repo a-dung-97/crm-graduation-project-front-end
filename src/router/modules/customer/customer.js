@@ -5,7 +5,7 @@ const customerRouter = [
         component: () => import("@/views/customer/customer/index"),
         meta: {
             title: "Khách hàng",
-            icon: 'dashboard'
+            icon: 'user'
         }
     },
     {

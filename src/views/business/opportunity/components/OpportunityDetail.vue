@@ -303,7 +303,6 @@ export default {
                     this.form[field] = data[field];
                 }
                 this.closeFullScreen();
-                console.log(data);
             } catch (error) {
                 console.log(error);
                 this.closeFullScreen();
@@ -326,7 +325,6 @@ export default {
     },
     created() {
         if (this.user) {
-            console.log(this.form);
             this.form.customer_id = this.user.id;
             this.customer = this.user.name;
         }

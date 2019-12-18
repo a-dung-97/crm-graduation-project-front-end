@@ -117,9 +117,7 @@ export default {
             rules: [{}]
         };
     },
-    created() {
-        console.log(this.warehouses);
-    },
+
     methods: {
         deleteProduct(index) {
             this.products.splice(index, 1);

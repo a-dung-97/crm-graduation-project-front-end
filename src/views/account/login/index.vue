@@ -69,7 +69,7 @@
                 </div>
                 <div class="register-link">
                     Bạn không có tài khoản?
-                    <router-link to="/account/register">Đăng kí tài khoản</router-link>
+                    <router-link to="/account/register">Đăng ký tài khoản</router-link>
                 </div>
             </form>
         </section>
@@ -121,6 +121,7 @@ export default {
         login() {
             this.$store
                 .dispatch("user/login", this.form)
+                .then(() => this.$store.dispatch("permission/getPermissions"))
                 .then(() => {
                     this.$router.push({
                         path: this.redirect || "/",

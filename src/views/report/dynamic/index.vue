@@ -72,7 +72,6 @@ export default {
             if (mode == "edit") {
                 this.isEdit = true;
                 this.data = data;
-                console.log(this.data);
             } else this.isEdit = false;
         }
     },

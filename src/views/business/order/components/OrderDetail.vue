@@ -341,7 +341,6 @@ export default {
                 this.opportunity = val.name;
                 this.form.opportunity_id = val.id;
             } else {
-                console.log("ok");
                 this.quote = val.code;
                 this.form.quote_id = val.id;
             }
@@ -381,7 +380,6 @@ export default {
                     this.form.id = "";
                 }
 
-                console.log(this.form);
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);
@@ -468,7 +466,6 @@ export default {
                 : null;
             this.contact = this.oppor.contact ? this.oppor.contact.name : null;
         } else if (this.quo) {
-            console.log(this.quo);
             this.form.customer_id = this.quo.customer.id;
             this.customer = this.quo.customer.name;
             this.form.delivery_address = this.quo.customer.delivery_address;

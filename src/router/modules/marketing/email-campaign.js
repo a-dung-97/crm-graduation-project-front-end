@@ -5,7 +5,7 @@ const emailCampaignRouter = [
         component: () => import("@/views/marketing/email-campaign"),
         meta: {
             title: "Chiến dịch email",
-            icon: 'dashboard'
+            icon: 'campaign'
         }
     },
     {

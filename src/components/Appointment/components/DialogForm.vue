@@ -101,7 +101,6 @@ export default {
                     this.form[field] = this.data[field];
                 for (let field in this.count)
                     this.count[field] = this.form.participants[field].length;
-                console.log(this.data);
             }
         }
     },
@@ -154,7 +153,6 @@ export default {
         handleSelect(val) {
             this.count[this.mode] = val.length;
             this.form.participants[this.mode] = val;
-            console.log(this.form);
         },
         openDialog(val) {
             this.mode = val;

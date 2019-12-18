@@ -5,7 +5,7 @@ const contactRouter = [
         component: () => import("@/views/customer/contact/index"),
         meta: {
             title: "Liên hệ",
-            icon: 'dashboard'
+            icon: 'contact'
         }
     },
     {

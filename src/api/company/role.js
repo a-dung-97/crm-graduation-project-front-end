@@ -21,6 +21,27 @@ export function update(data, id) {
         data
     })
 }
+export function updateMenu(data, id) {
+    return request({
+        url: `/roles/${id}/menu`,
+        method: 'put',
+        data
+    })
+}
+export function getMenus(id) {
+    return request({
+        url: `/roles/${id}/menu`,
+        method: 'get',
+    })
+}
+
+export function getMenuList(params) {
+    return request({
+        url: '/menus',
+        method: 'get',
+        params
+    })
+}
 export function destroy(id) {
     return request({
         url: `/roles/${id}`,

@@ -7,10 +7,7 @@
 import ContactDetail from "./components/ContactDetail";
 export default {
     props: ["user"],
-    components: { ContactDetail },
-    created() {
-        console.log(this.user);
-    }
+    components: { ContactDetail }
 };
 </script>
 <style>

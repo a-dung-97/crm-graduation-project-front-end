@@ -5,7 +5,7 @@ const emailTemplateRouter = [
         component: () => import("@/views/marketing/email-template"),
         meta: {
             title: "Mẫu Email",
-            icon: 'dashboard'
+            icon: 'template'
         }
     },
     {

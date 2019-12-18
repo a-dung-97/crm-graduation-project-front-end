@@ -5,7 +5,7 @@ const leadRouter = [
         component: () => import("@/views/customer/lead/index"),
         meta: {
             title: "Tiềm năng",
-            icon: 'dashboard'
+            icon: 'user'
         }
     },
     {

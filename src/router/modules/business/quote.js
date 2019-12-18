@@ -6,7 +6,7 @@ const quoteRouter = [
         component: () => import("@/views/business/quote/index"),
         meta: {
             title: "Báo giá",
-            icon: 'dashboard'
+            icon: 'quote'
         }
     },
     {

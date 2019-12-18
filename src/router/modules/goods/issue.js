@@ -6,7 +6,7 @@ const issueRouter = [
         component: () => import("@/views/goods/issue/index"),
         meta: {
             title: "Phiếu xuất",
-            icon: 'dashboard'
+            icon: 'receipt'
         }
     },
     {

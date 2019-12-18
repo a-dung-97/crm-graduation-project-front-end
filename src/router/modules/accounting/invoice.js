@@ -5,7 +5,7 @@ const invoiceRouter = [
         component: () => import("@/views/accounting/invoice/index"),
         meta: {
             title: "Hóa đơn",
-            icon: 'dashboard'
+            icon: 'invoice'
         }
     },
     {

@@ -10,9 +10,6 @@
             <el-form-item label="Tên" prop="name">
                 <el-input v-model="form.name"></el-input>
             </el-form-item>
-            <el-form-item label="Mã" prop="code">
-                <el-input v-model="form.code"></el-input>
-            </el-form-item>
             <el-form-item label="Mô tả" prop="description">
                 <el-input v-model="form.description"></el-input>
             </el-form-item>
@@ -36,13 +33,6 @@ export default {
                     {
                         required: true,
                         message: "Hãy nhập tên quyền",
-                        trigger: "blur"
-                    }
-                ],
-                code: [
-                    {
-                        required: true,
-                        message: "Hãy nhập mã quyền",
                         trigger: "blur"
                     }
                 ]

@@ -89,13 +89,13 @@
                 <div class="form-group">
                     <button class="btn btn-social btn-fb">
                         <img src="@/assets/images/account/icon-fb.png" alt />
-                        <span>Đăng kí bằng tài khoản Facebook</span>
+                        <span>Đăng ký bằng tài khoản Facebook</span>
                     </button>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-social btn-gg">
                         <img src="@/assets/images/account/icon-gg.png" alt />
-                        <span>Đăng kí bằng tài khoản Google</span>
+                        <span>Đăng ký bằng tài khoản Google</span>
                     </button>
                 </div>
                 <div class="register-link">

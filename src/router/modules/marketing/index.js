@@ -10,7 +10,7 @@ const marketingRouter = {
     redirect: "/marketing/mailing-list/index",
     meta: {
         title: "Marketing",
-        icon: "dashboard"
+        icon: "marketing"
     },
     children: [
         {
@@ -19,7 +19,7 @@ const marketingRouter = {
             component: () => import("@/views/marketing/mailing-list/index"),
             meta: {
                 title: "Danh sách email",
-                icon: 'dashboard'
+                icon: 'group-user'
             }
         },
         ...emailTemplateRouter,

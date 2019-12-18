@@ -4,9 +4,10 @@ const companyRouter = {
     path: "/company",
     component: Layout,
     redirect: "/company/position",
+    name: "Công ty",
     meta: {
         title: "Công ty",
-        icon: "dashboard"
+        icon: "company"
     },
     children: [
         {
@@ -15,7 +16,7 @@ const companyRouter = {
             component: () => import("@/views/company/information/index"),
             meta: {
                 title: "Thông tin công ty",
-                icon: "people",
+                icon: "info",
             }
         },
         {
@@ -24,7 +25,7 @@ const companyRouter = {
             component: () => import("@/views/company/department/index"),
             meta: {
                 title: "Phòng ban",
-                icon: "people",
+                icon: "department",
             }
         },
         {
@@ -33,7 +34,7 @@ const companyRouter = {
             component: () => import("@/views/company/position/index"),
             meta: {
                 title: "Chức vụ",
-                icon: "people",
+                icon: "position",
             }
         },
         {
@@ -42,7 +43,7 @@ const companyRouter = {
             component: () => import("@/views/company/user/index"),
             meta: {
                 title: "Người dùng",
-                icon: "people",
+                icon: "user",
             }
         },
         {
@@ -51,7 +52,7 @@ const companyRouter = {
             component: () => import("@/views/company/group/index"),
             meta: {
                 title: "Nhóm người dùng",
-                icon: "people",
+                icon: "group-user",
             }
         },
         {
@@ -60,7 +61,7 @@ const companyRouter = {
             component: () => import("@/views/company/role/index"),
             meta: {
                 title: "Quyền hạn",
-                icon: "people",
+                icon: "role",
             }
         },
 

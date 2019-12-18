@@ -134,7 +134,6 @@ export default {
                 for (let field in this.form)
                     this.form[field] = this.data[field];
                 if (this.type == "customer") this.obj = this.data.contact;
-                console.log("ok");
             } else {
                 for (let field in this.form) this.form[field] = "";
                 if (this.type == "lead") {

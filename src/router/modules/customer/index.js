@@ -10,7 +10,7 @@ const customerManagementRouter = {
     redirect: "/customer/lead/index",
     meta: {
         title: "Khách hàng",
-        icon: "dashboard"
+        icon: "customer"
     },
     children: [
         ...leadRouter,

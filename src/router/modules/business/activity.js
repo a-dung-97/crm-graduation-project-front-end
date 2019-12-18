@@ -5,7 +5,7 @@ const activityRouter = [
         component: () => import("@/views/business/task/index"),
         meta: {
             title: "Công việc",
-            icon: 'dashboard'
+            icon: 'task'
         }
     },
     {

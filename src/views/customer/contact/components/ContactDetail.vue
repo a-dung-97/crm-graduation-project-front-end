@@ -353,7 +353,6 @@ export default {
     },
     created() {
         if (this.user) {
-            console.log(this.user);
             this.form.customer_id = this.user.id;
             this.name = this.user.name;
         }

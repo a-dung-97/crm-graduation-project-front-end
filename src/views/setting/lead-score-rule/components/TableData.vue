@@ -72,7 +72,6 @@ export default {
     },
     methods: {
         handleEdit(row) {
-            console.log(row);
             this.form.id = row.id;
             this.form.field = row.field;
             this.form.condition = row.condition;

@@ -10,7 +10,7 @@ const goodsRouter = {
     redirect: "/goods/product/index",
     meta: {
         title: "Hàng hóa",
-        icon: "dashboard"
+        icon: "goods"
     },
     children: [
         ...productRouter,
@@ -31,7 +31,7 @@ const goodsRouter = {
             component: () => import("@/views/goods/inventory/index"),
             meta: {
                 title: "Hàng tồn kho",
-                icon: 'dashboard'
+                icon: 'inventory'
             }
         },
 

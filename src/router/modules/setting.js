@@ -4,9 +4,10 @@ const settingRouter = {
     path: "/setting",
     component: Layout,
     redirect: "/setting/catalog",
+    name: "Cài đặt",
     meta: {
         title: "Cài đặt",
-        icon: "dashboard",
+        icon: "setting",
 
     },
     alwaysShow: true,
@@ -17,7 +18,7 @@ const settingRouter = {
             component: () => import("@/views/setting/catalog/index"),
             meta: {
                 title: "Danh mục",
-                icon: "dashboard",
+                icon: "catalog",
             }
         },
         {
@@ -26,7 +27,7 @@ const settingRouter = {
             component: () => import("@/views/setting/lead-score-rule/index"),
             meta: {
                 title: "Quy tắc tính điểm",
-                icon: "dashboard",
+                icon: "rule",
             }
         },
     ]

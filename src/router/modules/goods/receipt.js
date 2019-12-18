@@ -6,7 +6,7 @@ const receiptRouter = [
         component: () => import("@/views/goods/receipt/index"),
         meta: {
             title: "Phiếu nhập",
-            icon: 'dashboard'
+            icon: 'receipt'
         }
     },
     {

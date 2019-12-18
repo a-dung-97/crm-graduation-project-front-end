@@ -360,8 +360,8 @@ export default {
                 this.openFullScreen();
                 let id = this.$route.params.id || this.$route.query.cloneId;
                 const { data } = await show(id);
-                this.contact = data.contact;
-                this.customer = data.customer;
+                this.contact = data.contact ? data.contact.name : null;
+                this.customer = data.customer.name;
                 this.opportunity = data.opportunity
                     ? data.opportunity.name
                     : "";

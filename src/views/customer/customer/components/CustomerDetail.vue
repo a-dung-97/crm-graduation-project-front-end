@@ -315,7 +315,6 @@ export default {
             this.form.parent_id = val.id;
         },
         openDialog() {
-            console.log("ok");
             this.showDialog = true;
             this.$refs["input"].blur();
         },
@@ -342,7 +341,6 @@ export default {
                     this.form[field] = data[field];
                 }
                 this.closeFullScreen();
-                console.log(data);
             } catch (error) {
                 console.log(error);
                 this.closeFullScreen();

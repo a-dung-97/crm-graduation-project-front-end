@@ -5,7 +5,7 @@ const webformRouter = [
         component: () => import("@/views/marketing/webform/index"),
         meta: {
             title: "Webform",
-            icon: 'dashboard'
+            icon: 'form'
         }
     },
     {

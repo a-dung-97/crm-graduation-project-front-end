@@ -6,7 +6,7 @@ const productRouter = [
         component: () => import("@/views/goods/product/index"),
         meta: {
             title: "Sản phẩm",
-            icon: 'dashboard'
+            icon: 'product'
         }
     },
     {

@@ -58,7 +58,6 @@ const actions = {
         return new Promise((resolve, reject) => {
 
             login({ email: email.trim(), password: password }).then(response => {
-                console.log(response);
                 commit('SET_TOKEN', response.access_token)
                 setToken(response.access_token)
                 resolve()

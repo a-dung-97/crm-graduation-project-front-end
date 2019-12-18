@@ -8,7 +8,7 @@ const accountingRouter = {
     redirect: "/accounting/cashbook/index",
     meta: {
         title: "Kế toán",
-        icon: "dashboard"
+        icon: "accounting"
     },
     children: [
 
@@ -18,7 +18,7 @@ const accountingRouter = {
             component: () => import("@/views/accounting/cashbook/index"),
             meta: {
                 title: "Sổ quỹ",
-                icon: 'dashboard'
+                icon: 'cashbook'
             }
         },
         ...invoiceRouter,

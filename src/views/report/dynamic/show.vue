@@ -55,7 +55,6 @@ export default {
                     this.options = options.task.concat(options.user);
                 else if (this.report.module == "opportunity")
                     this.options = options.opportunity.concat(options.customer);
-                console.log(this.options);
                 this.closeFullScreen();
             } catch (error) {}
         },

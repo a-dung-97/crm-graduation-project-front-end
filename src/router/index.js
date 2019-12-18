@@ -69,7 +69,7 @@ export const asyncRoutes = [
 ];
 const createRouter = () =>
     new Router({
-        mode: process.env.NODE_ENV == 'production' ? 'history' : 'hash',
+        mode: 'history',
         scrollBehavior: () => ({
             y: 0
         }),

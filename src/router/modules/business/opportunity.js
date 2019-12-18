@@ -5,7 +5,7 @@ const opportunityRouter = [
         component: () => import("@/views/business/opportunity/index"),
         meta: {
             title: "Cơ hội",
-            icon: 'dashboard'
+            icon: 'opportunity'
         }
     },
     {

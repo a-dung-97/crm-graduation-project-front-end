@@ -29,7 +29,7 @@
                 <el-input v-model="form.office_address" placeholder="Nhập địa chỉ công ty"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button @click.prevent="createLead" type="primary">Đăng kí</el-button>
+                <el-button @click.prevent="createLead" type="primary">Đăng ký</el-button>
             </el-form-item>
         </el-form>
     </el-card>

@@ -189,7 +189,6 @@ export default {
             } catch (error) {}
         },
         handleChange(val) {
-            console.log(val);
             if (!val) {
                 this.rules.email_campaign_id = [];
                 this.rules.event = [];

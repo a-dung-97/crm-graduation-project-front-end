@@ -86,7 +86,6 @@ export default {
         },
         handleSelectionChange(val) {
             val = val.map(item => item.id);
-            console.log(this.tmp);
             let toggleList = this.getToggleList().map(item => item.id);
             toggleList.forEach(item => {
                 if (val.indexOf(item) == -1) {
@@ -114,12 +113,10 @@ export default {
         },
         async updateUsers() {
             try {
-                console.log(this.tmp);
                 this.btnLoading = true;
                 await updateUsers(this.id, this.tmp);
                 this.reload();
             } catch (error) {
-                console.log(error);
                 this.btnLoading = false;
             }
         }

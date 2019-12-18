@@ -306,7 +306,6 @@ export default {
     },
     created() {
         if (this.ord) {
-            console.log(this.ord);
             this.order = this.ord.code;
             this.form.order_id = this.ord.id;
             this.form.customer = this.ord.customer.name;

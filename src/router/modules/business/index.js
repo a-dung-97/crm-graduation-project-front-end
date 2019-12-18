@@ -11,7 +11,7 @@ const businessRouter = {
     redirect: "/business/task/index",
     meta: {
         title: "Kinh doanh",
-        icon: "dashboard"
+        icon: "business"
     },
     children: [
         ...activityRouter,
@@ -24,7 +24,7 @@ const businessRouter = {
             component: () => import("@/views/business/note/index"),
             meta: {
                 title: "Ghi chú",
-                icon: 'dashboard'
+                icon: 'note'
             }
         },
     ]

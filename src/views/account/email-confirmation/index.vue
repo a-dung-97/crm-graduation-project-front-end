@@ -57,7 +57,6 @@ export default {
                     type: "success"
                 });
             } catch (error) {
-                console.log(error.response.data);
                 this.loading = false;
             }
         }

@@ -316,7 +316,6 @@ export default {
                 if (!data.taskable_type) this.form.taskable_type = "App\\Lead";
 
                 this.loading = false;
-                console.log(data);
             } catch (error) {
                 console.log(error);
                 this.loading = false;

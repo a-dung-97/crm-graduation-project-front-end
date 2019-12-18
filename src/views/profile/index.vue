@@ -53,7 +53,6 @@ export default {
     },
     created() {
         this.getUser();
-        console.log(this.$store.getters);
     },
     methods: {
         getUser() {

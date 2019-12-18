@@ -8,7 +8,7 @@ const reportRouter = {
     redirect: "/report/dynamic/index",
     meta: {
         title: "Báo cáo",
-        icon: "dashboard"
+        icon: "report1"
     },
     children: [
         {
@@ -17,7 +17,7 @@ const reportRouter = {
             component: () => import("@/views/report/debt/index"),
             meta: {
                 title: "Báo cáo công nợ",
-                icon: 'dashboard'
+                icon: 'debt'
             }
         },
         ...dynamicRouter
