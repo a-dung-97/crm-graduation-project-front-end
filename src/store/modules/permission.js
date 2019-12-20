@@ -37,11 +37,13 @@ function addRolesToRoute(routes) {
         tmp.meta = { ...tmp.meta, roles: getPermission(tmp.name) };
         res.push(tmp)
     })
+    // console.log(res);
     return res
 }
 
 export function filterAsyncRoutes(routes, roles) {
     const res = []
+    // console.log(routes);
     routes = addRolesToRoute(routes);
     routes.forEach(route => {
         const tmp = { ...route }
@@ -78,9 +80,9 @@ const actions = {
             let accessedRoutes
             // if (roles.includes('admin')) accessedRoutes = asyncRoutes;
             // else
+            //console.log(asyncRoutes);
             accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
             //accessedRoutes = asyncRoutes;
-
             commit('SET_ROUTES', accessedRoutes)
             resolve(accessedRoutes)
         })

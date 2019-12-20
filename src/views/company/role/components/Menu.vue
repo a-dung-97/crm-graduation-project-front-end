@@ -69,7 +69,9 @@ export default {
             try {
                 this.btnLoading = true;
                 await updateMenu(
-                    this.$refs["tree"].getCheckedNodes().map(item => item.id),
+                    this.$refs["tree"]
+                        .getCheckedNodes(false, true)
+                        .map(item => item.id),
                     this.id
                 );
                 this.btnLoading = false;
