@@ -40,7 +40,7 @@
         <el-link
             :underline="false"
             type="primary"
-            v-if="quote==''"
+            v-if="quote==null"
             @click="showDialog1=true"
         >Chọn mẫu email</el-link>
         <TinyMCE :height="450" :content.sync="form.content" />
