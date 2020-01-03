@@ -9,6 +9,7 @@
         <breadcrumb class="breadcrumb-container" />
 
         <div class="right-menu">
+            <Notification class="right-menu-item" />
             <el-dropdown class="avatar-container" trigger="click">
                 <div class="avatar-wrapper">
                     <img
@@ -36,11 +37,13 @@
 <script>
 import { mapGetters } from "vuex";
 import Breadcrumb from "@/components/Breadcrumb";
+import Notification from "@/components/Notification/index";
 import Hamburger from "@/components/Hamburger";
 export default {
     components: {
         Breadcrumb,
-        Hamburger
+        Hamburger,
+        Notification
     },
     computed: {
         ...mapGetters(["sidebar", "avatar", "name"])
@@ -91,16 +94,10 @@ export default {
             display: inline-block;
             padding: 0 8px;
             height: 100%;
-            font-size: 18px;
+            font-size: 25px;
             color: #5a5e66;
             vertical-align: text-bottom;
-            &.hover-effect {
-                cursor: pointer;
-                transition: background 0.3s;
-                &:hover {
-                    background: rgba(0, 0, 0, 0.025);
-                }
-            }
+            cursor: pointer;
         }
         .avatar-container {
             margin-right: 30px;

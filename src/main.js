@@ -15,6 +15,18 @@ import '@/permission' // permission control
 import FullScreenLoading from '@/mixins/fullscreen-loading'
 import Catalog from '@/mixins/catalog'
 // Use v-calendar, v-date-picker & v-popover components
+import Echo from "laravel-echo"
+window.Pusher = require('pusher-js');
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '9581a5871ef781538397',
+    authEndpoint: `${process.env.VUE_APP_BASE_API}broadcasting/auth`,
+    auth: {
+        headers: {
+            Authorization: `Bearer ${store.getters.token}`
+        }
+    }
+});
 Vue.use(VueHtmlToPaper);
 Vue.filter('money', function (value) {
     if (value != null)

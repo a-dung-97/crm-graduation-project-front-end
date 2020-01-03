@@ -154,3 +154,16 @@ export function changePassword(data) {
         data
     })
 }
+export function getNotifications(params) {
+    return request({
+        url: '/notifications',
+        method: 'get',
+        params
+    })
+}
+export function markAsRead() {
+    return request({
+        url: '/notifications',
+        method: 'put',
+    })
+}

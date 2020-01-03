@@ -14,7 +14,7 @@
             <el-table-column prop="user" width="150" label="Chủ sở hữu"></el-table-column>
             <el-table-column width="130" label="Trạng thái">
                 <template slot-scope="scope">
-                    <el-tag type="primary">{{ scope.row.status }}</el-tag>
+                    <el-tag v-if="scope.row.status" type="primary">{{ scope.row.status }}</el-tag>
                 </template>
             </el-table-column>
             <el-table-column width="140" label="Ngày bắt đầu">

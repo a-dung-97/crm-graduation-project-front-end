@@ -85,6 +85,12 @@ export default {
         },
         showDialogForm() {
             for (let field in this.form) this.form[field] = "";
+            this.form.start_date =
+                new Date().getFullYear() +
+                "-" +
+                (new Date().getMonth() + 1) +
+                "-" +
+                new Date().getDate();
             this.showDialog = true;
         }
     },
