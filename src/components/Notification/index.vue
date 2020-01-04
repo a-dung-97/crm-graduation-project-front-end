@@ -75,7 +75,6 @@ export default {
             }
         },
         open() {
-            this.unreadCount = 0;
             this.params.offset = 0;
             this.notifications = [];
             this.getNotifications();

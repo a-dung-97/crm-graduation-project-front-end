@@ -1,7 +1,7 @@
  <template>
     <editor
         ref="editor"
-        api-key="1cvljup72sa0e27wxi67ov3qm5kxac1u56bvp9hihohdr8bc"
+        api-key="xiuqepq3su0jcg1exp6skcmp856lvauwlhgxgt7ffbjc9jii"
         v-model="value"
         :init="fullPlugin"
         cloud-channel="5-stable"
