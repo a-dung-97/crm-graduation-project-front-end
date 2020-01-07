@@ -121,7 +121,6 @@ export default {
         login() {
             this.$store
                 .dispatch("user/login", this.form)
-                .then(() => this.$store.dispatch("permission/getPermissions"))
                 .then(() => {
                     this.$router.push({
                         path: this.redirect || "/",
