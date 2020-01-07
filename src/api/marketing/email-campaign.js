@@ -27,3 +27,9 @@ export function store(data) {
         data
     })
 }
+export function destroy(id) {
+    return request({
+        url: `/email-campaigns/${id}`,
+        method: 'delete',
+    })
+}

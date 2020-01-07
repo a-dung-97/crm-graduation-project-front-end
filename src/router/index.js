@@ -13,6 +13,7 @@ import businessRouter from './modules/business/index';
 import accountingRouter from './modules/accounting/index';
 import marketingRouter from './modules/marketing/index';
 import reportRouter from './modules/report/index';
+import automationRouter from './modules/automation/index';
 export const constantRoutes = [
     accountRouter,
     {
@@ -64,7 +65,7 @@ export const constantRoutes = [
 ];
 
 export const asyncRoutes = [
-    companyRouter, goodsRouter, customerManagementRouter, businessRouter, accountingRouter, marketingRouter, settingRouter, reportRouter,
+    companyRouter, goodsRouter, customerManagementRouter, businessRouter, accountingRouter, marketingRouter, automationRouter, settingRouter, reportRouter,
     { path: '*', redirect: '/404', hidden: true }
 ];
 const createRouter = () =>
