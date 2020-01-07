@@ -17,8 +17,7 @@
                     slot-scope="scope"
                 >{{ scope.row.order>1?`${scope.row.after} ${scope.row.time_mode_name} sau khi ${scope.row.event.toLowerCase()} email trước`:'Thêm email vào nhóm' }}</template>
             </el-table-column>
-            <el-table-column prop="total_count" align="center" width="100" label="Đã gửi"></el-table-column>
-            <el-table-column prop="delivered_count" align="center" width="100" label="Đã nhận"></el-table-column>
+            <el-table-column prop="delivered_count" align="center" width="100" label="Đã gửi"></el-table-column>
             <el-table-column prop="opened_count" align="center" width="100" label="Mở"></el-table-column>
             <el-table-column prop="clicked_count" align="center" width="100" label="Click"></el-table-column>
             <el-table-column align="center" width="150" label="Hành động">

@@ -13,7 +13,6 @@
                     >{{ scope.row.name }}</el-link>
                 </template>
             </el-table-column>
-            <el-table-column prop="type" width="100" label="Loại"></el-table-column>
             <el-table-column prop="subject" label="Tiêu đề"></el-table-column>
             <el-table-column prop="description" label="Mô tả"></el-table-column>
             <el-table-column prop="total_count" width="100" label="Tổng gửi"></el-table-column>
