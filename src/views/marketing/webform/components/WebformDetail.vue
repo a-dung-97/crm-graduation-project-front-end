@@ -274,7 +274,7 @@ export default {
                 this.openFullScreen();
                 const { data } = await store(this.form);
                 this.active = 3;
-                this.code = `<iframe src="${process.env.VUE_APP_BASE}/webform/generated/webform/${data.id}" width="${this.form.width}" height="${this.form.height}" frameborder="0"></iframe>`;
+                this.code = `<iframe src="${process.env.VUE_APP_BASE}webform/generated?id=${data.id}" width="${this.form.width}" height="${this.form.height}" frameborder="0"></iframe>`;
                 this.closeFullScreen();
                 this.$message.success("Thêm webform thành công");
             } catch (error) {
@@ -293,7 +293,7 @@ export default {
                 this.openFullScreen();
                 await update(this.form, this.$route.params.id);
                 this.active = 3;
-                this.code = `<iframe src="${process.env.VUE_APP_BASE}#/webform/generated/${this.$route.params.id}" width="${this.form.width}" height="${this.form.height}" frameborder="0"></iframe>`;
+                this.code = `<iframe src="${process.env.VUE_APP_BASE}webform/generated?id=${this.$route.params.id}" width="${this.form.width}" height="${this.form.height}" frameborder="0"></iframe>`;
                 this.closeFullScreen();
                 this.$message.success("Sửa dữ liệu thành công");
             } catch (error) {

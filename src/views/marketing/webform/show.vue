@@ -122,7 +122,7 @@ export default {
                 this.openFullScreen();
                 const { data } = await show(this.$route.params.id);
                 this.data = data;
-                this.code = `<iframe src="${process.env.VUE_APP_BASE}webform/${data.id}" width="${data.width}" height="${data.height}" frameborder="0"></iframe>`;
+                this.code = `<iframe src="${process.env.VUE_APP_BASE}webform/generated?id=${data.id}" width="${data.width}" height="${data.height}" frameborder="0"></iframe>`;
                 this.closeFullScreen();
             } catch (error) {
                 console.log(error);

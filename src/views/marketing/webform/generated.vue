@@ -22,6 +22,7 @@ export default {
             try {
                 if (!this.$route.query.id) return;
                 this.openFullScreen();
+
                 const { data } = await getWebformFromIframe(
                     this.$route.query.id
                 );
@@ -40,7 +41,7 @@ export default {
     },
     created() {
         if (window.location == window.parent.location) {
-            //this.$router.push("/404");
+            this.$router.push("/404");
         } else this.url = document.referrer;
         this.getWebform();
     }
