@@ -11,7 +11,7 @@
                     type="primary"
                     size="small"
                 >Danh sách email</el-button>
-                <el-button :disabled="isSelecting" type="primary" size="small">Xuất Excel</el-button>
+                <el-button type="primary" @click="exportExcel" size="small">Xuất Excel</el-button>
                 <ChangingTag :objs="selected" type="lead" />
                 <el-button
                     class="fr"
@@ -59,7 +59,8 @@ import SearchForm from "./components/SearchForm";
 import MailingList from "@/components/MailingList/index";
 import selectMulti from "@/mixins/select-multi";
 import ChangingTag from "@/components/TagChanging/index";
-
+import axios from "axios";
+import { getToken } from "@/utils/auth";
 export default {
     components: { TableData, Pagination, SearchForm, MailingList, ChangingTag },
     mixins: [selectMulti],
@@ -99,6 +100,26 @@ export default {
                 console.log(error);
                 this.loading = false;
             }
+        },
+        exportExcel() {
+            this.openFullScreen();
+            axios({
+                url: process.env.VUE_APP_BASE_API + "leads",
+                method: "get",
+                headers: { ["Authorization"]: "Bearer " + getToken() },
+                responseType: "blob", // important
+                params: { ...this.params, export: true }
+            }).then(response => {
+                const url = window.URL.createObjectURL(
+                    new Blob([response.data])
+                );
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "CRM_Lead_Export.xlsx");
+                document.body.appendChild(link);
+                link.click();
+                this.closeFullScreen();
+            });
         }
     },
 

@@ -4,7 +4,7 @@ export function index(params) {
     return request({
         url: '/leads',
         method: 'get',
-        params
+        params,
     })
 }
 export function show(id, params) {
