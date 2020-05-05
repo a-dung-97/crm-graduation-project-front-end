@@ -9,10 +9,10 @@ function resolve(dir) {
 const name = defaultSettings.title || 'ADCRM' // page title
 
 // If your port is set to 80,
-// use administrator privileges to execute the command line.
+// use git push -f git@github.com:a-dung-97/a-dung-97.github.io.git masteradministrator privileges to execute the command line.
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
-// port = 9528 npm run dev OR npm run dev --port = 9528
+// port = 9528 npm run dev OR npm run dev --port = 9528 d
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
